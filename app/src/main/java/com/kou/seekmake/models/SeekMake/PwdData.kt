@@ -1,5 +1,5 @@
 package com.kou.seekmake.models.SeekMake
 
-data class Data(
+data class PwdData(
         val token: String
 )

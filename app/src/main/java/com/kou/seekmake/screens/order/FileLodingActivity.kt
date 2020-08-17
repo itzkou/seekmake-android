@@ -12,8 +12,12 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.kou.seekmake.R
+import com.kou.seekmake.models.SeekMake.Client
+import com.kou.seekmake.models.SeekMake.Order
 import com.kou.seekmake.screens.common.BaseActivity
 import com.kou.seekmake.screens.common.RealPathUtil
+import com.kou.seekmake.screens.common.SharedUtils.PrefsManager
+import com.kou.seekmake.screens.common.setupAuthGuard
 import kotlinx.android.synthetic.main.activity_file_loding.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -22,34 +26,45 @@ import java.io.File
 
 
 class FileLodingActivity : BaseActivity() {
+    private lateinit var technique: String
     private lateinit var vm: FileLoadingViewModel
     private lateinit var mFile: File
+    private lateinit var mClient: Client
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_file_loding)
-
-        val orderType = intent.getStringExtra(EXTRA_ORDER_TYPE) ?: return finish()
-
-        vm = initViewModel()
-
         requestToGetFile(PERMISSION_EXTERNAL_STORAGE)
+        technique = intent.getStringExtra(EXTRA_ORDER_TYPE) ?: return finish()
 
-        btn_upload_file.setOnClickListener {
-            getFile()
+
+        //TODO you need to validate all user inputs in signup
+        setupAuthGuard {
+            vm = initViewModel()
+            PrefsManager.geID(this)?.let { _id ->
+                vm.getClient(_id).observe(this, Observer {
+                    if (it.msg == "0")
+                        Toast.makeText(this, "Network Faillure", Toast.LENGTH_SHORT).show()
+                    else if (it.data != null) {
+                        mClient = it.data
+
+
+                    }
+                })
+            }
+            btn_upload_file.setOnClickListener {
+                getFile()
+            }
+
         }
 
-        btn_next.setOnClickListener {
-        }
 
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 0 && resultCode == Activity.RESULT_OK) {
-
-
             val uri: Uri = data!!.data!!
             val realPath = RealPathUtil.getRealPath(this, uri)!!
             mFile = File(realPath)
@@ -57,13 +72,24 @@ class FileLodingActivity : BaseActivity() {
                     MediaType.parse(contentResolver.getType(uri)!!),
                     mFile
             )
-            val body = MultipartBody.Part.createFormData("file", mFile.name, requestFile)
 
-            vm.uploadFile(body).observe(this, Observer {
-                if (it.URL == "0")
+            val body = MultipartBody.Part.createFormData("file", mFile.name, requestFile)
+            /** File Upload **/
+            vm.uploadFile(body).observe(this, Observer { fileResponse ->
+                if (fileResponse.URL == "0") {
                     Toast.makeText(this, "Network Faillure", Toast.LENGTH_SHORT).show()
-                else
-                    Toast.makeText(this, "File is ready", Toast.LENGTH_SHORT).show()
+                } else {
+                    /*** submitting order **/
+                    btn_next.setOnClickListener {
+                        vm.submitOrder(Order(mClient.address, mClient.city, mClient._id, fileResponse.URL, mClient.firstname, mClient.lastname, "98270064", technique, "normal", mClient.zip)).observe(this, Observer { orderResponse ->
+                            if (orderResponse.msg == "0")
+                                Toast.makeText(this, "Network Faillure", Toast.LENGTH_SHORT).show()
+                            else if (orderResponse.data != null)
+                                Toast.makeText(this, "Order submitted !", Toast.LENGTH_SHORT).show()
+
+                        })
+                    }
+                }
 
 
             })

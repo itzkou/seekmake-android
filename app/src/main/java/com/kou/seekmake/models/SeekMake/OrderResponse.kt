@@ -1,6 +1,6 @@
 package com.kou.seekmake.models.SeekMake
 
 data class OrderResponse(
-        val orderData: OrderData?,
+        val data: OrderData?,
         val msg: String
 )

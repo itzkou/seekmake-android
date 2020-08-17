@@ -12,7 +12,7 @@ interface SeekMakeApi {
         fun create(): SeekMakeApi {
             val retrofit = Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl("http://192.168.1.26:3000/api/")//10.0.2.2:8000 emulator //put ipv4 adress//me192.168.1.4//orange 10.54.234.189
+                    .baseUrl("http://192.168.43.128:3000/api/")//10.0.2.2:8000 emulator //put ipv4 adress//me192.168.1.4//orange 10.54.234.189
                     .build()
             return retrofit.create(SeekMakeApi::class.java)
         }
@@ -43,7 +43,7 @@ interface SeekMakeApi {
             @Part file: MultipartBody.Part?
     ): Call<FileResponse>
 
-    @POST("mailer/reset-password")
+    @POST("demand")
     fun submitOrder(@Body order: Order): Call<OrderResponse>
 
 

@@ -1,13 +1,16 @@
 package com.kou.seekmake.data.retrofit
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.kou.seekmake.models.SeekMake.*
 import okhttp3.MultipartBody
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.IOException
+
 
 class SeekMakeRepository {
     fun signUp(api: SeekMakeApi, userSeek: UserSeek): LiveData<SignUpResponse> {
@@ -55,6 +58,7 @@ class SeekMakeRepository {
 
     fun getClient(api: SeekMakeApi, id: String): LiveData<ClientResponse> {
         val apiresp = MutableLiveData<ClientResponse>()
+
         api.getClient(id).enqueue(object : Callback<ClientResponse> {
             override fun onFailure(call: Call<ClientResponse>, t: Throwable) {
                 if (t is IOException)
@@ -157,7 +161,13 @@ class SeekMakeRepository {
             }
 
             override fun onResponse(call: Call<OrderResponse>, response: Response<OrderResponse>) {
-                TODO("Not yet implemented")
+                if (response.isSuccessful)
+                    apiresp.postValue(response.body())
+                else {
+                    val jObjError = JSONObject(response.errorBody()!!.string())
+                    Log.d("vijr", jObjError.getJSONObject("data").toString())
+                }
+
             }
 
         })

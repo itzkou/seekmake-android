@@ -4,7 +4,7 @@ data class Order(
         val adress: String,
         val city: String,
         val client: String,
-        val `file`: String,
+        val file: String,
         val firstname: String,
         val lastname: String,
         val phone: String,
