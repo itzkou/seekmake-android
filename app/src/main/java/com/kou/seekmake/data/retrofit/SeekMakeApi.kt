@@ -43,4 +43,8 @@ interface SeekMakeApi {
             @Part file: MultipartBody.Part?
     ): Call<FileResponse>
 
+    @POST("mailer/reset-password")
+    fun submitOrder(@Body order: Order): Call<OrderResponse>
+
+
 }

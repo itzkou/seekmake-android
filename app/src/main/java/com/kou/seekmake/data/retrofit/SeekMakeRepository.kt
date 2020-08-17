@@ -146,4 +146,24 @@ class SeekMakeRepository {
         })
         return apiresp
     }
+
+    fun submitOrder(api: SeekMakeApi, order: Order): LiveData<OrderResponse> {
+        val apiresp = MutableLiveData<OrderResponse>()
+
+        api.submitOrder(order).enqueue(object : Callback<OrderResponse> {
+            override fun onFailure(call: Call<OrderResponse>, t: Throwable) {
+                if (t is IOException)
+                    apiresp.postValue(OrderResponse(null, "0"))
+            }
+
+            override fun onResponse(call: Call<OrderResponse>, response: Response<OrderResponse>) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+        return apiresp
+
+
+    }
 }
