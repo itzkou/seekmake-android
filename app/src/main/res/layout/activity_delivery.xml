@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".screens.order.DeliveryActivity">
+
+        <include
+            android:id="@+id/include2"
+            layout="@layout/top_bar" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/algreya"
+            android:shadowColor="@color/shadow"
+            android:text="Adresse de livraison"
+
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include2"
+            tools:shadowDy="3dp"
+            tools:shadowRadius="4dp" />
+
+        <EditText
+            android:id="@+id/name_input"
+            style="@style/delivery_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:hint="Nom"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7"
+            tools:hint="Nom"
+            tools:inputType="text" />
+
+        <EditText
+            android:id="@+id/surname_input"
+            style="@style/delivery_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="32dp"
+            android:hint="Prénom"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_input"
+            tools:hint="Prénom"
+            tools:inputType="text" />
+
+        <EditText
+            android:id="@+id/adress_input"
+            style="@style/delivery_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="32dp"
+            android:hint="Adresse"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/surname_input"
+            tools:hint="Adresse"
+            tools:inputType="text" />
+
+        <EditText
+            android:id="@+id/ville_input"
+            style="@style/delivery_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="32dp"
+            android:hint="Ville"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/adress_input"
+            tools:hint="Ville"
+            tools:inputType="text" />
+
+        <EditText
+            android:id="@+id/code_postal"
+            style="@style/delivery_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="32dp"
+            android:hint="Code postal"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ville_input"
+            tools:hint="Code postal" />
+
+        <EditText
+            android:id="@+id/phone_input"
+            style="@style/delivery_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="32dp"
+            android:hint="Numéro téléphone"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/code_postal"
+            tools:hint="Numéro téléphone" />
+
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phone_input">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/radio72"
+                    android:layout_width="50dp"
+                    android:layout_height="26dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="64dp"
+                    android:button="@drawable/ic_truck72d"
+                    android:onClick="onRadioButtonClicked"
+                    app:layout_constraintBottom_toBottomOf="@+id/radio24"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/radio24"
+                    app:srcCompat="@drawable/ic_truck72_selector" />
+
+                <RadioButton
+                    android:id="@+id/radio24"
+                    android:layout_width="58dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="64dp"
+                    android:button="@drawable/ic_truck24d"
+                    android:onClick="onRadioButtonClicked"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_truck24_selector" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Livraison dans 72h "
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView15"
+                    app:layout_constraintEnd_toEndOf="@+id/radio72"
+                    app:layout_constraintHorizontal_bias="0.524"
+                    app:layout_constraintStart_toStartOf="@+id/radio72"
+                    app:layout_constraintTop_toTopOf="@+id/textView15" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="Livraison dans 24h "
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/radio24"
+                    app:layout_constraintStart_toStartOf="@+id/radio24"
+                    app:layout_constraintTop_toBottomOf="@+id/radio24" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </RadioGroup>
+
+
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="104dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/btn_sendo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radio_group"
+            app:srcCompat="@drawable/btn_sendo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

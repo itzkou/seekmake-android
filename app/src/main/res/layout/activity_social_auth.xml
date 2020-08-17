@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/placeholder"
+    tools:context=".screens.authmedium.SocialAuth">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="144dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:fontFamily="@font/algreya"
+        android:text="“The Freedom of Creation.”"
+        android:textColor="@color/white"
+        android:textSize="21dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/btnFb"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="59dp"
+        android:layout_marginEnd="59dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/btnGoogle"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="12dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnSign"
+        app:layout_constraintEnd_toStartOf="@+id/btnSign"
+        app:layout_constraintStart_toStartOf="@+id/btnFb"
+        app:layout_constraintTop_toTopOf="@+id/btnSign" />
+
+    <Button
+        android:id="@+id/btnSign"
+        android:layout_width="89dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/btn"
+        android:text="SIGN"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/btnFb"
+        app:layout_constraintTop_toBottomOf="@+id/btnFb" />
+</androidx.constraintlayout.widget.ConstraintLayout>

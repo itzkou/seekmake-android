@@ -1,0 +1,5 @@
+/app/build/
+/.gradle/
+/.idea/
+/app/credentials.json
+/app/google-services.json

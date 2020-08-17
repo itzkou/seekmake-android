@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.kou.seekmake.screens.common.KeyboardAwareScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/placeholder_blur">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".screens.login.LoginActivity">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="144dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginRight="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:fontFamily="@font/algreya"
+            android:text="“The Freedom of Creation.”"
+            android:textColor="@color/white"
+            android:textSize="21dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <EditText
+            android:id="@+id/email_input"
+            style="@style/big_input"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="78dp"
+            android:layout_marginEnd="44dp"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <EditText
+            android:id="@+id/password_input"
+            style="@style/big_input"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="44dp"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email_input" />
+
+        <Button
+            android:id="@+id/login_btn"
+            style="@style/big_btn"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="54dp"
+            android:layout_marginEnd="38dp"
+            android:fontFamily="@font/algreya"
+            android:text="@string/log_in"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password_input" />
+
+        <TextView
+            android:id="@+id/create_account_text"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="38dp"
+            android:layout_marginBottom="99dp"
+            android:background="@drawable/btn"
+            android:fontFamily="@font/algreya"
+            android:gravity="center"
+            android:text="CREATE AN ACCOUNT"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/algreya"
+            android:text="OR"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_btn" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="38dp"
+            android:text="_________________"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/textView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="38dp"
+            android:text="_________________"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/textView2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="16dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="44dp"
+            app:layout_constraintBottom_toBottomOf="@+id/email_input"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/email_input"
+            app:srcCompat="@drawable/ic_pro" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="16dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="44dp"
+            app:layout_constraintBottom_toBottomOf="@+id/password_input"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/password_input"
+            app:srcCompat="@drawable/ic_lock" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.kou.seekmake.screens.common.KeyboardAwareScrollView>

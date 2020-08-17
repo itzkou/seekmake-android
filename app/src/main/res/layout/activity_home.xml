@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/baro">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/hombar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:clickable="false"
+            android:fitsSystemWindows="true">
+
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/homecolla"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:collapsedTitleGravity="center"
+                app:contentScrim="@color/white"
+                app:expandedTitleGravity="center"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvfriends"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="50dp"
+                    app:layout_collapseMode="parallax" />
+
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/feed_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/blancasse"
+                android:paddingBottom="50dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="0.2dp"
+                app:layout_constraintEnd_toEndOf="@id/feed_recycler"
+                app:layout_constraintStart_toStartOf="@id/feed_recycler"
+                app:layout_constraintTop_toTopOf="@id/feed_recycler"
+                app:srcCompat="@drawable/divider_blue" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <include
+        android:id="@+id/baro"
+        layout="@layout/top_bar" />
+
+    <include
+        android:id="@+id/bottom_navigation_viewm"
+        layout="@layout/bottom_navigation_view"
+
+        />
+
+    <ImageView
+        android:id="@+id/btn_search"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/ic_search_active"
+        app:layout_constraintBottom_toBottomOf="@+id/baro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/coordinatorLayout" />
+</androidx.constraintlayout.widget.ConstraintLayout>

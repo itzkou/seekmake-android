@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#01142D</color>
+    <color name="colorPrimaryDark">#BBB</color>
+    <color name="colorPrimaryFaded">#FAFAFA</color>
+    <color name="white">#FFF</color>
+    <color name="black">#000</color>
+    <color name="grey">#E3E3E3</color>
+    <color name="greyTopBar">#F8F8F8</color>
+    <color name="blancasse">#FEFEFE</color>
+    <color name="blue">#3897F0</color>
+    <color name="red">#D9555A</color>
+    <color name="trans">#00000000</color>
+    <color name="shadow">#29000000</color>
+
+</resources>

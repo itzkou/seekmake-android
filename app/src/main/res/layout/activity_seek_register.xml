@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.kou.seekmake.screens.common.KeyboardAwareScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/placeholder_blur">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".screens.register.SeekRegisterActivity">
+
+        <ImageView
+            android:id="@+id/bar"
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+            android:background="@drawable/top_bar_im"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/bar"
+            app:layout_constraintEnd_toEndOf="@+id/bar"
+            app:layout_constraintStart_toStartOf="@+id/bar"
+            app:layout_constraintTop_toBottomOf="@+id/bar"
+            app:srcCompat="@drawable/circle" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/im_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+            app:layout_constraintEnd_toEndOf="@+id/imageView8"
+            app:layout_constraintStart_toStartOf="@+id/imageView8"
+            app:layout_constraintTop_toTopOf="@+id/imageView8" />
+
+        <EditText
+            android:id="@+id/phone_input"
+            style="@style/big_input"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="44dp"
+            android:hint="tel"
+            android:inputType="phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+        <EditText
+            android:id="@+id/adress_input"
+            style="@style/big_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="44dp"
+            android:hint="address"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phone_input" />
+
+        <EditText
+            android:id="@+id/city_input"
+            style="@style/big_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="44dp"
+            android:hint="city"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/adress_input" />
+
+        <EditText
+            android:id="@+id/zip_input"
+            style="@style/big_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="44dp"
+            android:hint="zip"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/city_input" />
+
+        <Button
+            android:id="@+id/btn_seek_register"
+            android:layout_width="335dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/btn"
+            android:fontFamily="@font/algreya"
+            android:gravity="center"
+            android:text="NEXT"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/zip_input" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins"
+            android:text="Votre compte"
+            android:textSize="19sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins"
+            android:text="Username"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="@+id/imageView8"
+            app:layout_constraintStart_toStartOf="@+id/imageView8"
+            app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="38dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Vos informations:"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@+id/imageView10"
+            app:layout_constraintTop_toBottomOf="@+id/txt_username" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_marginEnd="28dp"
+            app:layout_constraintBottom_toBottomOf="@+id/phone_input"
+            app:layout_constraintEnd_toStartOf="@+id/phone_input"
+            app:layout_constraintTop_toTopOf="@+id/phone_input"
+            app:srcCompat="@drawable/ic_fone" />
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            app:layout_constraintBottom_toBottomOf="@+id/adress_input"
+            app:layout_constraintEnd_toStartOf="@+id/adress_input"
+            app:layout_constraintTop_toTopOf="@+id/adress_input"
+            app:srcCompat="@drawable/ic_adr" />
+
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            app:layout_constraintBottom_toBottomOf="@+id/city_input"
+            app:layout_constraintEnd_toStartOf="@+id/city_input"
+            app:layout_constraintTop_toTopOf="@+id/city_input"
+            app:srcCompat="@drawable/ic_city" />
+
+        <ImageView
+            android:id="@+id/imageView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="88dp"
+            android:layout_marginBottom="28dp"
+            app:layout_constraintBottom_toTopOf="@id/txt_username"
+            app:layout_constraintStart_toStartOf="@id/im_profile"
+            app:srcCompat="@drawable/ic_cam" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.kou.seekmake.screens.common.KeyboardAwareScrollView>

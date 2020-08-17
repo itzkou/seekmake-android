@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp">
+
+    <xyz.schwaab.avvylib.AvatarView
+        android:id="@+id/user_photo_image"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_launcher_background"
+        app:avvy_border_highlight_color="#F4511E"
+        app:avvy_border_highlight_color_end="#FDD835"
+        app:avvy_border_thickness="1dp"
+        app:avvy_border_thickness_highlight="2dp"
+        app:avvy_distance_to_border="1dp"
+        app:avvy_highlighted="true"
+        app:avvy_loading_arches_degree_area="360"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/username_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/poppins_medium"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/user_photo_image"
+        app:layout_constraintTop_toTopOf="@+id/user_photo_image"
+        tools:text="koiiiiiiii" />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/post_image"
+        android:layout_width="0dp"
+        android:layout_height="320dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_photo_image"
+        app:riv_corner_radius="20dp" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/taps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/post_image">
+
+        <ImageView
+            android:id="@+id/like_image"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_likes_border"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
+        <ImageView
+            android:id="@+id/comment_image"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:padding="10dp"
+            android:src="@drawable/comment_image"
+            app:layout_constraintBottom_toBottomOf="@id/like_image"
+            app:layout_constraintStart_toEndOf="@id/like_image"
+            app:layout_constraintTop_toTopOf="@id/like_image" />
+
+        <ImageView
+            android:id="@+id/share_image"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:padding="10dp"
+            android:src="@drawable/ic_share_border"
+            app:layout_constraintBottom_toBottomOf="@id/like_image"
+            app:layout_constraintStart_toEndOf="@id/comment_image"
+            app:layout_constraintTop_toTopOf="@id/like_image" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/likes_text"
+        android:layout_width="85dp"
+        android:layout_height="20dp"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/caption_text"
+        app:layout_constraintStart_toStartOf="@+id/caption_text"
+        app:layout_constraintTop_toBottomOf="@id/taps"
+        tools:text="828,123 likes" />
+
+    <TextView
+        android:id="@+id/caption_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/poppins_medium"
+        android:maxLines="2"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/post_image"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/taps"
+        app:layout_constraintTop_toBottomOf="@+id/likes_text"
+        tools:text="yoo This is a caption for the post. It's actually a very long caption." />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_light"
+        android:text="Tunis"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@+id/username_text"
+        app:layout_constraintTop_toBottomOf="@+id/username_text" />
+
+    <ImageView
+        android:id="@+id/im_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/post_image"
+        app:layout_constraintTop_toTopOf="@+id/user_photo_image"
+        app:srcCompat="@drawable/ic_dots" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

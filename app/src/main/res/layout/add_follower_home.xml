@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="8dp">
+
+
+    <xyz.schwaab.avvylib.AvatarView
+        android:id="@+id/photo_image"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="4dp"
+        app:avvy_border_highlight_color="#F4511E"
+        app:avvy_border_highlight_color_end="#FDD835"
+        app:avvy_border_thickness="0.5dp"
+        app:avvy_border_thickness_highlight="2dp"
+        app:avvy_distance_to_border="1dp"
+        app:avvy_highlighted="false"
+        app:avvy_loading_arches_degree_area="360"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/username_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/colorPrimary"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/photo_image"
+        app:layout_constraintStart_toStartOf="@+id/photo_image"
+        app:layout_constraintTop_toBottomOf="@+id/photo_image" />
+
+    <Button
+        android:id="@+id/follow_btn"
+        style="@style/small_btn"
+
+        android:layout_width="63dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="2dp"
+        android:text="Seek"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/username_text"
+        app:layout_constraintStart_toStartOf="@+id/username_text"
+        app:layout_constraintTop_toBottomOf="@+id/username_text" />
+
+    <Button
+        android:id="@+id/unfollow_btn"
+        style="@style/secondary_small_btn"
+        android:layout_width="63dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="2dp"
+        android:text="Unseek"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/username_text"
+        app:layout_constraintStart_toStartOf="@+id/username_text"
+        app:layout_constraintTop_toBottomOf="@+id/username_text" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

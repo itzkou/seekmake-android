@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.kou.seekmake.screens.common.KeyboardAwareScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/placeholder_blur">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".screens.register.RegisterActivity">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="144dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginRight="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:fontFamily="@font/algreya"
+            android:text="“The Freedom of Creation.”"
+            android:textColor="@color/white"
+            android:textSize="21dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <EditText
+            android:id="@+id/email_input"
+            style="@style/big_input"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="78dp"
+            android:layout_marginEnd="44dp"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <EditText
+            android:id="@+id/full_name"
+            style="@style/big_input"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="44dp"
+            android:hint="Full Name"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email_input" />
+
+        <EditText
+            android:id="@+id/pwd_register"
+            style="@style/big_input"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="44dp"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/full_name" />
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="38dp"
+            android:layout_marginBottom="99dp"
+            android:background="@drawable/btn"
+            android:fontFamily="@font/algreya"
+            android:gravity="center"
+            android:text="CREATE AN ACCOUNT"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pwd_register" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="16dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="44dp"
+            app:layout_constraintBottom_toBottomOf="@+id/full_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/full_name"
+            app:srcCompat="@drawable/ic_pro" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="16dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="44dp"
+            app:layout_constraintBottom_toBottomOf="@+id/pwd_register"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/pwd_register"
+            app:srcCompat="@drawable/ic_lock" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="16dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="44dp"
+            app:layout_constraintBottom_toBottomOf="@+id/email_input"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/email_input"
+            app:srcCompat="@drawable/ic_mailo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.kou.seekmake.screens.common.KeyboardAwareScrollView>
