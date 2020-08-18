@@ -9,6 +9,7 @@ import com.kou.seekmake.models.SeekMake.UserSeek
 import com.kou.seekmake.screens.common.BaseActivity
 import com.kou.seekmake.screens.common.SharedUtils.PrefsManager
 import com.kou.seekmake.screens.common.coordinateBtnAndInputs
+import com.kou.seekmake.screens.common.coordinatePhone
 import com.kou.seekmake.screens.splash.Splash
 import kotlinx.android.synthetic.main.activity_seek_register.*
 
@@ -21,9 +22,10 @@ class SeekRegisterActivity : BaseActivity() {
 
         vm = initViewModel()
 
-        coordinateBtnAndInputs(btn_seek_register, phone_input, adress_input, city_input, zip_input)
+        coordinateBtnAndInputs(btn_seek_register, adress_input, city_input, zip_input)
+        coordinatePhone(btn_seek_register, phone_input)
         btn_seek_register.setOnClickListener {
-            val userSeek = UserSeek(adress_input.text.toString(), city_input.text.toString(), PrefsManager.geMail(this)!!, PrefsManager.geFname(this)!!, PrefsManager.geLname(this)!!, PrefsManager.gePwd(this)!!, PrefsManager.gePwd(this)!!, phone_input.text.toString(), zip_input.text.toString())
+            val userSeek = UserSeek(address = adress_input.text.toString(), city = city_input.text.toString(), email = PrefsManager.geMail(this)!!, firstname = PrefsManager.geFname(this)!!, lastname = PrefsManager.geLname(this)!!, password = PrefsManager.gePwd(this)!!, password_confirmation = PrefsManager.gePwd(this)!!, tel = phone_input.text.toString(), zip = zip_input.text.toString())
 
             vm.signUp(userSeek).observe(this, Observer {
                 when (it.msg) {

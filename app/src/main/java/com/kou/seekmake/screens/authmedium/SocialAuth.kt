@@ -20,11 +20,20 @@ import com.kou.seekmake.R
 import com.kou.seekmake.common.toUnit
 import com.kou.seekmake.data.firebase.common.auth
 import com.kou.seekmake.data.firebase.common.database
+import com.kou.seekmake.data.retrofit.SeekMakeApi
 import com.kou.seekmake.models.Firebase.User
+import com.kou.seekmake.models.SeekMake.LoginResponse
+import com.kou.seekmake.models.SeekMake.UserSeek
 import com.kou.seekmake.screens.common.BaseActivity
+import com.kou.seekmake.screens.common.SharedUtils.PrefsManager
 import com.kou.seekmake.screens.home.HomeActivity
 import com.kou.seekmake.screens.login.LoginActivity
+import com.kou.seekmake.screens.register.SeekRegisterActivity
 import kotlinx.android.synthetic.main.activity_social_auth.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.IOException
 
 class SocialAuth : BaseActivity() {
     private lateinit var mAuth: FirebaseAuth
@@ -127,8 +136,7 @@ class SocialAuth : BaseActivity() {
                             if (task.isSuccessful) {
                                 val user = mAuth.currentUser
                                 createUser(mkUser(user!!.displayName!!, user.email!!), user.uid).addOnSuccessListener {
-                                    startActivity(Intent(this, HomeActivity::class.java))
-                                    finish()
+                                    startSeekRegisterActivity(user.displayName!!, "social123", user.email!!)
                                 }.addOnFailureListener { Log.d("createUser", it.message!!) }
 
                             }
@@ -140,8 +148,22 @@ class SocialAuth : BaseActivity() {
                 mAuth.signInWithCredential(credential)
                         .addOnCompleteListener(this) { task ->
                             if (task.isSuccessful) {
-                                startActivity(Intent(this, HomeActivity::class.java))
-                                finish()
+                                val user = mAuth.currentUser
+                                val api = SeekMakeApi.create()
+                                api.signIn(UserSeek(email = user!!.email!!, password = "social123")).enqueue(object : Callback<LoginResponse> {
+                                    override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                                        if (t is IOException)
+                                            Toast.makeText(this@SocialAuth, "Network Faillure", Toast.LENGTH_SHORT).show()
+                                    }
+
+                                    override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                                        if (response.code() == 200)
+                                            startActivity(Intent(this@SocialAuth, HomeActivity::class.java))
+
+                                    }
+
+                                })
+
 
                             } else {
                                 Toast.makeText(baseContext, task.exception!!.message,
@@ -173,8 +195,7 @@ class SocialAuth : BaseActivity() {
                                 // Sign in success, update UI with the signed-in user's information
                                 val user = mAuth.currentUser
                                 createUser(mkUser(user!!.displayName!!, user.email!!), user.uid).addOnSuccessListener {
-                                    startActivity(Intent(this, HomeActivity::class.java))
-                                    finish()
+                                    startSeekRegisterActivity(user.displayName!!, "social123", user.email!!)
                                 }.addOnFailureListener { Log.d("createUser", it.message!!) }
 
                             }
@@ -186,8 +207,22 @@ class SocialAuth : BaseActivity() {
                 mAuth.signInWithCredential(credential)
                         .addOnCompleteListener(this) { task ->
                             if (task.isSuccessful) {
-                                startActivity(Intent(this, HomeActivity::class.java))
-                                finish()
+                                val user = mAuth.currentUser
+                                val api = SeekMakeApi.create()
+                                api.signIn(UserSeek(email = user!!.email!!, password = "social123")).enqueue(object : Callback<LoginResponse> {
+                                    override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                                        if (t is IOException)
+                                            Toast.makeText(this@SocialAuth, "Network Faillure", Toast.LENGTH_SHORT).show()
+                                    }
+
+                                    override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                                        if (response.code() == 200)
+                                            startActivity(Intent(this@SocialAuth, HomeActivity::class.java))
+
+
+                                    }
+
+                                })
 
                             } else {
                                 Log.w(TAG, "signInWithCredential:failure", task.exception)
@@ -227,6 +262,26 @@ class SocialAuth : BaseActivity() {
 
     private fun createUser(user: User, uid: String): Task<Unit> =
             database.child("users").child(uid).setValue(user).toUnit()
+
+    private fun startSeekRegisterActivity(fullName: String, pwd: String, mail: String) {
+
+        var fName = fullName.substring(0, fullName.indexOf(" ") + 1)
+        var lName = fullName.substring(fullName.lastIndexOf(" ") + 1, fullName.length)
+
+
+        if (fName.length < 3)
+            fName += ".."
+        if (lName.length < 3)
+            lName += ".."
+
+
+        PrefsManager.seFname(this, fName)
+        PrefsManager.seLname(this, lName)
+        PrefsManager.seMail(this, mail)
+        PrefsManager.sePwd(this, pwd)
+        startActivity(Intent(this, SeekRegisterActivity::class.java))
+        finish()
+    }
 
 
     private fun isUserExistsForEmail(email: String): Task<Boolean> =

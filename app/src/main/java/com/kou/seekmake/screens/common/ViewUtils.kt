@@ -89,6 +89,27 @@ fun coordinateName(btn: Button, input: EditText) {
     btn.isEnabled = input.text.length >= 6
 }
 
+fun coordinatePhone(btn: Button, input: EditText) {
+    val watcher = object : TextWatcher {
+        override fun afterTextChanged(s: Editable?) {
+            //Todo optimize when user enters only fname with 6 characters
+            if (input.text.toString().indexOf(" ") == -1) {
+                val snacko = Snackbar.make(btn, "Phone is t least 8 numbers", Snackbar.LENGTH_SHORT)
+                snacko.config(btn.context)
+                snacko.show()
+            }
+            btn.isEnabled = input.text.length >= 8
+        }
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+    }
+    input.addTextChangedListener(watcher)
+    btn.isEnabled = input.text.length >= 8
+}
+
 
 fun TextView.setCaptionText(username: String, caption: String, date: Date? = null) {
     val usernameSpannable = SpannableString(username)
