@@ -92,8 +92,7 @@ fun coordinateName(btn: Button, input: EditText) {
 fun coordinatePhone(btn: Button, input: EditText) {
     val watcher = object : TextWatcher {
         override fun afterTextChanged(s: Editable?) {
-            //Todo optimize when user enters only fname with 6 characters
-            if (input.text.toString().indexOf(" ") == -1) {
+            if (input.text.length < 8) {
                 val snacko = Snackbar.make(btn, "Phone is t least 8 numbers", Snackbar.LENGTH_SHORT)
                 snacko.config(btn.context)
                 snacko.show()
@@ -176,10 +175,11 @@ fun ShadowImageView.loadImage(image: String?) =
 
             Picasso.get().load(image).into(object : com.squareup.picasso.Target {
                 override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
-                    this@loadImage.setImageDrawable(ContextCompat.getDrawable(this@loadImage.context, R.drawable.ic_launcher_background))
                 }
 
                 override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
+                    this@loadImage.setImageDrawable(ContextCompat.getDrawable(this@loadImage.context, R.drawable.ic_launcher_background))
+
                 }
 
                 override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {

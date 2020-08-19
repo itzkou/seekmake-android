@@ -194,6 +194,7 @@ class SocialAuth : BaseActivity() {
                             if (task.isSuccessful) {
                                 // Sign in success, update UI with the signed-in user's information
                                 val user = mAuth.currentUser
+
                                 createUser(mkUser(user!!.displayName!!, user.email!!), user.uid).addOnSuccessListener {
                                     startSeekRegisterActivity(user.displayName!!, "social123", user.email!!)
                                 }.addOnFailureListener { Log.d("createUser", it.message!!) }

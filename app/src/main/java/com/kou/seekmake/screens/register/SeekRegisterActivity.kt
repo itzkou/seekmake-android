@@ -31,6 +31,7 @@ class SeekRegisterActivity : BaseActivity() {
                 when (it.msg) {
                     "0" -> Toast.makeText(this, "Network Faillure", Toast.LENGTH_SHORT).show()
                     "1" -> Toast.makeText(this, "Validation failed", Toast.LENGTH_SHORT).show()
+                    "2" -> Toast.makeText(this, "Email exists", Toast.LENGTH_SHORT).show()
                     "OK" -> {
                         PrefsManager.seID(this, it.data!!._id)
                         startActivity(Intent(this, Splash::class.java))

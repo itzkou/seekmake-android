@@ -3,6 +3,7 @@ package com.kou.seekmake.data.retrofit
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.gson.JsonSyntaxException
 import com.kou.seekmake.models.SeekMake.*
 import okhttp3.MultipartBody
 import org.json.JSONObject
@@ -20,6 +21,8 @@ class SeekMakeRepository {
             override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
                 if (t is IOException)
                     apiresp.postValue(SignUpResponse(null, "0"))
+                else if (t is JsonSyntaxException)
+                    apiresp.postValue(SignUpResponse(null, "2"))
 
             }
 

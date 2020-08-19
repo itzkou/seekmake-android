@@ -1,6 +1,6 @@
 package com.kou.seekmake.models.SeekMake
 
-data class SignUpResponse(
-        val data: SignUpData?,
+data class EmailExistResponse(
+        val `data`: String,
         val msg: String
 )
