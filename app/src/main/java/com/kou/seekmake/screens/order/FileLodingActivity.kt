@@ -7,14 +7,18 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.kou.seekmake.R
 import com.kou.seekmake.models.SeekMake.Client
+import com.kou.seekmake.models.SeekMake.Material
 import com.kou.seekmake.models.SeekMake.Order
 import com.kou.seekmake.screens.common.BaseActivity
+import com.kou.seekmake.screens.common.CustomAdapter
 import com.kou.seekmake.screens.common.RealPathUtil
 import com.kou.seekmake.screens.common.SharedUtils.PrefsManager
 import com.kou.seekmake.screens.common.setupAuthGuard
@@ -30,6 +34,15 @@ class FileLodingActivity : BaseActivity() {
     private lateinit var vm: FileLoadingViewModel
     private lateinit var mFile: File
     private lateinit var mClient: Client
+    var M1 = Material("Acier", R.drawable.ic_launcher_background)
+    var M2 = Material("Alucobond", R.drawable.ic_launcher_background)
+    var arr = arrayListOf(M1, M2)
+
+    /** extra order criteria**/
+    private var chosenMaterial: String? = null
+    private var epaisseur: String? = null
+    private var resolution: String? = null
+    private var quantite: Int? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,11 +50,13 @@ class FileLodingActivity : BaseActivity() {
         setContentView(R.layout.activity_file_loding)
         requestToGetFile(PERMISSION_EXTERNAL_STORAGE)
         technique = intent.getStringExtra(EXTRA_ORDER_TYPE) ?: return finish()
+        spinner_material.adapter = CustomAdapter(this, arr)
 
 
         //TODO you need to validate all user inputs in signup
         setupAuthGuard {
             vm = initViewModel()
+            /*** getting the client **/
             PrefsManager.geID(this)?.let { _id ->
                 vm.getClient(_id).observe(this, Observer {
                     if (it.msg == "0")
@@ -53,9 +68,25 @@ class FileLodingActivity : BaseActivity() {
                     }
                 })
             }
+            /*** selecting the file **/
             btn_upload_file.setOnClickListener {
                 getFile()
             }
+            /** extra attributes **/
+            spinner_material.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                }
+
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    when (position) {
+                        0 -> chosenMaterial = "acier"
+                        1 -> chosenMaterial = "alucobond"
+
+                    }
+                }
+
+            }
+
 
         }
 
@@ -81,7 +112,7 @@ class FileLodingActivity : BaseActivity() {
                 } else {
                     /*** submitting order **/
                     btn_next.setOnClickListener {
-                        vm.submitOrder(Order(mClient.address, mClient.city, mClient._id, fileResponse.URL, mClient.firstname, mClient.lastname, mClient.tel, technique, "normal", mClient.zip)).observe(this, Observer { orderResponse ->
+                        vm.submitOrder(Order(mClient.address, mClient.city, mClient._id, fileResponse.URL, mClient.firstname, mClient.lastname, mClient.tel, technique, "normal", mClient.zip, epaisseur_input.text.toString(), chosenMaterial, qty_input.text.toString().toInt(), resolution_input.text.toString())).observe(this, Observer { orderResponse ->
                             if (orderResponse.msg == "0")
                                 Toast.makeText(this, "Network Faillure", Toast.LENGTH_SHORT).show()
                             else if (orderResponse.data != null)

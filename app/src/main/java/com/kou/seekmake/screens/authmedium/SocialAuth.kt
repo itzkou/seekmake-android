@@ -25,11 +25,13 @@ import com.kou.seekmake.models.Firebase.User
 import com.kou.seekmake.models.SeekMake.LoginResponse
 import com.kou.seekmake.models.SeekMake.UserSeek
 import com.kou.seekmake.screens.common.BaseActivity
+import com.kou.seekmake.screens.common.JWTUtils
 import com.kou.seekmake.screens.common.SharedUtils.PrefsManager
 import com.kou.seekmake.screens.home.HomeActivity
 import com.kou.seekmake.screens.login.LoginActivity
 import com.kou.seekmake.screens.register.SeekRegisterActivity
 import kotlinx.android.synthetic.main.activity_social_auth.*
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -157,9 +159,13 @@ class SocialAuth : BaseActivity() {
                                     }
 
                                     override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                                        if (response.code() == 200)
+                                        if (response.code() == 200) {
+                                            val json = JSONObject(JWTUtils.decoded(response.body()!!.data!!.token)!!)
+                                            val id = json.getJSONObject("data").getString("_id")
+                                            PrefsManager.seID(this@SocialAuth, id)
                                             startActivity(Intent(this@SocialAuth, HomeActivity::class.java))
-
+                                            finish()
+                                        }
                                     }
 
                                 })
@@ -217,8 +223,13 @@ class SocialAuth : BaseActivity() {
                                     }
 
                                     override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                                        if (response.code() == 200)
+                                        if (response.code() == 200) {
+                                            val json = JSONObject(JWTUtils.decoded(response.body()!!.data!!.token)!!)
+                                            val id = json.getJSONObject("data").getString("_id")
+                                            PrefsManager.seID(this@SocialAuth, id)
                                             startActivity(Intent(this@SocialAuth, HomeActivity::class.java))
+                                            finish()
+                                        }
 
 
                                     }

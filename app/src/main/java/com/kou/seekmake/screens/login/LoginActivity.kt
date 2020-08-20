@@ -10,12 +10,15 @@ import com.google.firebase.auth.FirebaseAuth
 import com.kou.seekmake.R
 import com.kou.seekmake.models.SeekMake.UserSeek
 import com.kou.seekmake.screens.common.BaseActivity
+import com.kou.seekmake.screens.common.JWTUtils
+import com.kou.seekmake.screens.common.SharedUtils.PrefsManager
 import com.kou.seekmake.screens.common.coordinateBtnAndInputs
 import com.kou.seekmake.screens.home.HomeActivity
 import com.kou.seekmake.screens.register.RegisterActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
+import org.json.JSONObject
 
 class LoginActivity : BaseActivity(), KeyboardVisibilityEventListener, View.OnClickListener {
     private lateinit var mAuth: FirebaseAuth
@@ -39,6 +42,9 @@ class LoginActivity : BaseActivity(), KeyboardVisibilityEventListener, View.OnCl
                     "0" -> Toast.makeText(this, "Network Faillure", Toast.LENGTH_SHORT).show()
                     "1" -> Toast.makeText(this, "Verify your credentials", Toast.LENGTH_SHORT).show()
                     "OK" -> {
+                        val json = JSONObject(JWTUtils.decoded(it.data!!.token)!!)
+                        val id = json.getJSONObject("data").getString("_id")
+                        PrefsManager.seID(this, id)
                         startActivity(Intent(this, HomeActivity::class.java))
                         finish()
                     }

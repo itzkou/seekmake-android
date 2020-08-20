@@ -67,7 +67,7 @@
             android:layout_marginEnd="38dp"
             android:hint="Nom"
             android:inputType="text"
-            app:layout_constraintEnd_toStartOf="@+id/taille_input"
+            app:layout_constraintEnd_toStartOf="@+id/resolution_input"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_upload_file" />
 
@@ -113,29 +113,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/qty_input" />
 
-        <com.jaredrummler.materialspinner.MaterialSpinner
+        <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/spinner_material"
-            style="@style/delivery_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="42dp"
             android:layout_marginEnd="32dp"
-            android:hint="Choisissez vos matériaux"
-            android:inputType="text"
-            android:paddingStart="0dp"
+            android:dropDownWidth="match_parent"
+            android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/epaisseur_input" />
 
         <EditText
-            android:id="@+id/taille_input"
+            android:id="@+id/resolution_input"
             style="@style/delivery_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
-            android:hint="Taille"
+            android:hint="Resolution"
             android:inputType="text"
             app:layout_constraintBottom_toBottomOf="@+id/name_input"
             app:layout_constraintEnd_toEndOf="parent"
