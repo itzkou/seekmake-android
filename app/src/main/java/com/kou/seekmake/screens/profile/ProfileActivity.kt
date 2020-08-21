@@ -12,6 +12,7 @@ import com.kou.seekmake.screens.common.setupAuthGuard
 import com.kou.seekmake.screens.common.setupBottomNavigation
 import com.kou.seekmake.screens.editprofile.EditProfileActivity
 import com.kou.seekmake.screens.profile.Fragments.Images
+import com.kou.seekmake.screens.profile.Fragments.Quotes
 import com.kou.seekmake.screens.stories.OpenStoriesActivity
 import com.kou.seekmake.screens.stories.StoryActivity
 import com.mxn.soul.flowingdrawer_core.ElasticDrawer
@@ -46,13 +47,13 @@ class ProfileActivity : BaseActivity() {
         /*** setup viewpager ***/
         val adapter = VpProfileAdapter(supportFragmentManager)
         val images = Images.newInstance()
-        val today = Images.newInstance()
-        val upcoming = Images.newInstance()
+        val quotes = Quotes.newInstance()
+        val loading = Images.newInstance()
 
 
         adapter.addFragment(images)
-        adapter.addFragment(today)
-        adapter.addFragment(upcoming)
+        adapter.addFragment(quotes)
+        adapter.addFragment(loading)
 
         vp_profile.adapter = adapter
 

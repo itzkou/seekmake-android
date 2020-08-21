@@ -46,5 +46,8 @@ interface SeekMakeApi {
     @POST("demand")
     fun submitOrder(@Body order: Order): Call<OrderResponse>
 
+    @GET("client/{id}/demand")
+    fun getDemands(@Path("id") clientID: String): Call<DemandsResponse>
+
 
 }
