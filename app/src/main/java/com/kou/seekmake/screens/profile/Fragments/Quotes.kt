@@ -14,7 +14,7 @@ import com.kou.seekmake.screens.common.SharedUtils.PrefsManager
 import com.kou.seekmake.screens.profile.Adapters.QuotesAdapter
 import com.kou.seekmake.screens.profile.ProfileViewModel
 
-class Quotes : Fragment() {
+class Quotes : Fragment(), QuotesAdapter.Listener {
     private lateinit var mAdapter: QuotesAdapter
     private lateinit var viewModel: ProfileViewModel
 
@@ -39,11 +39,19 @@ class Quotes : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_quotes, container, false)
         val rvQuotes = v.findViewById<RecyclerView>(R.id.quotes_recycler)
-        mAdapter = QuotesAdapter()
+        mAdapter = QuotesAdapter(this)
         rvQuotes.layoutManager = LinearLayoutManager(activity)
         rvQuotes.adapter = mAdapter
         return v
 
+    }
+
+    override fun confirm(postId: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun deny(postId: String, position: Int) {
+        TODO("Not yet implemented")
     }
 
 
