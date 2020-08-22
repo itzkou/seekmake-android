@@ -1,5 +1,6 @@
 package com.kou.seekmake.data.retrofit
 
+import com.kou.seekmake.data.common.UnsafeSSL
 import com.kou.seekmake.models.SeekMake.*
 import okhttp3.MultipartBody
 import retrofit2.Call
@@ -12,7 +13,8 @@ interface SeekMakeApi {
         fun create(): SeekMakeApi {
             val retrofit = Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl("http://192.168.1.19:3000/api/")//10.0.2.2:8000 emulator //put ipv4 adress//me192.168.1.4//orange 10.54.234.189
+                    .baseUrl("https://seekmake.com:3000/api/")//10.0.2.2:8000 emulator //put ipv4 adress//me192.168.1.4//orange 10.54.234.189
+                    .client(UnsafeSSL.getUnsafeOkHttpClient().build())
                     .build()
             return retrofit.create(SeekMakeApi::class.java)
         }

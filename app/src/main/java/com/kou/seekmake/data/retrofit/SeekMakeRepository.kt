@@ -164,7 +164,8 @@ class SeekMakeRepository {
             }
 
             override fun onResponse(call: Call<OrderResponse>, response: Response<OrderResponse>) {
-                if (response.isSuccessful)
+                //TODO code 200
+                if (response.code() == 200)
                     apiresp.postValue(response.body())
                 else {
                     val jObjError = JSONObject(response.errorBody()!!.string())

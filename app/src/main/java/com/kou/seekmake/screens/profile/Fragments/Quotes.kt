@@ -32,7 +32,8 @@ class Quotes : Fragment(), QuotesAdapter.Listener {
         viewModel.getDemands(PrefsManager.geID(requireActivity())!!
         ).observe(requireActivity(), Observer {
             it?.let { demandsResponse ->
-                mAdapter.updatePosts(demandsResponse.data!!)
+                if (demandsResponse.data != null)
+                    mAdapter.updatePosts(demandsResponse.data)
             }
         })
     }
