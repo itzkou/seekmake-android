@@ -7,6 +7,7 @@ import com.kou.seekmake.data.retrofit.SeekMakeApi
 import com.kou.seekmake.data.retrofit.SeekMakeRepository
 import com.kou.seekmake.models.Firebase.Story
 import com.kou.seekmake.models.SeekMake.DemandsResponse
+import com.kou.seekmake.models.SeekMake.UpdateDemandResponse
 import com.kou.seekmake.screens.common.BaseViewModel
 
 class ProfileViewModel(private val usersRepo: UsersRepository, private val repository: SeekMakeRepository, onFailureListener: OnFailureListener)
@@ -30,5 +31,9 @@ class ProfileViewModel(private val usersRepo: UsersRepository, private val repos
 
     fun getDemands(id: String): LiveData<DemandsResponse> {
         return repository.getDemands(api, id)
+    }
+
+    fun updateDemand(id: String): LiveData<UpdateDemandResponse> {
+        return repository.updateDemand(api, id)
     }
 }

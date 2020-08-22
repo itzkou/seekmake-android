@@ -170,7 +170,7 @@
 
         <include
             android:id="@+id/toolbar"
-            layout="@layout/top_barpro"
+            layout="@layout/top_bar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

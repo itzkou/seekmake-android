@@ -198,4 +198,23 @@ class SeekMakeRepository {
         return apiresp
 
     }
+
+    fun updateDemand(api: SeekMakeApi, id: String): LiveData<UpdateDemandResponse> {
+        val apiresp = MutableLiveData<UpdateDemandResponse>()
+        api.updateDemand(id).enqueue(object : Callback<UpdateDemandResponse> {
+            override fun onFailure(call: Call<UpdateDemandResponse>, t: Throwable) {
+                if (t is IOException)
+                    apiresp.postValue(UpdateDemandResponse(null, "0"))
+            }
+
+            override fun onResponse(call: Call<UpdateDemandResponse>, response: Response<UpdateDemandResponse>) {
+                if (response.code() == 200)
+                    apiresp.postValue(response.body())
+            }
+
+        })
+
+        return apiresp
+
+    }
 }

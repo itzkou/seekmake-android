@@ -14,8 +14,8 @@ import java.util.*
 
 class QuotesAdapter(private val listener: QuotesAdapter.Listener) : RecyclerView.Adapter<QuotesAdapter.ViewHolder>() {
     interface Listener {
-        fun confirm(postId: String)
-        fun deny(postId: String, position: Int)
+        fun confirm(demandId: String)
+        fun deny(demandId: String)
     }
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view)
@@ -46,7 +46,16 @@ class QuotesAdapter(private val listener: QuotesAdapter.Listener) : RecyclerView
             tx_type.text = quote.type
             tx_date.text = sdf.format(netDate)
             tx_technqiue.text = quote.technique
+
+            im_tick.setOnClickListener {
+                listener.confirm(quote._id)
+            }
+            ic_cancel.setOnClickListener {
+                listener.deny(quote._id)
+            }
         }
+
+
     }
 
 

@@ -112,7 +112,12 @@ class FileLodingActivity : BaseActivity() {
                 } else {
                     /*** submitting order **/
                     btn_next.setOnClickListener {
-                        vm.submitOrder(Order(mClient.address, mClient.city, mClient._id, fileResponse.URL, mClient.firstname, mClient.lastname, mClient.tel, technique, "normal", mClient.zip, epaisseur_input.text.toString(), chosenMaterial, qty_input.text.toString().toInt(), resolution_input.text.toString())).observe(this, Observer { orderResponse ->
+                        var qty = 1
+                        if (qty_input.text.toString().isNotEmpty())
+                            qty = qty_input.text.toString().toInt()
+
+
+                        vm.submitOrder(Order(mClient.address, mClient.city, mClient._id, fileResponse.URL, mClient.firstname, mClient.lastname, mClient.tel, technique, "normal", mClient.zip, epaisseur_input.text.toString(), chosenMaterial, qty, resolution_input.text.toString())).observe(this, Observer { orderResponse ->
                             if (orderResponse.msg == "0")
                                 Toast.makeText(this, "Network Faillure", Toast.LENGTH_SHORT).show()
                             else if (orderResponse.data != null)

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -46,12 +47,26 @@ class Quotes : Fragment(), QuotesAdapter.Listener {
 
     }
 
-    override fun confirm(postId: String) {
-        TODO("Not yet implemented")
+    override fun confirm(demandId: String) {
+        viewModel.updateDemand(demandId).observe(this, Observer {
+            if (it.msg == "0")
+                Toast.makeText(requireActivity(), "Network faillure", Toast.LENGTH_SHORT).show()
+            else if (it.msg == "OK")
+                Toast.makeText(requireActivity(), "Quote confirmed", Toast.LENGTH_SHORT).show()
+
+
+        })
     }
 
-    override fun deny(postId: String, position: Int) {
-        TODO("Not yet implemented")
+    override fun deny(demandId: String) {
+        viewModel.updateDemand(demandId).observe(this, Observer {
+            if (it.msg == "0")
+                Toast.makeText(requireActivity(), "Network faillure", Toast.LENGTH_SHORT).show()
+            else if (it.msg == "OK")
+                Toast.makeText(requireActivity(), "Quote canceled", Toast.LENGTH_SHORT).show()
+
+
+        })
     }
 
 
