@@ -46,10 +46,10 @@ interface SeekMakeApi {
     ): Call<FileResponse>
 
     @POST("demand")
-    fun submitOrder(@Body order: Order): Call<OrderResponse>
+    fun submitOrder(@Header("Authorization") authToken: String, @Body order: Order): Call<OrderResponse>
 
     @GET("client/{id}/demand")
-    fun getDemands(@Path("id") clientID: String): Call<DemandsResponse>
+    fun getDemands(@Header("Authorization") authToken: String, @Path("id") clientID: String): Call<DemandsResponse>
 
     @PUT("client/demand/{id}")
     fun updateDemand(@Path("id") demandID: String): Call<UpdateDemandResponse>

@@ -29,7 +29,7 @@ class Quotes : Fragment(), QuotesAdapter.Listener {
         super.onActivityCreated(savedInstanceState)
 
         viewModel = ViewModelProviders.of(requireActivity()).get<ProfileViewModel>(ProfileViewModel::class.java)
-        viewModel.getDemands(PrefsManager.geID(requireActivity())!!
+        viewModel.getDemands(PrefsManager.geToken(requireActivity())!!, PrefsManager.geID(requireActivity())!!
         ).observe(requireActivity(), Observer {
             it?.let { demandsResponse ->
                 if (demandsResponse.data != null)

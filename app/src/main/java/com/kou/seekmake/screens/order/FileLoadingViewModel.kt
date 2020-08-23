@@ -28,7 +28,7 @@ class FileLoadingViewModel(private val repository: SeekMakeRepository, onFailure
         return repository.getClient(api, id)
     }
 
-    fun submitOrder(order: Order): LiveData<OrderResponse> {
-        return repository.submitOrder(api, order)
+    fun submitOrder(token: String, order: Order): LiveData<OrderResponse> {
+        return repository.submitOrder(api, token, order)
     }
 }

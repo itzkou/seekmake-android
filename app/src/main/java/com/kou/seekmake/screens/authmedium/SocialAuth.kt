@@ -163,6 +163,7 @@ class SocialAuth : BaseActivity() {
                                             val json = JSONObject(JWTUtils.decoded(response.body()!!.data!!.token)!!)
                                             val id = json.getJSONObject("data").getString("_id")
                                             PrefsManager.seID(this@SocialAuth, id)
+                                            PrefsManager.seToken(this@SocialAuth, response.body()!!.data!!.token)
                                             startActivity(Intent(this@SocialAuth, HomeActivity::class.java))
                                             finish()
                                         }
@@ -227,6 +228,7 @@ class SocialAuth : BaseActivity() {
                                             val json = JSONObject(JWTUtils.decoded(response.body()!!.data!!.token)!!)
                                             val id = json.getJSONObject("data").getString("_id")
                                             PrefsManager.seID(this@SocialAuth, id)
+                                            PrefsManager.seToken(this@SocialAuth, response.body()!!.data!!.token)
                                             startActivity(Intent(this@SocialAuth, HomeActivity::class.java))
                                             finish()
                                         }

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.tasks.OnFailureListener
 import com.kou.seekmake.data.retrofit.SeekMakeApi
 import com.kou.seekmake.data.retrofit.SeekMakeRepository
+import com.kou.seekmake.models.SeekMake.LoginResponse
 import com.kou.seekmake.models.SeekMake.SignUpResponse
 import com.kou.seekmake.models.SeekMake.UserSeek
 import com.kou.seekmake.screens.common.BaseViewModel
@@ -21,5 +22,10 @@ class SeekRegisterViewModel(private val repository: SeekMakeRepository, onFailur
         return signUpResponse
     }
 
+    fun signIn(user: UserSeek): LiveData<LoginResponse> {
+        return repository.signIn(api, user)
+
+
+    }
 
 }

@@ -27,15 +27,25 @@ class SeekRegisterActivity : BaseActivity() {
         btn_seek_register.setOnClickListener {
             val userSeek = UserSeek(address = adress_input.text.toString(), city = city_input.text.toString(), email = PrefsManager.geMail(this)!!, firstname = PrefsManager.geFname(this)!!, lastname = PrefsManager.geLname(this)!!, password = PrefsManager.gePwd(this)!!, password_confirmation = PrefsManager.gePwd(this)!!, tel = phone_input.text.toString(), zip = zip_input.text.toString())
 
-            vm.signUp(userSeek).observe(this, Observer {
-                when (it.msg) {
+            vm.signUp(userSeek).observe(this, Observer { signUpResponse ->
+                PrefsManager.seID(this, signUpResponse.data!!._id)
+                when (signUpResponse.msg) {
                     "0" -> Toast.makeText(this, "Network Faillure", Toast.LENGTH_SHORT).show()
                     "1" -> Toast.makeText(this, "Validation failed", Toast.LENGTH_SHORT).show()
                     "2" -> Toast.makeText(this, "Email exists", Toast.LENGTH_SHORT).show()
                     "OK" -> {
-                        PrefsManager.seID(this, it.data!!._id)
-                        startActivity(Intent(this, Splash::class.java))
-                        finish()
+                        vm.signIn(userSeek).observe(this, Observer { loginResponse ->
+                            when (loginResponse.msg) {
+                                "0" -> Toast.makeText(this, "Network Faillure", Toast.LENGTH_SHORT).show()
+                                "1" -> Toast.makeText(this, "Verify your credentials", Toast.LENGTH_SHORT).show()
+                                "OK" -> {
+                                    PrefsManager.seToken(this, loginResponse.data!!.token)
+                                    startActivity(Intent(this, Splash::class.java))
+                                    finish()
+                                }
+                            }
+                        })
+
                     }
                 }
             })

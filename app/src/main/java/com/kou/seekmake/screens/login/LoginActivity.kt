@@ -45,6 +45,7 @@ class LoginActivity : BaseActivity(), KeyboardVisibilityEventListener, View.OnCl
                         val json = JSONObject(JWTUtils.decoded(it.data!!.token)!!)
                         val id = json.getJSONObject("data").getString("_id")
                         PrefsManager.seID(this, id)
+                        PrefsManager.seToken(this, it.data.token)
                         startActivity(Intent(this, HomeActivity::class.java))
                         finish()
                     }

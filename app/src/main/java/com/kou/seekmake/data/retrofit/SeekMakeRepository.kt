@@ -154,10 +154,10 @@ class SeekMakeRepository {
         return apiresp
     }
 
-    fun submitOrder(api: SeekMakeApi, order: Order): LiveData<OrderResponse> {
+    fun submitOrder(api: SeekMakeApi, token: String, order: Order): LiveData<OrderResponse> {
         val apiresp = MutableLiveData<OrderResponse>()
 
-        api.submitOrder(order).enqueue(object : Callback<OrderResponse> {
+        api.submitOrder("Bearer $token", order).enqueue(object : Callback<OrderResponse> {
             override fun onFailure(call: Call<OrderResponse>, t: Throwable) {
                 if (t is IOException)
                     apiresp.postValue(OrderResponse(null, "0"))
@@ -181,9 +181,9 @@ class SeekMakeRepository {
 
     }
 
-    fun getDemands(api: SeekMakeApi, id: String): LiveData<DemandsResponse> {
+    fun getDemands(api: SeekMakeApi, token: String, id: String): LiveData<DemandsResponse> {
         val apiresp = MutableLiveData<DemandsResponse>()
-        api.getDemands(id).enqueue(object : Callback<DemandsResponse> {
+        api.getDemands("Bearer $token", id).enqueue(object : Callback<DemandsResponse> {
             override fun onFailure(call: Call<DemandsResponse>, t: Throwable) {
                 if (t is IOException)
                     apiresp.postValue(DemandsResponse(null, "0"))

@@ -29,8 +29,8 @@ class ProfileViewModel(private val usersRepo: UsersRepository, private val repos
         return story
     }
 
-    fun getDemands(id: String): LiveData<DemandsResponse> {
-        return repository.getDemands(api, id)
+    fun getDemands(token: String, id: String): LiveData<DemandsResponse> {
+        return repository.getDemands(api, token, id)
     }
 
     fun updateDemand(id: String): LiveData<UpdateDemandResponse> {
