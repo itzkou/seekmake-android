@@ -1,9 +1,12 @@
 package com.kou.seekmake.screens.profile
 
+import android.app.ActivityManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.lifecycle.Observer
+import com.google.firebase.auth.FirebaseAuth
 import com.kou.seekmake.R
 import com.kou.seekmake.screens.addfriends.AddFriendsActivity
 import com.kou.seekmake.screens.common.BaseActivity
@@ -21,6 +24,8 @@ import kotlinx.android.synthetic.main.activity_profile.*
 
 
 class ProfileActivity : BaseActivity() {
+    private lateinit var mAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
@@ -42,6 +47,11 @@ class ProfileActivity : BaseActivity() {
         add_friends_image.setOnClickListener {
             val intent = Intent(this, AddFriendsActivity::class.java)
             startActivity(intent)
+        }
+        tx_logout.setOnClickListener {
+            (this.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager)
+                    .clearApplicationUserData()
+
         }
 
         /*** setup viewpager ***/

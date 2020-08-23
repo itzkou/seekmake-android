@@ -205,12 +205,12 @@
             android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/add_friends_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+
                 <ImageView
-                    android:id="@+id/ic_add_friends_image"
+                    android:id="@+id/add_friends_image"
                     style="@style/icon"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
@@ -218,17 +218,16 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+
                 <TextView
+                    android:id="@+id/tx_logout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="Discover people"
-                    android:textSize="15sp"
-                    app:layout_constraintBottom_toBottomOf="@id/ic_add_friends_image"
-                    app:layout_constraintStart_toEndOf="@id/ic_add_friends_image"
-                    app:layout_constraintTop_toTopOf="@id/ic_add_friends_image" />
+                    android:layout_margin="8dp"
+                    android:text="Log out"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/add_friends_image" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </FrameLayout>
 
     </com.mxn.soul.flowingdrawer_core.FlowingMenuLayout>
