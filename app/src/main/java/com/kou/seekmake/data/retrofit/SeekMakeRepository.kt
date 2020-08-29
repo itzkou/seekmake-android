@@ -200,9 +200,10 @@ class SeekMakeRepository {
 
     }
 
-    fun updateDemand(api: SeekMakeApi, id: String): LiveData<UpdateDemandResponse> {
+    //fix this
+    fun updateDemand(api: SeekMakeApi, token: String, id: String, status: OrderStatus): LiveData<UpdateDemandResponse> {
         val apiresp = MutableLiveData<UpdateDemandResponse>()
-        api.updateDemand(id).enqueue(object : Callback<UpdateDemandResponse> {
+        api.updateDemand("Bearer $token", id, status = status).enqueue(object : Callback<UpdateDemandResponse> {
             override fun onFailure(call: Call<UpdateDemandResponse>, t: Throwable) {
                 if (t is IOException)
                     apiresp.postValue(UpdateDemandResponse(null, "0"))

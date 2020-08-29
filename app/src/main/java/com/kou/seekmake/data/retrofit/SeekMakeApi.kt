@@ -52,7 +52,7 @@ interface SeekMakeApi {
     fun getDemands(@Header("Authorization") authToken: String, @Path("id") clientID: String): Call<DemandsResponse>
 
     @PUT("client/demand/{id}")
-    fun updateDemand(@Path("id") demandID: String): Call<UpdateDemandResponse>
+    fun updateDemand(@Header("Authorization") authToken: String, @Path("id") demandID: String, @Body status: OrderStatus): Call<UpdateDemandResponse>
 
 
 }

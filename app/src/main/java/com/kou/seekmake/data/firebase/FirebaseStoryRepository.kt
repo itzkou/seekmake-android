@@ -34,7 +34,7 @@ class FirebaseStoryRepository : StoryRepository {
 
                 val refStoryUser = database.child("story-user").child(uid)
 
-                val cutoff: Long = Date().time - TimeUnit.MILLISECONDS.convert(2, TimeUnit.MINUTES)
+                val cutoff: Long = Date().time - TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS)
                 refStoryUser.orderByChild("timestamp").endAt(cutoff.toDouble()).addListenerForSingleValueEvent(object : ValueEventListener {
 
                     override fun onDataChange(snapshot: DataSnapshot) {

@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.quote_item.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class QuotesAdapter(private val listener: QuotesAdapter.Listener) : RecyclerView.Adapter<QuotesAdapter.ViewHolder>() {
+class QuotesAdapter(private val listener: Listener) : RecyclerView.Adapter<QuotesAdapter.ViewHolder>() {
     interface Listener {
         fun confirm(demandId: String)
         fun deny(demandId: String)

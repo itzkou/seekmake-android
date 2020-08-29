@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kou.seekmake.R
+import com.kou.seekmake.models.SeekMake.OrderStatus
 import com.kou.seekmake.screens.common.SharedUtils.PrefsManager
 import com.kou.seekmake.screens.profile.Adapters.QuotesAdapter
 import com.kou.seekmake.screens.profile.ProfileViewModel
@@ -49,7 +50,7 @@ class Quotes : Fragment(), QuotesAdapter.Listener {
     }
 
     override fun confirm(demandId: String) {
-        viewModel.updateDemand(demandId).observe(this, Observer {
+        viewModel.updateDemand(demandId, PrefsManager.geToken(requireActivity())!!, OrderStatus("acceptedClient")).observe(this, Observer {
             if (it.msg == "0")
                 Toast.makeText(requireActivity(), "Network faillure", Toast.LENGTH_SHORT).show()
             else if (it.msg == "OK")
@@ -60,7 +61,7 @@ class Quotes : Fragment(), QuotesAdapter.Listener {
     }
 
     override fun deny(demandId: String) {
-        viewModel.updateDemand(demandId).observe(this, Observer {
+        viewModel.updateDemand(demandId, PrefsManager.geToken(requireActivity())!!, OrderStatus("declined")).observe(this, Observer {
             if (it.msg == "0")
                 Toast.makeText(requireActivity(), "Network faillure", Toast.LENGTH_SHORT).show()
             else if (it.msg == "OK")

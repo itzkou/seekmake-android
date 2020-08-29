@@ -88,8 +88,7 @@ class FollowerAdapter(private val listener: Listener)
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 snapshot.children.map {
-                    it.value.toString()
-                    if (it != null) {
+                    if (it.exists()) {
                         photo_image.isHighlighted = true
                         photo_image.setOnClickListener {
                             photo_image.numberOfArches = 10

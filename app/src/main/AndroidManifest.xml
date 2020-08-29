@@ -13,7 +13,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".screens.SeekMakeApp"
+        android:name="com.kou.seekmake.screens.SeekMakeApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,30 +21,30 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".screens.stories.OpenStoriesActivity" />
-        <activity android:name=".screens.stories.StoryActivity" />
+        <activity android:name="com.kou.seekmake.screens.stories.OpenStoriesActivity" />
+        <activity android:name="com.kou.seekmake.screens.stories.StoryActivity" />
         <activity
-            android:name=".screens.register.SeekRegisterActivity"
+            android:name="com.kou.seekmake.screens.register.SeekRegisterActivity"
             android:exported="true"
             android:windowSoftInputMode="stateUnchanged" />
         <activity
-            android:name=".screens.order.DeliveryActivity"
+            android:name="com.kou.seekmake.screens.order.DeliveryActivity"
             android:exported="true" />
         <activity
-            android:name=".screens.order.FileLodingActivity"
+            android:name="com.kou.seekmake.screens.order.FileLodingActivity"
             android:exported="true"
             android:windowSoftInputMode="stateUnchanged" />
         <activity
-            android:name=".screens.order.OrderActivity"
+            android:name="com.kou.seekmake.screens.order.OrderActivity"
             android:exported="true" />
         <activity
-            android:name=".screens.splash.Splash"
+            android:name="com.kou.seekmake.screens.splash.Splash"
             android:exported="true" />
-        <activity android:name=".screens.seekhome.SeekHomeActivity" />
+        <activity android:name="com.kou.seekmake.screens.seekhome.SeekHomeActivity" />
         <activity
-            android:name=".screens.authmedium.SocialAuth"
+            android:name="com.kou.seekmake.screens.authmedium.SocialAuth"
             android:exported="true" />
-        <activity android:name=".screens.home.HomeActivity">
+        <activity android:name="com.kou.seekmake.screens.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -52,24 +52,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".screens.search.SearchActivity"
+            android:name="com.kou.seekmake.screens.search.SearchActivity"
             android:exported="true" />
-        <activity android:name=".screens.share.ShareActivity" />
-        <activity android:name=".screens.notifications.NotificationsActivity" />
-        <activity android:name=".screens.profile.ProfileActivity" />
-        <activity android:name=".screens.editprofile.EditProfileActivity" />
+        <activity android:name="com.kou.seekmake.screens.share.ShareActivity" />
+        <activity android:name="com.kou.seekmake.screens.notifications.NotificationsActivity" />
+        <activity android:name="com.kou.seekmake.screens.profile.ProfileActivity" />
+        <activity android:name="com.kou.seekmake.screens.editprofile.EditProfileActivity" />
         <activity
-            android:name=".screens.login.LoginActivity"
+            android:name="com.kou.seekmake.screens.login.LoginActivity"
             android:exported="true"
             android:windowSoftInputMode="stateUnchanged" />
         <activity
-            android:name=".screens.register.RegisterActivity"
+            android:name="com.kou.seekmake.screens.register.RegisterActivity"
             android:exported="true"
             android:windowSoftInputMode="stateUnchanged" />
-        <activity android:name=".screens.profilesettings.ProfileSettingsActivity" />
-        <activity android:name=".screens.addfriends.AddFriendsActivity" />
+        <activity android:name="com.kou.seekmake.screens.profilesettings.ProfileSettingsActivity" />
+        <activity android:name="com.kou.seekmake.screens.addfriends.AddFriendsActivity" />
         <activity
-            android:name=".screens.comments.CommentsActivity"
+            android:name="com.kou.seekmake.screens.comments.CommentsActivity"
             android:exported="true"
             android:launchMode="singleInstance" />
 
