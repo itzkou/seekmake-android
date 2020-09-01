@@ -10,10 +10,13 @@ import com.kou.seekmake.models.Firebase.User
 import com.kou.seekmake.screens.comments.CommentsActivity
 import com.kou.seekmake.screens.common.BaseActivity
 import com.kou.seekmake.screens.common.setupAuthGuard
+import com.kou.seekmake.screens.common.setupBlur
 import com.kou.seekmake.screens.common.setupBottomNavigation
 import com.kou.seekmake.screens.search.SearchActivity
 import com.kou.seekmake.screens.stories.OpenStoriesActivity
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.top_bar.*
+
 
 class HomeActivity : BaseActivity(), FeedAdapter.Listener, FollowerAdapter.Listener {
     private lateinit var mAdapter: FeedAdapter
@@ -25,6 +28,7 @@ class HomeActivity : BaseActivity(), FeedAdapter.Listener, FollowerAdapter.Liste
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        setupBlur(topBlur, this, window)
 
         /**** feed ***/
         mAdapter = FeedAdapter(this)
@@ -110,4 +114,5 @@ class HomeActivity : BaseActivity(), FeedAdapter.Listener, FollowerAdapter.Liste
         mViewModel.setFollow(mUser.uid, uid, follow)
                 .addOnSuccessListener { onSuccess() }
     }
+
 }

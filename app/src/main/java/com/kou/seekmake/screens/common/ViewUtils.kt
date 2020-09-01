@@ -11,6 +11,7 @@ import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.view.View
+import android.view.Window
 import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -22,6 +23,8 @@ import com.kou.seekmake.common.formatRelativeTimestamp
 import com.makeramen.roundedimageview.RoundedImageView
 import com.squareup.picasso.Picasso
 import com.yinglan.shadowimageview.ShadowImageView
+import eightbitlab.com.blurview.BlurView
+import eightbitlab.com.blurview.RenderScriptBlur
 import java.util.*
 
 
@@ -214,6 +217,17 @@ fun Snackbar.config(context: Context) {
     text.textSize = 12f
 
     ViewCompat.setElevation(this.view, 6f)
+}
+
+fun setupBlur(blurView: BlurView, context: Context, view: Window) {
+    val decorView: View = view.decorView
+    val windowBackground: Drawable = decorView.background
+
+    blurView.setupWith(decorView.findViewById(android.R.id.content))
+            .setFrameClearDrawable(windowBackground)
+            .setBlurAlgorithm(RenderScriptBlur(context))
+            .setBlurRadius(20f)
+            .setHasFixedTransformationMatrix(true)
 }
 
 

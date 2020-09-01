@@ -147,5 +147,6 @@ class InstagramBottomNavigation(private val uid: String,
 
 fun BaseActivity.setupBottomNavigation(uid: String, navNumber: Int) {
     val bnv = InstagramBottomNavigation(uid, bottom_navigation_view, tooltip_layout, navNumber, this)
+        bottom_navigation_view.setIconSize(22f)
     this.lifecycle.addObserver(bnv)
 }

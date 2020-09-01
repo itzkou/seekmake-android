@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.kou.seekmake.R
 import com.kou.seekmake.models.Firebase.User
 import com.kou.seekmake.screens.common.BaseActivity
-import com.kou.seekmake.screens.common.loadImage
+import com.kou.seekmake.screens.common.loadImageRounded
 import com.kou.seekmake.screens.common.loadUserPhoto
 import com.kou.seekmake.screens.common.setupAuthGuard
 import kotlinx.android.synthetic.main.activity_comments.*
@@ -51,7 +51,7 @@ class CommentsActivity : BaseActivity() {
                     other = it
                     user_photo_image.loadUserPhoto(other.photo)
                     username_text.text = other.username
-                    im_comment.loadImage(postImage)
+                    im_comment.loadImageRounded(postImage)
 
                 }
             })

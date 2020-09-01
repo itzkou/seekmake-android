@@ -64,11 +64,10 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:padding="10dp"
-            android:src="@drawable/ic_likes_border"
+            android:src="@drawable/ic_heartd"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
 
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/comment_image"
@@ -78,16 +77,6 @@
             android:src="@drawable/comment_image"
             app:layout_constraintBottom_toBottomOf="@id/like_image"
             app:layout_constraintStart_toEndOf="@id/like_image"
-            app:layout_constraintTop_toTopOf="@id/like_image" />
-
-        <ImageView
-            android:id="@+id/share_image"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:padding="10dp"
-            android:src="@drawable/ic_share_border"
-            app:layout_constraintBottom_toBottomOf="@id/like_image"
-            app:layout_constraintStart_toEndOf="@id/comment_image"
             app:layout_constraintTop_toTopOf="@id/like_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -108,6 +97,7 @@
         android:id="@+id/caption_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/poppins_medium"
         android:maxLines="2"
@@ -124,7 +114,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_light"
-        android:text="Tunis"
+        android:text="Just Now"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="@+id/username_text"
         app:layout_constraintTop_toBottomOf="@+id/username_text" />
