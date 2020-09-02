@@ -2,7 +2,6 @@ package com.kou.seekmake.screens.share
 
 import android.net.Uri
 import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.Tasks
 import com.kou.seekmake.common.SingleLiveEvent
 import com.kou.seekmake.data.firebase.FeedPostsRepository
 import com.kou.seekmake.data.firebase.UsersRepository
@@ -18,24 +17,31 @@ class ShareViewModel(private val feedPostsRepo: FeedPostsRepository,
     val user = usersRepo.getUser()
 
 
-    fun share(user: User, imageUri: Uri?, caption: String) {
-        if (imageUri != null) {
+    fun share(user: User, imageUris: List<Uri>, caption: String) {
+        val collectedUrls = arrayListOf<String>()
+        var counter = 0
+        for (imageUri in imageUris) {
 
             usersRepo.uploadUserImage(user.uid, imageUri).onSuccessTask { downloadUrl ->
-                Tasks.whenAll(
-                        usersRepo.setUserImage(user.uid, downloadUrl!!),
-                        feedPostsRepo.createFeedPost(user.uid, mkFeedPost(user, caption,
-                                downloadUrl.toString()))
-                )
-
+                collectedUrls.add(downloadUrl.toString())
+                usersRepo.setUserImage(user.uid, downloadUrl!!)
 
             }.addOnCompleteListener {
-                _shareCompletedEvent.call()
+
+                if (counter == imageUris.size - 1)
+                    feedPostsRepo.createFeedPost(user.uid, mkFeedPost(user, caption, collectedUrls)).addOnSuccessListener {
+                        _shareCompletedEvent.call()
+
+                    }
+                counter++
             }.addOnFailureListener(onFailureListener)
+
         }
+
+
     }
 
-    private fun mkFeedPost(user: User, caption: String, imageDownloadUrl: String): FeedPost {
+    private fun mkFeedPost(user: User, caption: String, imageDownloadUrl: List<String>): FeedPost {
         return FeedPost(
                 uid = user.uid,
                 username = user.username,

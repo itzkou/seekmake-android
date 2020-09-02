@@ -46,7 +46,7 @@ class FeedAdapter(private val listener: Listener)
         with(holder.view) {
             user_photo_image.loadUserPhoto(post.avatar)
             username_text.text = post.username
-            post_image.loadImageRounded(post.image)
+            post_image.loadImageRounded(post.image[0])
             if (likes.likesCount == 0) {
                 likes_text.visibility = View.GONE
             } else {
@@ -58,9 +58,9 @@ class FeedAdapter(private val listener: Listener)
             caption_text.setCaptionText(post.username, post.caption)
             like_image.setOnClickListener { listener.toggleLike(post.id) }
             like_image.setImageResource(
-                    if (likes.likedByUser) R.drawable.ic_heartd
-                    else R.drawable.ic_hearte)
-            comment_image.setOnClickListener { listener.openComments(post.id, post.image, post.uid) }
+                    if (likes.likedByUser) R.drawable.ic_hearte
+                    else R.drawable.ic_heartd)
+            comment_image.setOnClickListener { listener.openComments(post.id, post.image[0], post.uid) }
             listener.loadLikes(post.id, position)
         }
 

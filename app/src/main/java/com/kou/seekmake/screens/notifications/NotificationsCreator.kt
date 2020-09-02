@@ -43,7 +43,7 @@ class NotificationsCreator(private val notificationsRepo: NotificationsRepositor
                                     username = user.username,
                                     photo = user.photo,
                                     postId = post.id,
-                                    postImage = post.image,
+                                    postImage = post.image[0],
                                     type = NotificationType.Like)
                             notificationsRepo.createNotification(post.uid, notification)
                                     .addOnFailureListener {
@@ -59,7 +59,7 @@ class NotificationsCreator(private val notificationsRepo: NotificationsRepositor
                                             username = event.comment.username,
                                             photo = event.comment.photo,
                                             postId = event.postId,
-                                            postImage = post.image,
+                                            postImage = post.image[0],
                                             commentText = event.comment.text,
                                             type = NotificationType.Comment)
                                     notificationsRepo.createNotification(post.uid, notification)

@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
@@ -65,7 +64,6 @@ class ShareActivity : BaseActivity() {
         if (requestCode == mCamera.REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 post_image.loadImage(mCamera.imageUri?.toString())
-                Log.d("bobo", mCamera.imageUri?.toString()!!)
 
             } else {
                 finish()
@@ -75,9 +73,13 @@ class ShareActivity : BaseActivity() {
 
     private fun share() {
         if (mCamera.imageUri != null)
-            mViewModel.share(mUser, mCamera.imageUri, caption_input.text.toString())
-        else if (allSelectedMediaPaths[0].isNotEmpty())
-            mViewModel.share(mUser, Uri.fromFile(File(allSelectedMediaPaths[0])), caption_input.text.toString())
+            mViewModel.share(mUser, listOf(mCamera.imageUri!!), caption_input.text.toString())
+        else if (allSelectedMediaPaths.isNotEmpty()) {
+            val selectedUris = arrayListOf<Uri>()
+            for (i in allSelectedMediaPaths)
+                selectedUris.add(Uri.fromFile(File(i)))
+            mViewModel.share(mUser, selectedUris, caption_input.text.toString())
+        }
     }
 
     /** Media Picker Dialog **/
@@ -123,8 +125,6 @@ class ShareActivity : BaseActivity() {
             post_image.loadImage(allSelectedMediaPaths[0])
 
 
-        } else {
-            Toast.makeText(this, "Unexpected Error", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -163,7 +163,7 @@ class ShareActivity : BaseActivity() {
                 Toast.makeText(this, "Without permission you cant do that.", Toast.LENGTH_SHORT).show()
             } else {
                 // With "Never Ask Again" Checked
-                Toast.makeText(this, "You need to give permission. Go to Settings...", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "You need to give permission. Go to Settings", Toast.LENGTH_SHORT).show()
             }
         }
         return

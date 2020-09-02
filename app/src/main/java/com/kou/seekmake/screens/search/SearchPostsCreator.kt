@@ -16,7 +16,7 @@ class SearchPostsCreator(searchRepo: SearchRepository) : BaseEventListener() {
                     is Event.CreateFeedPost -> {
                         val searchPost = with(event.post) {
                             SearchPost(
-                                    image = image,
+                                    image = image[0],
                                     caption = caption,
                                     postId = id,
                                     avatar = avatar,
