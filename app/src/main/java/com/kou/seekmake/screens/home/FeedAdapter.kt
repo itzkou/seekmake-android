@@ -5,10 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.azoft.carousellayoutmanager.CarouselLayoutManager
+import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener
+import com.azoft.carousellayoutmanager.CenterScrollListener
 import com.kou.seekmake.R
 import com.kou.seekmake.models.Firebase.FeedPost
 import com.kou.seekmake.screens.common.SimpleCallback
-import com.kou.seekmake.screens.common.loadImageRounded
 import com.kou.seekmake.screens.common.loadUserPhoto
 import com.kou.seekmake.screens.common.setCaptionText
 import kotlinx.android.synthetic.main.feed_item.view.*
@@ -28,6 +30,8 @@ class FeedAdapter(private val listener: Listener)
     private var posts = listOf<FeedPost>()
     private var postLikes: Map<Int, FeedPostLikes> = emptyMap()
     private val defaultPostLikes = FeedPostLikes(0, false)
+    private var viewPool = RecyclerView.RecycledViewPool()
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -46,7 +50,14 @@ class FeedAdapter(private val listener: Listener)
         with(holder.view) {
             user_photo_image.loadUserPhoto(post.avatar)
             username_text.text = post.username
-            post_image.loadImageRounded(post.image[0])
+            post_image.apply {
+                val newlayoutmger = CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL, false)
+                layoutManager = newlayoutmger
+                newlayoutmger.setPostLayoutListener(CarouselZoomPostLayoutListener())
+                addOnScrollListener(CenterScrollListener())
+                adapter = FeedNestedAdapter(post.image)
+                setRecycledViewPool(viewPool)
+            }
             if (likes.likesCount == 0) {
                 likes_text.visibility = View.GONE
             } else {
