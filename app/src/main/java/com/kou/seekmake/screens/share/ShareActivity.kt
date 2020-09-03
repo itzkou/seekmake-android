@@ -17,10 +17,7 @@ import com.anilokcun.uwmediapicker.model.UwMediaPickerMediaModel
 import com.kou.seekmake.R
 import com.kou.seekmake.data.firebase.common.FirebaseHelper
 import com.kou.seekmake.models.Firebase.User
-import com.kou.seekmake.screens.common.BaseActivity
-import com.kou.seekmake.screens.common.CameraHelper
-import com.kou.seekmake.screens.common.loadImage
-import com.kou.seekmake.screens.common.setupAuthGuard
+import com.kou.seekmake.screens.common.*
 import kotlinx.android.synthetic.main.activity_share.*
 import java.io.File
 
@@ -46,7 +43,9 @@ class ShareActivity : BaseActivity() {
 
 
             back_image.setOnClickListener { finish() }
-            share_text.setOnClickListener { share() }
+            share_text.setOnClickListener {
+                share()
+            }
 
             mViewModel.user.observe(this, Observer {
                 it?.let {
@@ -54,6 +53,7 @@ class ShareActivity : BaseActivity() {
                 }
             })
             mViewModel.shareCompletedEvent.observe(this, Observer {
+                BuilderLoading.dialog.dismiss()
                 finish()
             })
         }
@@ -72,23 +72,25 @@ class ShareActivity : BaseActivity() {
     }
 
     private fun share() {
-        if (mCamera.imageUri != null)
+        if (mCamera.imageUri != null) {
+            BuilderLoading.showDialog(this)
+
             mViewModel.share(mUser, listOf(mCamera.imageUri!!), caption_input.text.toString())
-        else if (allSelectedMediaPaths.isNotEmpty()) {
+        } else if (allSelectedMediaPaths.isNotEmpty()) {
+            BuilderLoading.showDialog(this)
+
             val selectedUris = arrayListOf<Uri>()
             for (i in allSelectedMediaPaths)
                 selectedUris.add(Uri.fromFile(File(i)))
             mViewModel.share(mUser, selectedUris, caption_input.text.toString())
         }
+
     }
 
     /** Media Picker Dialog **/
     private fun openMediaDialog() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Media")
-        builder.setMessage("Choose your files")
-        builder.setIcon(android.R.drawable.ic_dialog_alert)
-
+        val builder = AlertDialog.Builder(this, R.style.media)
+        builder.setTitle("Choose your Files")
         builder.setPositiveButton("Camera") { _, _ ->
             mCamera.takeCameraPicture()
         }
@@ -96,6 +98,11 @@ class ShareActivity : BaseActivity() {
             requestToOpenImagePicker(PERMISSION_REQUEST_CODE_PICK_IMAGE_VIDEO, UwMediaPicker.GalleryMode.ImageGallery, ::openUwMediaPicker)
         }
         //TODO add videos next time
+
+        builder.setNeutralButton("Cancel") { dialog, _ ->
+            dialog.dismiss()
+            finish()
+        }
 
         val alertDialog: AlertDialog = builder.create()
         alertDialog.setCancelable(false)
@@ -113,7 +120,7 @@ class ShareActivity : BaseActivity() {
                 .setCompressionMaxWidth(1280F)                // Compressed image's max width px, default is 1280
                 .setCompressionMaxHeight(720F)                // Compressed image's max height px, default is 720
                 .setCompressFormat(Bitmap.CompressFormat.JPEG)        // Compressed image's format, default is JPEG
-                .setCompressionQuality(85)                // Image compression quality, default is 85
+                .setCompressionQuality(80)                // Image compression quality, default is 85
                 .setCompressedFileDestinationPath("${application.getExternalFilesDir(null)!!.path}/Pictures")
                 .launch(::onMediaSelected)
     }

@@ -1,14 +1,15 @@
 package com.kou.seekmake.screens.notifications
 
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kou.seekmake.R
 import com.kou.seekmake.screens.common.BaseActivity
 import com.kou.seekmake.screens.common.setupAuthGuard
+import com.kou.seekmake.screens.common.setupBlur
 import com.kou.seekmake.screens.common.setupBottomNavigation
 import kotlinx.android.synthetic.main.activity_notifications.*
+import kotlinx.android.synthetic.main.top_bar.*
 
 class NotificationsActivity : BaseActivity() {
     private lateinit var mAdapter: NotificationsAdapter
@@ -16,12 +17,11 @@ class NotificationsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notifications)
-        Log.d(TAG, "onCreate")
-
+        setupBlur(topBlur, this, window)
         setupAuthGuard { uid ->
             setupBottomNavigation(uid, 3)
             mAdapter = NotificationsAdapter()
-            notifications_recycler.layoutManager = LinearLayoutManager(this)
+            notifications_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true)
             notifications_recycler.adapter = mAdapter
 
             val viewModel = initViewModel<NotificationsViewModel>()

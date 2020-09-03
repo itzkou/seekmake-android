@@ -2,7 +2,6 @@ package com.kou.seekmake.screens.common
 
 import android.app.Activity
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.text.*
@@ -21,8 +20,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.kou.seekmake.R
 import com.kou.seekmake.common.formatRelativeTimestamp
 import com.makeramen.roundedimageview.RoundedImageView
-import com.squareup.picasso.Picasso
-import com.yinglan.shadowimageview.ShadowImageView
 import eightbitlab.com.blurview.BlurView
 import eightbitlab.com.blurview.RenderScriptBlur
 import java.util.*
@@ -173,24 +170,7 @@ fun ImageView.loadImage(image: String?) =
             Glide.with(this).load(image).centerCrop().into(this)
         }
 
-fun ShadowImageView.loadImage(image: String?) =
-        ifNotDestroyed {
 
-            Picasso.get().load(image).into(object : com.squareup.picasso.Target {
-                override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
-                }
-
-                override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
-                    this@loadImage.setImageDrawable(ContextCompat.getDrawable(this@loadImage.context, R.drawable.ic_launcher_background))
-
-                }
-
-                override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
-                    this@loadImage.setImageBitmap(bitmap)
-                }
-
-            })
-        }
 
 fun RoundedImageView.loadImageRounded(image: String?) =
         ifNotDestroyed {

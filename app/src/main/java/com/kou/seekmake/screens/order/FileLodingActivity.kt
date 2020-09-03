@@ -17,11 +17,8 @@ import com.kou.seekmake.R
 import com.kou.seekmake.models.SeekMake.Client
 import com.kou.seekmake.models.SeekMake.Material
 import com.kou.seekmake.models.SeekMake.Order
-import com.kou.seekmake.screens.common.BaseActivity
-import com.kou.seekmake.screens.common.CustomAdapter
-import com.kou.seekmake.screens.common.RealPathUtil
+import com.kou.seekmake.screens.common.*
 import com.kou.seekmake.screens.common.SharedUtils.PrefsManager
-import com.kou.seekmake.screens.common.setupAuthGuard
 import kotlinx.android.synthetic.main.activity_file_loding.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -105,12 +102,18 @@ class FileLodingActivity : BaseActivity() {
             )
 
             val body = MultipartBody.Part.createFormData("file", mFile.name, requestFile)
+            BuilderLoading.showDialog(this)
+
             /** File Upload **/
             vm.uploadFile(body).observe(this, Observer { fileResponse ->
+
                 if (fileResponse.URL == "0") {
+                    BuilderLoading.dialog.dismiss()
                     Toast.makeText(this, "Network Faillure", Toast.LENGTH_SHORT).show()
                 } else {
                     /*** submitting order **/
+                    BuilderLoading.dialog.dismiss()
+
                     btn_next.setOnClickListener {
                         var qty = 1
                         if (qty_input.text.toString().isNotEmpty())

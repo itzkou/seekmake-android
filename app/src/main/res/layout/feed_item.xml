@@ -120,6 +120,7 @@
         android:id="@+id/im_more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="@+id/post_image"
         app:layout_constraintTop_toTopOf="@+id/user_photo_image"
         app:srcCompat="@drawable/ic_dots" />

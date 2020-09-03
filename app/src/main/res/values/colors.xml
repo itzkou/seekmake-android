@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#01142D</color>
     <color name="colorPrimaryDark">#BBB</color>
-    <color name="colorPrimaryFaded">#FAFAFA</color>
+    <color name="colorPrimaryFaded">#F5F5F5</color>
     <color name="white">#FFF</color>
     <color name="black">#000</color>
     <color name="grey">#E3E3E3</color>

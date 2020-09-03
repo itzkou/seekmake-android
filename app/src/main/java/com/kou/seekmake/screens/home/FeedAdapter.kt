@@ -1,5 +1,6 @@
 package com.kou.seekmake.screens.home
 
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,12 +9,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.azoft.carousellayoutmanager.CarouselLayoutManager
 import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener
 import com.azoft.carousellayoutmanager.CenterScrollListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.kou.seekmake.R
+import com.kou.seekmake.data.firebase.common.database
 import com.kou.seekmake.models.Firebase.FeedPost
 import com.kou.seekmake.screens.common.SimpleCallback
 import com.kou.seekmake.screens.common.loadUserPhoto
 import com.kou.seekmake.screens.common.setCaptionText
 import kotlinx.android.synthetic.main.feed_item.view.*
+import xyz.schwaab.avvylib.AvatarView
 
 
 class FeedAdapter(private val listener: Listener)
@@ -23,6 +29,7 @@ class FeedAdapter(private val listener: Listener)
         fun toggleLike(postId: String)
         fun loadLikes(postId: String, position: Int)
         fun openComments(postId: String, postImage: String, postUid: String)
+        fun openStories(uid: String)
     }
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view)
@@ -48,6 +55,7 @@ class FeedAdapter(private val listener: Listener)
         val post = posts[position]
         val likes = postLikes[position] ?: defaultPostLikes
         with(holder.view) {
+            checkStories(post.uid, user_photo_image)
             user_photo_image.loadUserPhoto(post.avatar)
             username_text.text = post.username
             post_image.apply {
@@ -83,6 +91,39 @@ class FeedAdapter(private val listener: Listener)
         val diffResult = DiffUtil.calculateDiff(SimpleCallback(this.posts, newPosts) { it.id })
         this.posts = newPosts
         diffResult.dispatchUpdatesTo(this)
+    }
+
+    fun checkStories(uid: String, photo_image: AvatarView) {
+        database.child("story-user").child(uid).orderByKey().limitToLast(1).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                snapshot.children.map {
+                    if (it.exists()) {
+                        photo_image.isHighlighted = true
+                        photo_image.setOnClickListener {
+                            photo_image.numberOfArches = 10
+                            photo_image.isAnimating = true
+                            Handler().postDelayed({
+                                photo_image.isAnimating = false
+                                listener.openStories(uid)
+                            }, 1800)
+
+
+                        }
+
+                    } else {
+                        photo_image.isHighlighted = false
+                    }
+
+                }
+            }
+
+        })
+
     }
 
 }

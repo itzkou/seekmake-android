@@ -9,24 +9,25 @@
 
     <ImageView
         android:id="@+id/likes_image"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:src="@drawable/ic_likes_white" />
 
     <TextView
         android:id="@+id/likes_count_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
         android:textColor="@color/white"
-        android:textSize="21sp"
+        android:textSize="12sp"
         tools:text="5" />
 
     <ImageView
         android:id="@+id/follows_image"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
         android:src="@drawable/ic_profile_white" />
@@ -35,25 +36,27 @@
         android:id="@+id/follows_count_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
         android:textColor="@color/white"
-        android:textSize="21sp"
+        android:textSize="12sp"
         tools:text="5" />
 
     <ImageView
         android:id="@+id/comments_image"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:src="@drawable/ic_comments_white" />
 
     <TextView
         android:id="@+id/comments_count_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingEnd="10dp"
+        android:fontFamily="@font/poppins_medium"
+        android:paddingEnd="8dp"
         android:textColor="@color/white"
-        android:textSize="21sp"
+        android:textSize="12sp"
         tools:text="5" />
 
 </LinearLayout>

@@ -60,7 +60,7 @@ class FollowerAdapter(private val listener: Listener)
     }
 
     override fun getItemCount() = mUsers.size
-
+    //TODO shuffle users based on stories
     fun update(users: List<User>, follows: Map<String, Boolean>) {
         val diffResult = DiffUtil.calculateDiff(SimpleCallback(mUsers, users) { it.uid })
         mUsers = users
