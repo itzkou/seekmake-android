@@ -5,14 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.google.firebase.auth.FirebaseAuth
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.kou.seekmake.R
 import com.kou.seekmake.screens.addfriends.AddFriendsActivity
-import com.kou.seekmake.screens.common.BaseActivity
-import com.kou.seekmake.screens.common.loadUserPhoto
-import com.kou.seekmake.screens.common.setupAuthGuard
-import com.kou.seekmake.screens.common.setupBottomNavigation
+import com.kou.seekmake.screens.common.*
 import com.kou.seekmake.screens.editprofile.EditProfileActivity
 import com.kou.seekmake.screens.profile.Fragments.Images
 import com.kou.seekmake.screens.profile.Fragments.Quotes
@@ -21,14 +19,18 @@ import com.kou.seekmake.screens.stories.StoryActivity
 import com.mxn.soul.flowingdrawer_core.ElasticDrawer
 import com.mxn.soul.flowingdrawer_core.FlowingDrawer
 import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.top_bar.*
 
 
-class ProfileActivity : BaseActivity() {
-    private lateinit var mAuth: FirebaseAuth
+class ProfileActivity : BaseActivity(), ImagesAdapter.Listener {
+    private lateinit var storiesAdapter: ImagesAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
+        setupBlur(topBlur, this, window)
+        nestedVprofile.isFillViewport = true
 
         val mDrawer = findViewById<FlowingDrawer>(R.id.drawerlayout)
         mDrawer.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL)
@@ -53,12 +55,16 @@ class ProfileActivity : BaseActivity() {
                     .clearApplicationUserData()
 
         }
+        /**stories**/
+        rvStories.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+        storiesAdapter = ImagesAdapter(this)
+        rvStories.adapter = storiesAdapter
 
         /*** setup viewpager ***/
         val adapter = VpProfileAdapter(supportFragmentManager)
         val images = Images.newInstance()
         val quotes = Quotes.newInstance()
-        val loading = Images.newInstance()
+        val loading = Fragment()
 
 
         adapter.addFragment(images)
@@ -101,16 +107,23 @@ class ProfileActivity : BaseActivity() {
                 it?.let {
                     profile_image.loadUserPhoto(it.photo)
                     username_text.text = it.username
-                    bio_label.text = it.bio
+                    //bio_label.text = it.bio
                     followers_count_text.text = it.followers.size.toString()
                     following_count_text.text = it.follows.size.toString()
                 }
             })
+
             viewModel.images.observe(this, Observer {
                 it?.let { images ->
-                    posts_count_text.text = images.size.toString()
+                    storiesAdapter.updateImages(images)
                 }
             })
+            /*
+            viewModel.images.observe(this, Observer {
+                it?.let { images ->
+                    //posts_count_text.text = images.size.toString()
+                }
+            })*/
 
 
         }
@@ -124,6 +137,10 @@ class ProfileActivity : BaseActivity() {
         val intent = Intent(this, OpenStoriesActivity::class.java)
         intent.putExtra("user_uid", uid)
         startActivity(intent)
+    }
+
+    override fun managePost() {
+        TODO("Not yet implemented")
     }
 
 

@@ -10,7 +10,7 @@ import com.kou.seekmake.screens.common.BaseActivity
 import com.kou.seekmake.screens.common.CameraHelper
 import com.kou.seekmake.screens.common.loadImage
 import com.kou.seekmake.screens.common.setupAuthGuard
-import kotlinx.android.synthetic.main.activity_share.*
+import kotlinx.android.synthetic.main.activity_story.*
 //TODO compress every image you are sending
 class StoryActivity : BaseActivity() {
     private lateinit var mCamera: CameraHelper
