@@ -39,7 +39,7 @@ class Images : Fragment(), ImagesAdapter.Listener {
         val v = inflater.inflate(R.layout.fragment_images, container, false)
         val imagesRecycler = v.findViewById<RecyclerView>(R.id.images_recycler)
         mAdapter = ImagesAdapter(this)
-        imagesRecycler.layoutManager = GridLayoutManager(activity, 3, GridLayoutManager.VERTICAL, true)
+        imagesRecycler.layoutManager = GridLayoutManager(activity, 3)
 
         imagesRecycler.adapter = mAdapter
         return v

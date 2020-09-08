@@ -5,12 +5,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.kou.seekmake.R
 import com.kou.seekmake.screens.addfriends.AddFriendsActivity
 import com.kou.seekmake.screens.common.*
+import com.kou.seekmake.screens.common.SharedUtils.PrefsManager
 import com.kou.seekmake.screens.editprofile.EditProfileActivity
 import com.kou.seekmake.screens.profile.Fragments.Images
 import com.kou.seekmake.screens.profile.Fragments.Quotes
@@ -23,7 +24,6 @@ import kotlinx.android.synthetic.main.top_bar.*
 
 
 class ProfileActivity : BaseActivity(), ImagesAdapter.Listener {
-    private lateinit var storiesAdapter: ImagesAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +31,7 @@ class ProfileActivity : BaseActivity(), ImagesAdapter.Listener {
         setContentView(R.layout.activity_profile)
         setupBlur(topBlur, this, window)
         nestedVprofile.isFillViewport = true
+
 
         val mDrawer = findViewById<FlowingDrawer>(R.id.drawerlayout)
         mDrawer.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL)
@@ -55,10 +56,7 @@ class ProfileActivity : BaseActivity(), ImagesAdapter.Listener {
                     .clearApplicationUserData()
 
         }
-        /**stories**/
-        rvStories.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
-        storiesAdapter = ImagesAdapter(this)
-        rvStories.adapter = storiesAdapter
+
 
         /*** setup viewpager ***/
         val adapter = VpProfileAdapter(supportFragmentManager)
@@ -106,18 +104,13 @@ class ProfileActivity : BaseActivity(), ImagesAdapter.Listener {
             viewModel.user.observe(this, Observer {
                 it?.let {
                     profile_image.loadUserPhoto(it.photo)
+                    PrefsManager.seAvatar(this, it.photo)
                     username_text.text = it.username
-                    //bio_label.text = it.bio
                     followers_count_text.text = it.followers.size.toString()
                     following_count_text.text = it.follows.size.toString()
                 }
             })
 
-            viewModel.images.observe(this, Observer {
-                it?.let { images ->
-                    storiesAdapter.updateImages(images)
-                }
-            })
             /*
             viewModel.images.observe(this, Observer {
                 it?.let { images ->
@@ -140,7 +133,7 @@ class ProfileActivity : BaseActivity(), ImagesAdapter.Listener {
     }
 
     override fun managePost() {
-        TODO("Not yet implemented")
+        Log.d("post", "lol")
     }
 
 

@@ -15,6 +15,7 @@ import com.google.firebase.database.ValueEventListener
 import com.kou.seekmake.R
 import com.kou.seekmake.data.firebase.common.database
 import com.kou.seekmake.models.Firebase.FeedPost
+import com.kou.seekmake.screens.common.SharedUtils.PrefsManager
 import com.kou.seekmake.screens.common.SimpleCallback
 import com.kou.seekmake.screens.common.loadUserPhoto
 import com.kou.seekmake.screens.common.setCaptionText
@@ -56,7 +57,7 @@ class FeedAdapter(private val listener: Listener)
         val likes = postLikes[position] ?: defaultPostLikes
         with(holder.view) {
             checkStories(post.uid, user_photo_image)
-            user_photo_image.loadUserPhoto(post.avatar)
+            user_photo_image.loadUserPhoto(PrefsManager.geAvatar(context))
             username_text.text = post.username
             post_image.apply {
                 val newlayoutmger = CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL, false)

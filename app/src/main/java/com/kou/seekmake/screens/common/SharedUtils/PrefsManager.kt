@@ -3,6 +3,7 @@ package com.kou.seekmake.screens.common.SharedUtils
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
+import com.kou.seekmake.screens.common.SharedUtils.Prefs.Companion.Avatar
 import com.kou.seekmake.screens.common.SharedUtils.Prefs.Companion.Email
 import com.kou.seekmake.screens.common.SharedUtils.Prefs.Companion.FName
 import com.kou.seekmake.screens.common.SharedUtils.Prefs.Companion.ID
@@ -78,6 +79,16 @@ class PrefsManager {
 
         fun geMail(context: Context): String? {
             return getPreferences(context).getString(Email, "")
+        }
+
+        fun seAvatar(context: Context, avatar: String?) {
+            val editor = getPreferences(context).edit()
+            editor.putString(Avatar, avatar)
+            editor.apply()
+        }
+
+        fun geAvatar(context: Context): String? {
+            return getPreferences(context).getString(Avatar, "")
         }
 
     }

@@ -8,6 +8,7 @@ class Prefs {
         const val LName = "lname"
         const val Email = "email"
         const val PASS = "password"
+        const val Avatar = "avatar"
 
 
     }

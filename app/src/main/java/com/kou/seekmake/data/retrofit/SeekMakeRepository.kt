@@ -51,6 +51,7 @@ class SeekMakeRepository {
                 when {
                     response.code() == 200 -> apiresp.postValue(response.body())
                     response.code() == 401 -> apiresp.postValue(LoginResponse(null, "1"))
+                    response.code() == 422 -> apiresp.postValue(LoginResponse(null, "2"))
                 }
             }
 

@@ -7,11 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.kou.seekmake.screens.SeekMakeApp
-import com.kou.seekmake.screens.authmedium.SocialAuth
+import com.kou.seekmake.screens.login.LoginActivity
 
 abstract class BaseActivity : AppCompatActivity() {
     lateinit var commonViewModel: CommonViewModel
 
+    //TODO here u can make connectivity check
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
@@ -30,7 +31,7 @@ abstract class BaseActivity : AppCompatActivity() {
                     commonViewModel)).get(T::class.java)
 
     fun goToLogin() {
-        startActivity(Intent(this, SocialAuth::class.java))
+        startActivity(Intent(this, LoginActivity::class.java))
         finish()
     }
 

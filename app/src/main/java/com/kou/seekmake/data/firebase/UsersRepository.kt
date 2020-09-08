@@ -19,8 +19,12 @@ interface UsersRepository {
     fun updateEmail(currentEmail: String, newEmail: String, password: String): Task<Unit>
     fun updateUserProfile(currentUser: User, newUser: User): Task<Unit>
     fun getImages(uid: String): LiveData<List<String>>
+
+    /** shit **/
     fun isUserExistsForEmail(email: String): Task<Boolean>
     fun createUser(user: User, password: String): Task<Unit>
+
+    /** happens **/
     fun uploadUserImage(uid: String, imageUri: Uri): Task<Uri>
     fun setUserImage(uid: String, downloadUri: Uri): Task<Unit>
     fun uploadUserStory(uid: String, imageUri: Uri): Task<Uri>

@@ -2,7 +2,6 @@ package com.kou.seekmake.screens.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -27,7 +26,6 @@ class LoginActivity : BaseActivity(), KeyboardVisibilityEventListener, View.OnCl
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        Log.d(TAG, "onCreate")
 
         KeyboardVisibilityEvent.setEventListener(this, this)
         coordinateBtnAndInputs(login_btn, email_input, password_input)
@@ -37,27 +35,33 @@ class LoginActivity : BaseActivity(), KeyboardVisibilityEventListener, View.OnCl
         mViewModel = initViewModel()
         mViewModel.goToSeekLogin.observe(this, Observer {
             mViewModel.signIn(UserSeek(email = email_input.text.toString(), password = password_input.text.toString())).observe(this, Observer {
-
                 when (it.msg) {
                     "0" -> Toast.makeText(this, "Network Faillure", Toast.LENGTH_SHORT).show()
                     "1" -> Toast.makeText(this, "Verify your credentials", Toast.LENGTH_SHORT).show()
+                    "2" -> Toast.makeText(this, "Verify your inputs", Toast.LENGTH_SHORT).show()
                     "OK" -> {
                         val json = JSONObject(JWTUtils.decoded(it.data!!.token)!!)
                         val id = json.getJSONObject("data").getString("_id")
+                        val fname = json.getJSONObject("data").getString("firstname")
+                        val lname = json.getJSONObject("data").getString("lastname")
                         PrefsManager.seID(this, id)
                         PrefsManager.seToken(this, it.data.token)
-                        startActivity(Intent(this, HomeActivity::class.java))
-                        finish()
+                        /** Calling Firebase Auth here **/
+
+                        mViewModel.fireAuth(fname + lname, email_input.text.toString(), password_input.text.toString())
+
                     }
                 }
 
 
             })
-
-
         })
         mViewModel.goToRegisterScreen.observe(this, Observer {
             startActivity(Intent(this, RegisterActivity::class.java))
+        })
+        mViewModel.goToHome.observe(this, Observer {
+            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
         })
         mAuth = FirebaseAuth.getInstance()
     }

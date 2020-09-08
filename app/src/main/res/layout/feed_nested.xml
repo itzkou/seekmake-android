@@ -4,6 +4,6 @@
     android:id="@+id/child_image"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
-    app:riv_corner_radius="20dp" />
+    android:layout_margin="8dp"
+    app:riv_corner_radius="8dp" />
 

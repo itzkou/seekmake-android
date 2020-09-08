@@ -22,11 +22,9 @@ class HomeViewModel(onFailureListener: OnFailureListener,
     val userAndFriends: LiveData<Pair<User, List<User>>> =
             usersRepo.getUsers().map { allUsers ->
 
-
                 val (userList, otherUsersList) = allUsers.partition {
                     it.uid == usersRepo.currentUid()
                 }
-
                 userList.first() to otherUsersList
             }
 
