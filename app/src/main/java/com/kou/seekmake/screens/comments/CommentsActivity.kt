@@ -47,7 +47,7 @@ class CommentsActivity : BaseActivity() {
                 }
             })
             viewModel.getOther(postUid).observe(this, Observer {
-                it.let {
+                it?.let {
                     other = it
                     user_photo_image.loadUserPhoto(other.photo)
                     username_text.text = other.username

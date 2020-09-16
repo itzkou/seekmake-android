@@ -15,6 +15,7 @@ import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
 import com.kou.seekmake.R
 import com.kou.seekmake.models.Firebase.Notification
 import com.kou.seekmake.models.Firebase.NotificationType
+import com.kou.seekmake.screens.common.SharedUtils.PrefsManager
 import com.kou.seekmake.screens.home.HomeActivity
 import com.kou.seekmake.screens.notifications.NotificationsActivity
 import com.kou.seekmake.screens.notifications.NotificationsViewModel
@@ -149,5 +150,7 @@ fun BaseActivity.setupBottomNavigation(uid: String, navNumber: Int) {
     val bnv = InstagramBottomNavigation(uid, bottom_navigation_view, tooltip_layout, navNumber, this)
     bottom_navigation_view.setIconSize(22f)
     bottom_navigation_view.enableAnimation(false)
+    if (PrefsManager.geAvatar(this)!!.isNotEmpty())
+        bottom_navigation_view.getIconAt(4).loadImgRound(PrefsManager.geAvatar(this))
     this.lifecycle.addObserver(bnv)
 }

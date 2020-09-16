@@ -10,7 +10,7 @@ android {
         applicationId "com.kou.seekmake"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 12
+        versionCode 14
         versionName "2.0"
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
@@ -62,6 +62,8 @@ dependencies {
     implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.1.0'
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'jp.wasabeef:glide-transformations:4.2.0'
+
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
     //Google sign in

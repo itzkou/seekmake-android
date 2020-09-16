@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.kou.seekmake.R
@@ -62,6 +63,6 @@ class SearchActivity : BaseActivity(), TextWatcher, SearchAdapter.Listener {
     }
 
     override fun managePost() {
-        TODO("Not yet implemented")
+        Log.d("post", "lol")
     }
 }

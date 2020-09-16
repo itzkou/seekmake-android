@@ -2,7 +2,6 @@ package com.kou.seekmake.screens.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kou.seekmake.R
@@ -12,6 +11,7 @@ import com.kou.seekmake.screens.common.BaseActivity
 import com.kou.seekmake.screens.common.setupAuthGuard
 import com.kou.seekmake.screens.common.setupBlur
 import com.kou.seekmake.screens.common.setupBottomNavigation
+import com.kou.seekmake.screens.profile_other.OtherProfileActivity
 import com.kou.seekmake.screens.search.SearchActivity
 import com.kou.seekmake.screens.stories.OpenStoriesActivity
 import kotlinx.android.synthetic.main.activity_home.*
@@ -70,7 +70,6 @@ class HomeActivity : BaseActivity(), FeedAdapter.Listener, FollowerAdapter.Liste
     }
 
     override fun toggleLike(postId: String) {
-        Log.d(TAG, "toggleLike: $postId")
         mViewModel.toggleLike(postId)
     }
 
@@ -108,6 +107,10 @@ class HomeActivity : BaseActivity(), FeedAdapter.Listener, FollowerAdapter.Liste
         val intent = Intent(this, OpenStoriesActivity::class.java)
         intent.putExtra("user_uid", uid)
         startActivity(intent)
+    }
+
+    override fun goUser(uid: String) {
+        OtherProfileActivity.start(this, uid)
     }
 
     private fun setFollow(uid: String, follow: Boolean, onSuccess: () -> Unit) {

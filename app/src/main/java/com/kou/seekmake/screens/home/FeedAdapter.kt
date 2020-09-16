@@ -15,10 +15,10 @@ import com.google.firebase.database.ValueEventListener
 import com.kou.seekmake.R
 import com.kou.seekmake.data.firebase.common.database
 import com.kou.seekmake.models.Firebase.FeedPost
-import com.kou.seekmake.screens.common.SharedUtils.PrefsManager
 import com.kou.seekmake.screens.common.SimpleCallback
 import com.kou.seekmake.screens.common.loadUserPhoto
 import com.kou.seekmake.screens.common.setCaptionText
+import com.kou.seekmake.screens.common.setDate
 import kotlinx.android.synthetic.main.feed_item.view.*
 import xyz.schwaab.avvylib.AvatarView
 
@@ -31,6 +31,7 @@ class FeedAdapter(private val listener: Listener)
         fun loadLikes(postId: String, position: Int)
         fun openComments(postId: String, postImage: String, postUid: String)
         fun openStories(uid: String)
+        fun goUser(uid: String)
     }
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view)
@@ -57,8 +58,10 @@ class FeedAdapter(private val listener: Listener)
         val likes = postLikes[position] ?: defaultPostLikes
         with(holder.view) {
             checkStories(post.uid, user_photo_image)
-            user_photo_image.loadUserPhoto(PrefsManager.geAvatar(context))
+            user_photo_image.loadUserPhoto(post.avatar)
+            username_text.setOnClickListener { listener.goUser(post.uid) }
             username_text.text = post.username
+            tx_timing.setDate(post.timestampDate())
             post_image.apply {
                 val newlayoutmger = CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL, false)
                 layoutManager = newlayoutmger
@@ -94,6 +97,7 @@ class FeedAdapter(private val listener: Listener)
         diffResult.dispatchUpdatesTo(this)
     }
 
+    //TODO stories are messed up
     fun checkStories(uid: String, photo_image: AvatarView) {
         database.child("story-user").child(uid).orderByKey().limitToLast(1).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
@@ -102,29 +106,28 @@ class FeedAdapter(private val listener: Listener)
 
             override fun onDataChange(snapshot: DataSnapshot) {
 
-                snapshot.children.map {
-                    if (it.exists()) {
-                        photo_image.isHighlighted = true
-                        photo_image.setOnClickListener {
-                            photo_image.numberOfArches = 10
-                            photo_image.isAnimating = true
-                            Handler().postDelayed({
-                                photo_image.isAnimating = false
-                                listener.openStories(uid)
-                            }, 1800)
+                if (snapshot.exists()) {
+                    photo_image.isHighlighted = true
+                    photo_image.setOnClickListener {
+                        photo_image.numberOfArches = 10
+                        photo_image.isAnimating = true
+                        Handler().postDelayed({
+                            photo_image.isAnimating = false
+                            listener.openStories(uid)
+                        }, 1800)
 
 
-                        }
-
-                    } else {
-                        photo_image.isHighlighted = false
                     }
 
+                } else {
+                    photo_image.isHighlighted = false
                 }
+
             }
 
         })
 
     }
+
 
 }

@@ -21,7 +21,9 @@ import com.kou.seekmake.screens.common.*
 import kotlinx.android.synthetic.main.activity_share.*
 import java.io.File
 
+
 class ShareActivity : BaseActivity() {
+
     private lateinit var mCamera: CameraHelper
     private lateinit var mFirebase: FirebaseHelper
     private lateinit var mUser: User
@@ -74,6 +76,13 @@ class ShareActivity : BaseActivity() {
     private fun share() {
         if (mCamera.imageUri != null) {
             BuilderLoading.showDialog(this)
+            /* val imageCompressor = ImgCompressor(1280F,
+                     720F,
+                     Bitmap.CompressFormat.JPEG,
+                     80,"${application.getExternalFilesDir(null)!!.path}/Pictures")
+
+             val compressedImageFile = imageCompressor.compress(File(mCamera.imageUri!!.path!!))
+             Log.d("shareu", mCamera.imageUri.toString())*/
 
             mViewModel.share(mUser, listOf(mCamera.imageUri!!), caption_input.text.toString())
         } else if (allSelectedMediaPaths.isNotEmpty()) {
@@ -156,6 +165,7 @@ class ShareActivity : BaseActivity() {
             openMediaPickerFunc.invoke(galleryMode)
         }
     }
+
 
     /** Handles Media Pick Request */
     private fun handleMediaPickPermissionRequest(grantResults: IntArray, galleryMode: UwMediaPicker.GalleryMode, openMediaPicker: (UwMediaPicker.GalleryMode) -> Unit) {

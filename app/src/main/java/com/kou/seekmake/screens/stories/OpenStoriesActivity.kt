@@ -58,7 +58,7 @@ class OpenStoriesActivity : BaseActivity(), StoriesProgressView.StoriesListener 
                             userStories.add(story.image)
                         }
                         storiesView.setStoriesCount(userStories.size)
-                        storiesView.setStoryDuration(4000L)
+                        storiesView.setStoryDuration(6000L)
                         storiesView.startStories(0)
                         counter = 0
                         image.loadUserPhoto(userStories[counter])

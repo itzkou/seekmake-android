@@ -13,6 +13,7 @@ import com.kou.seekmake.screens.login.LoginViewModel
 import com.kou.seekmake.screens.notifications.NotificationsViewModel
 import com.kou.seekmake.screens.order.FileLoadingViewModel
 import com.kou.seekmake.screens.profile.ProfileViewModel
+import com.kou.seekmake.screens.profile_other.OtherViewModel
 import com.kou.seekmake.screens.profilesettings.ProfileSettingsViewModel
 import com.kou.seekmake.screens.register.RegisterViewModel
 import com.kou.seekmake.screens.register.SeekRegisterViewModel
@@ -61,6 +62,8 @@ class ViewModelFactory(private val app: SeekMakeApp,
             return StoryViewModel(storyRepo, usersRepo, onFailureListener) as T
         } else if (modelClass.isAssignableFrom(FileLoadingViewModel::class.java)) {
             return FileLoadingViewModel(seekMakeRepo, onFailureListener) as T
+        } else if (modelClass.isAssignableFrom(OtherViewModel::class.java)) {
+            return OtherViewModel(usersRepo, onFailureListener) as T
         } else {
             error("Unknown view model class $modelClass")
         }

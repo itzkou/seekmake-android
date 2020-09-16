@@ -60,7 +60,7 @@
             android:id="@+id/like_image"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:padding="10dp"
+            android:padding="12dp"
             android:src="@drawable/ic_heartd"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -81,7 +81,7 @@
             android:id="@+id/comment_image"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:padding="10dp"
+            android:padding="12dp"
             android:src="@drawable/comment_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/likes_text"
@@ -109,17 +109,17 @@
         tools:text="yoo This is a caption for the post. It's actually a very long caption." />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/tx_timing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:fontFamily="@font/poppins_light"
         android:text="Just Now"
         android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="@+id/username_text"
+        app:layout_constraintStart_toEndOf="@+id/user_photo_image"
         app:layout_constraintTop_toBottomOf="@+id/username_text" />
 
     <ImageView
-        android:id="@+id/im_more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"

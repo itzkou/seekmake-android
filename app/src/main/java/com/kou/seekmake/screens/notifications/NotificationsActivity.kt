@@ -21,7 +21,7 @@ class NotificationsActivity : BaseActivity() {
         setupAuthGuard { uid ->
             setupBottomNavigation(uid, 3)
             mAdapter = NotificationsAdapter()
-            notifications_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true)
+            notifications_recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
             notifications_recycler.adapter = mAdapter
 
             val viewModel = initViewModel<NotificationsViewModel>()

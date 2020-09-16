@@ -2,7 +2,6 @@
 <com.kou.seekmake.screens.common.KeyboardAwareScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/placeholder_blur">
@@ -117,7 +116,6 @@
             app:layout_constraintTop_toBottomOf="@+id/zip_input" />
 
         <TextView
-            android:id="@+id/textView17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -164,7 +162,6 @@
             app:srcCompat="@drawable/ic_fone" />
 
         <ImageView
-            android:id="@+id/imageView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="28dp"
@@ -174,7 +171,6 @@
             app:srcCompat="@drawable/ic_adr" />
 
         <ImageView
-            android:id="@+id/imageView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="28dp"
@@ -184,7 +180,6 @@
             app:srcCompat="@drawable/ic_city" />
 
         <ImageView
-            android:id="@+id/imageView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="88dp"

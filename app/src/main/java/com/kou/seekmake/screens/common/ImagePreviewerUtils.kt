@@ -28,7 +28,7 @@ class ImagePreviewerUtils {
 
         private fun blurBitmap(context: Context, bitmap: Bitmap): Bitmap {
             val bitmapScale = 0.3f
-            val blurRadius = 10f
+            val blurRadius = 25f
 
             val width = (bitmap.width * bitmapScale).roundToInt()
             val height = (bitmap.height * bitmapScale).roundToInt()

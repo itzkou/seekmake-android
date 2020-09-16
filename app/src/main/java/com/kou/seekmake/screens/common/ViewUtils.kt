@@ -16,12 +16,16 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.snackbar.Snackbar
 import com.kou.seekmake.R
 import com.kou.seekmake.common.formatRelativeTimestamp
 import com.makeramen.roundedimageview.RoundedImageView
 import eightbitlab.com.blurview.BlurView
 import eightbitlab.com.blurview.RenderScriptBlur
+import jp.wasabeef.glide.transformations.BlurTransformation
 import java.util.*
 
 
@@ -109,6 +113,23 @@ fun coordinatePhone(btn: Button, input: EditText) {
     btn.isEnabled = input.text.length >= 8
 }
 
+fun TextView.setDate(date: Date? = null) {
+    val dateSpannable = date?.let {
+        val dateText = formatRelativeTimestamp(date, Date())
+        val spannableString = SpannableString(dateText)
+        spannableString.setSpan(ForegroundColorSpan(ContextCompat.getColor(context, R.color.grey)),
+                0, dateText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        spannableString
+    }
+
+    text = SpannableStringBuilder().apply {
+
+        dateSpannable?.let {
+            append(" ")
+            append(it)
+        }
+    }
+}
 
 fun TextView.setCaptionText(username: String, caption: String, date: Date? = null) {
     val usernameSpannable = SpannableString(username)
@@ -163,13 +184,24 @@ fun ImageView.loadUserPhoto(photoUrl: String?) =
             Glide.with(this).load(photoUrl).fallback(R.drawable.person).into(this)
         }
 
+fun ImageView.loadImgRound(photoUrl: String?) =
+        ifNotDestroyed {
+            var requestOptions = RequestOptions()
+            requestOptions = requestOptions.transforms(CenterCrop(), RoundedCorners(16))
+            Glide.with(this).load(photoUrl).apply(requestOptions).fallback(R.drawable.person).into(this)
+        }
+
+fun ImageView.loadblur(url: String?) =
+        ifNotDestroyed {
+            Glide.with(this).load(url).apply(RequestOptions.bitmapTransform(BlurTransformation(25, 3))).fallback(R.drawable.person).into(this)
+        }
+
 
 fun ImageView.loadImage(image: String?) =
         ifNotDestroyed {
 
             Glide.with(this).load(image).centerCrop().into(this)
         }
-
 
 
 fun RoundedImageView.loadImageRounded(image: String?) =

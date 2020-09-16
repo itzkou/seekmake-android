@@ -123,8 +123,10 @@ class FileLodingActivity : BaseActivity() {
                         vm.submitOrder(PrefsManager.geToken(this)!!, Order(mClient.address, mClient.city, mClient._id, fileResponse.URL, mClient.firstname, mClient.lastname, mClient.tel, technique, "normal", mClient.zip, epaisseur_input.text.toString(), chosenMaterial, qty, resolution_input.text.toString())).observe(this, Observer { orderResponse ->
                             if (orderResponse.msg == "0")
                                 Toast.makeText(this, "Network Faillure", Toast.LENGTH_SHORT).show()
-                            else if (orderResponse.data != null)
+                            else if (orderResponse.data != null) {
                                 Toast.makeText(this, "Order submitted !", Toast.LENGTH_SHORT).show()
+                                //startActivity(Intent(this,ProfileActivity))
+                            }
 
                         })
                     }

@@ -6,10 +6,7 @@ import androidx.lifecycle.Observer
 import com.kou.seekmake.R
 import com.kou.seekmake.data.firebase.common.FirebaseHelper
 import com.kou.seekmake.models.Firebase.User
-import com.kou.seekmake.screens.common.BaseActivity
-import com.kou.seekmake.screens.common.CameraHelper
-import com.kou.seekmake.screens.common.loadImage
-import com.kou.seekmake.screens.common.setupAuthGuard
+import com.kou.seekmake.screens.common.*
 import kotlinx.android.synthetic.main.activity_story.*
 //TODO compress every image you are sending
 class StoryActivity : BaseActivity() {
@@ -40,6 +37,7 @@ class StoryActivity : BaseActivity() {
                 }
             })
             mViewModel.shareCompletedEvent.observe(this, Observer {
+                BuilderLoading.dialog.dismiss()
                 finish()
             })
         }
@@ -58,6 +56,7 @@ class StoryActivity : BaseActivity() {
 
 
     private fun share() {
+        BuilderLoading.showDialog(this)
         mViewModel.share(mUser, mCamera.imageUri)
     }
 
