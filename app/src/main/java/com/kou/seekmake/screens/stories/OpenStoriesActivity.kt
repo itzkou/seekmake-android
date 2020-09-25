@@ -9,6 +9,7 @@ import com.kou.seekmake.R
 import com.kou.seekmake.screens.common.BaseActivity
 import com.kou.seekmake.screens.common.loadUserPhoto
 import com.kou.seekmake.screens.common.setupAuthGuard
+import com.kou.seekmake.screens.common.setupBlur
 import jp.shts.android.storiesprogressview.StoriesProgressView
 import kotlinx.android.synthetic.main.activity_open_stories.*
 
@@ -45,11 +46,13 @@ class OpenStoriesActivity : BaseActivity(), StoriesProgressView.StoriesListener 
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_open_stories)
         storiesView.setStoriesListener(this)
+        setupBlur(topBlur, this, window)
 
 
 
         setupAuthGuard {
             val userId = intent.getStringExtra("user_uid")
+            var isLiked = false
             mViewModel = initViewModel()
             mViewModel.getStories(userId!!).observe(this, Observer { stories ->
                 stories?.let {
@@ -61,7 +64,23 @@ class OpenStoriesActivity : BaseActivity(), StoriesProgressView.StoriesListener 
                         storiesView.setStoryDuration(6000L)
                         storiesView.startStories(0)
                         counter = 0
-                        image.loadUserPhoto(userStories[counter])
+                        imStory.loadUserPhoto(userStories[counter])
+
+
+                    }
+
+                    //todo change it
+                    imloveReact.setOnClickListener {
+                        isLiked = !isLiked
+
+                        imloveReact.setImageResource(
+                                if (isLiked) R.drawable.ic_heartsa
+                                else R.drawable.ic_heartsd)
+
+                        if (isLiked)
+                            rain_heart.playAnimation()
+                        rain_heart.visibility = if (isLiked) View.VISIBLE
+                        else View.GONE
                     }
 
 
@@ -86,18 +105,19 @@ class OpenStoriesActivity : BaseActivity(), StoriesProgressView.StoriesListener 
 
     override fun onNext() {
         if (counter < userStories.size)
-            image.loadUserPhoto(userStories[++counter])
+            imStory.loadUserPhoto(userStories[++counter])
 
 
     }
 
     override fun onPrev() {
         if (counter - 1 < 0) return
-        image.loadUserPhoto(userStories[--counter])
+        imStory.loadUserPhoto(userStories[--counter])
 
     }
 
     override fun onComplete() {
+        finish()
     }
 
     override fun onDestroy() {

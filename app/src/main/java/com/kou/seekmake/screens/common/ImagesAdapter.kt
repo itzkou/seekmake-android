@@ -30,10 +30,6 @@ class ImagesAdapter(private val listener: ImagesAdapter.Listener) : RecyclerView
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.image.loadImage(images[position])
-        holder.image.setOnLongClickListener { v ->
-            ImagePreviewer().show(v!!.context, holder.image)
-            false
-        }
         holder.image.setOnClickListener {
             listener.managePost()
         }

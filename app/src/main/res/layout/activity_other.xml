@@ -60,8 +60,8 @@
                 <xyz.schwaab.avvylib.AvatarView
 
                     android:id="@+id/profile_image"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
                     app:avvy_border_highlight_color="#15F4EE"
                     app:avvy_border_highlight_color_end="#7d12ff"
                     app:avvy_border_thickness="1dp"
@@ -77,12 +77,10 @@
                 <Button
                     android:id="@+id/follow_btn"
                     style="@style/small_btn"
-
                     android:layout_width="63dp"
                     android:layout_height="19dp"
                     android:layout_marginTop="8dp"
                     android:text="Seek"
-
                     android:textSize="10sp"
                     app:layout_constraintEnd_toEndOf="@+id/username_text"
                     app:layout_constraintStart_toStartOf="@+id/username_text"
@@ -93,14 +91,12 @@
                     style="@style/secondary_small_btn"
                     android:layout_width="63dp"
                     android:layout_height="19dp"
+                    android:layout_marginTop="8dp"
                     android:text="Unseek"
                     android:textSize="10sp"
-                    android:visibility="invisible"
-
-                    app:layout_constraintBottom_toBottomOf="@+id/follow_btn"
-                    app:layout_constraintEnd_toEndOf="@+id/follow_btn"
-                    app:layout_constraintStart_toStartOf="@+id/follow_btn"
-                    app:layout_constraintTop_toTopOf="@+id/follow_btn" />
+                    app:layout_constraintEnd_toEndOf="@+id/username_text"
+                    app:layout_constraintStart_toStartOf="@+id/username_text"
+                    app:layout_constraintTop_toBottomOf="@+id/username_text" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -119,7 +115,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center|top|start|end"
-            android:padding="16dp"
+            android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">

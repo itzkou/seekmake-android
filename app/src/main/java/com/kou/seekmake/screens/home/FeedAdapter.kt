@@ -97,6 +97,7 @@ class FeedAdapter(private val listener: Listener)
         diffResult.dispatchUpdatesTo(this)
     }
 
+
     //TODO stories are messed up
     fun checkStories(uid: String, photo_image: AvatarView) {
         database.child("story-user").child(uid).orderByKey().limitToLast(1).addListenerForSingleValueEvent(object : ValueEventListener {

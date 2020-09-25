@@ -28,10 +28,10 @@ class HomeViewModel(onFailureListener: OnFailureListener,
                 userList.first() to otherUsersList
             }
 
-    fun init(uid: String) {
+    fun init(uid: String, page: Int) {
         if (!this::uid.isInitialized) {
             this.uid = uid
-            feedPosts = feedPostsRepo.getFeedPosts(uid).map {
+            feedPosts = feedPostsRepo.getFeedPosts(uid, page).map {
                 it.sortedByDescending { it.timestampDate() }
             }
         }

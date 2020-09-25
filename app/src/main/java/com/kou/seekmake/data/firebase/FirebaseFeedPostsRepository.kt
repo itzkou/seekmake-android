@@ -57,20 +57,11 @@ class FirebaseFeedPostsRepository : FeedPostsRepository {
                 it.asFeedPost()!!
             }
 
-    override fun getFeedPosts(uid: String): LiveData<List<FeedPost>> =
-            FirebaseLiveData(database.child("feed-posts").child(uid)).map {
+    override fun getFeedPosts(uid: String, page: Int): LiveData<List<FeedPost>> =
+            FirebaseLiveData(database.child("feed-posts").child(uid).limitToLast(page)).map {
                 it.children.map { it.asFeedPost()!! }
             }
-    //This fucntions returns all feed posts
-    /* override fun othersFeedPosts(uid: String): Task<Unit> =
-             task { taskSource ->
-                 database.child("feed-posts").addListenerForSingleValueEvent(ValueEventListenerAdapter {
-                     for (user in it.children) {
-                         copyFeedPosts(user.key!!,uid)
-                     }
-                 })
 
-             }*/
 
     override fun copyFeedPosts(postsAuthorUid: String, uid: String): Task<Unit> =
             task { taskSource ->

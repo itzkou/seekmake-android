@@ -112,7 +112,7 @@
         android:id="@+id/tx_timing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="4dp"
         android:fontFamily="@font/poppins_light"
         android:text="Just Now"
         android:textSize="10sp"

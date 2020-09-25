@@ -63,7 +63,7 @@ class ViewModelFactory(private val app: SeekMakeApp,
         } else if (modelClass.isAssignableFrom(FileLoadingViewModel::class.java)) {
             return FileLoadingViewModel(seekMakeRepo, onFailureListener) as T
         } else if (modelClass.isAssignableFrom(OtherViewModel::class.java)) {
-            return OtherViewModel(usersRepo, onFailureListener) as T
+            return OtherViewModel(usersRepo, feedPostsRepo, onFailureListener) as T
         } else {
             error("Unknown view model class $modelClass")
         }

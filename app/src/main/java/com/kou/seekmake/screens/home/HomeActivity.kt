@@ -2,8 +2,11 @@ package com.kou.seekmake.screens.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.AbsListView
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.kou.seekmake.R
 import com.kou.seekmake.models.Firebase.User
 import com.kou.seekmake.screens.comments.CommentsActivity
@@ -23,6 +26,10 @@ class HomeActivity : BaseActivity(), FeedAdapter.Listener, FollowerAdapter.Liste
     private lateinit var mFriendsAdapter: FollowerAdapter
     private lateinit var mViewModel: HomeViewModel
     private lateinit var mUser: User
+    private var QUERY_PAGE_SIZE: Int = 4
+
+    var isLastPage = false
+    var isScrolling = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,25 +41,64 @@ class HomeActivity : BaseActivity(), FeedAdapter.Listener, FollowerAdapter.Liste
         mAdapter = FeedAdapter(this)
         feed_recycler.adapter = mAdapter
         feed_recycler.layoutManager = LinearLayoutManager(this)
+
         /*** Followers ***/
         mFriendsAdapter = FollowerAdapter(this)
+        rvfriends.adapter = mFriendsAdapter
+        rvfriends.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         setupAuthGuard { uid ->
             setupBottomNavigation(uid, 1)
             mViewModel = initViewModel()
-            mViewModel.init(uid)
+            //todo change this later
+            mViewModel.init(uid, 100)
             mViewModel.feedPosts.observe(this, Observer {
 
-                it?.let {
+                it?.let { feedPosts ->
+
                     mAdapter.updatePosts(it)
                 }
             })
+
+            val scrollListener = object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+
+                    val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                    val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+                    val visibleItemCount = layoutManager.childCount
+                    val totalItemCount = layoutManager.itemCount
+
+                    val isNotLastPage = !isLastPage
+                    val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
+                    val isNotAtBeginning = firstVisibleItemPosition >= 0
+                    val isTotalMoreThanVisible = totalItemCount >= QUERY_PAGE_SIZE
+
+                    val shouldPaginate = isAtLastItem && isNotAtBeginning
+                    if (shouldPaginate) {
+                        Toast.makeText(this@HomeActivity, "Should Paginate", Toast.LENGTH_SHORT).show()
+                        isScrolling = false
+                    } else {
+                        Toast.makeText(this@HomeActivity, "Should not Paginate", Toast.LENGTH_SHORT).show()
+
+                    }
+                }
+
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+                    if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+                        isScrolling = true
+                    }
+                }
+            }
+            feed_recycler.addOnScrollListener(scrollListener)
+
+
             mViewModel.goToCommentsScreen.observe(this, Observer {
                 it?.let { postId ->
                     CommentsActivity.start(this, postId)
                 }
             })
-            rvfriends.adapter = mFriendsAdapter
-            rvfriends.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
 
 
             mViewModel.userAndFriends.observe(this, Observer {

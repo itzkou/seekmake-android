@@ -117,7 +117,7 @@ fun TextView.setDate(date: Date? = null) {
     val dateSpannable = date?.let {
         val dateText = formatRelativeTimestamp(date, Date())
         val spannableString = SpannableString(dateText)
-        spannableString.setSpan(ForegroundColorSpan(ContextCompat.getColor(context, R.color.grey)),
+        spannableString.setSpan(ForegroundColorSpan(ContextCompat.getColor(context, R.color.colorPrimary)),
                 0, dateText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         spannableString
     }

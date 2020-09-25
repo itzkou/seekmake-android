@@ -51,6 +51,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">17sp</item>
+        <item name="fontFamily">@font/poppins_medium</item>
     </style>
 
     <style name="toolbar_text" parent="toolbar_title">
@@ -134,7 +135,7 @@
     <style name="dialogs">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:text">Uploading your artwork :D</item>
+        <item name="android:text">Loading</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:fontFamily">@font/poppins_medium</item>
         <item name="android:textSize">18sp</item>
