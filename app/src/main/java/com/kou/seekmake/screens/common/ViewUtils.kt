@@ -26,6 +26,7 @@ import com.makeramen.roundedimageview.RoundedImageView
 import eightbitlab.com.blurview.BlurView
 import eightbitlab.com.blurview.RenderScriptBlur
 import jp.wasabeef.glide.transformations.BlurTransformation
+import jp.wasabeef.glide.transformations.CropCircleTransformation
 import java.util.*
 
 
@@ -117,10 +118,11 @@ fun TextView.setDate(date: Date? = null) {
     val dateSpannable = date?.let {
         val dateText = formatRelativeTimestamp(date, Date())
         val spannableString = SpannableString(dateText)
-        spannableString.setSpan(ForegroundColorSpan(ContextCompat.getColor(context, R.color.colorPrimary)),
+        spannableString.setSpan(null,
                 0, dateText.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         spannableString
     }
+
 
     text = SpannableStringBuilder().apply {
 
@@ -189,6 +191,11 @@ fun ImageView.loadImgRound(photoUrl: String?) =
             var requestOptions = RequestOptions()
             requestOptions = requestOptions.transforms(CenterCrop(), RoundedCorners(16))
             Glide.with(this).load(photoUrl).apply(requestOptions).fallback(R.drawable.person).into(this)
+        }
+
+fun ImageView.loadCircle(photoUrl: String?) =
+        ifNotDestroyed {
+            Glide.with(this).load(photoUrl).apply(RequestOptions.bitmapTransform(CropCircleTransformation())).fallback(R.drawable.person).into(this)
         }
 
 fun ImageView.loadblur(url: String?) =

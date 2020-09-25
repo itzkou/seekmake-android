@@ -6,10 +6,8 @@ import android.view.View
 import android.view.WindowManager
 import androidx.lifecycle.Observer
 import com.kou.seekmake.R
-import com.kou.seekmake.screens.common.BaseActivity
-import com.kou.seekmake.screens.common.loadUserPhoto
-import com.kou.seekmake.screens.common.setupAuthGuard
-import com.kou.seekmake.screens.common.setupBlur
+import com.kou.seekmake.models.Firebase.Story
+import com.kou.seekmake.screens.common.*
 import jp.shts.android.storiesprogressview.StoriesProgressView
 import kotlinx.android.synthetic.main.activity_open_stories.*
 
@@ -20,6 +18,7 @@ class OpenStoriesActivity : BaseActivity(), StoriesProgressView.StoriesListener 
 
     private var counter = 0
     private var userStories: MutableList<String> = mutableListOf()
+    lateinit var arrStories: List<Story>
     private var pressTime = 0L
     private var limit = 500L
 
@@ -56,15 +55,20 @@ class OpenStoriesActivity : BaseActivity(), StoriesProgressView.StoriesListener 
             mViewModel = initViewModel()
             mViewModel.getStories(userId!!).observe(this, Observer { stories ->
                 stories?.let {
+                    arrStories = stories
                     if (it.isNotEmpty()) {
                         it.forEach { story ->
                             userStories.add(story.image)
+                            imAvatar.loadCircle(story.avatar)
+                            username_text.text = story.username
+
                         }
                         storiesView.setStoriesCount(userStories.size)
                         storiesView.setStoryDuration(6000L)
                         storiesView.startStories(0)
                         counter = 0
                         imStory.loadUserPhoto(userStories[counter])
+                        txTime.setDate(arrStories[counter].timestampDate())
 
 
                     }
@@ -78,9 +82,9 @@ class OpenStoriesActivity : BaseActivity(), StoriesProgressView.StoriesListener 
                                 else R.drawable.ic_heartsd)
 
                         if (isLiked)
-                            rain_heart.playAnimation()
-                        rain_heart.visibility = if (isLiked) View.VISIBLE
-                        else View.GONE
+                            rainHeart.playAnimation()
+                        rainHeart.visibility = if (isLiked) View.VISIBLE
+                        else View.INVISIBLE
                     }
 
 
@@ -104,8 +108,10 @@ class OpenStoriesActivity : BaseActivity(), StoriesProgressView.StoriesListener 
     }
 
     override fun onNext() {
-        if (counter < userStories.size)
+        if (counter < userStories.size) {
             imStory.loadUserPhoto(userStories[++counter])
+            txTime.setDate(arrStories[counter].timestampDate())
+        }
 
 
     }
@@ -113,6 +119,7 @@ class OpenStoriesActivity : BaseActivity(), StoriesProgressView.StoriesListener 
     override fun onPrev() {
         if (counter - 1 < 0) return
         imStory.loadUserPhoto(userStories[--counter])
+        txTime.setDate(arrStories[counter].timestampDate())
 
     }
 

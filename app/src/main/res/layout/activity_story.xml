@@ -30,13 +30,14 @@
                 style="@style/toolbar_title"
                 android:text="Share story"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/share_text"
                 app:layout_constraintStart_toEndOf="@id/back_image"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/share_text"
                 style="@style/toolbar_text"
-                android:text="@string/share"
+                android:src="@drawable/ic_share_new"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

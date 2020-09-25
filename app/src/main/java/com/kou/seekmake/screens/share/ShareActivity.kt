@@ -76,15 +76,13 @@ class ShareActivity : BaseActivity() {
     private fun share() {
         if (mCamera.imageUri != null) {
             BuilderLoading.showDialog(this)
-            /* val imageCompressor = ImgCompressor(1280F,
-                     720F,
-                     Bitmap.CompressFormat.JPEG,
-                     80,"${application.getExternalFilesDir(null)!!.path}/Pictures")
+            val imageCompressor = ImgCompressor(1080F,
+                    1080F,
+                    Bitmap.CompressFormat.JPEG,
+                    85, "${application.getExternalFilesDir(null)!!.path}/Pictures")
 
-             val compressedImageFile = imageCompressor.compress(File(mCamera.imageUri!!.path!!))
-             Log.d("shareu", mCamera.imageUri.toString())*/
-
-            mViewModel.share(mUser, listOf(mCamera.imageUri!!), caption_input.text.toString())
+            val compressedImageFile = imageCompressor.compress(File(mCamera.cameraFile.path))
+            mViewModel.share(mUser, listOf(Uri.fromFile(compressedImageFile)), caption_input.text.toString())
         } else if (allSelectedMediaPaths.isNotEmpty()) {
             BuilderLoading.showDialog(this)
 
@@ -129,7 +127,7 @@ class ShareActivity : BaseActivity() {
                 .setCompressionMaxWidth(1280F)                // Compressed image's max width px, default is 1280
                 .setCompressionMaxHeight(720F)                // Compressed image's max height px, default is 720
                 .setCompressFormat(Bitmap.CompressFormat.JPEG)        // Compressed image's format, default is JPEG
-                .setCompressionQuality(80)                // Image compression quality, default is 85
+                .setCompressionQuality(85)                // Image compression quality, default is 85
                 .setCompressedFileDestinationPath("${application.getExternalFilesDir(null)!!.path}/Pictures")
                 .launch(::onMediaSelected)
     }
@@ -185,6 +183,7 @@ class ShareActivity : BaseActivity() {
         }
         return
     }
+
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)

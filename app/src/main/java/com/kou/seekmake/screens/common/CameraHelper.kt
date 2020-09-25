@@ -13,12 +13,14 @@ import java.util.*
 class CameraHelper(private val activity: Activity) {
     var imageUri: Uri? = null
     val REQUEST_CODE = 1
+    lateinit var cameraFile: File
     private val simpleDateFormat = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US)
 
     fun takeCameraPicture() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         if (intent.resolveActivity(activity.packageManager) != null) {
             val imageFile = createImageFile()
+            cameraFile = imageFile
             imageUri = FileProvider.getUriForFile(activity, "com.kou.seekmake.fileprovider",
                     imageFile)
             intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
