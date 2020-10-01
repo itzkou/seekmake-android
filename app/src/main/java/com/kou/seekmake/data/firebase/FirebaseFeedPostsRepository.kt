@@ -57,6 +57,11 @@ class FirebaseFeedPostsRepository : FeedPostsRepository {
                 it.asFeedPost()!!
             }
 
+    //todo delete images from firebase storage
+    override fun deleteFeedPost(uid: String, postId: String): Task<Unit> =
+            database.child("feed-posts").child(uid).child(postId).removeValue().toUnit()
+
+
     override fun getFeedPosts(uid: String, page: Int): LiveData<List<FeedPost>> =
             FirebaseLiveData(database.child("feed-posts").child(uid).limitToLast(page)).map {
                 it.children.map { it.asFeedPost()!! }

@@ -14,7 +14,8 @@ import com.kou.seekmake.data.firebase.common.database
 import com.kou.seekmake.models.Firebase.User
 import com.kou.seekmake.screens.common.SimpleCallback
 import com.kou.seekmake.screens.common.loadUserPhoto
-import kotlinx.android.synthetic.main.add_friends_item.view.*
+import kotlinx.android.synthetic.main.add_follower_home.view.*
+//import kotlinx.android.synthetic.main.add_friends_item.view.*
 import xyz.schwaab.avvylib.AvatarView
 
 class FollowerAdapter(private val listener: Listener)

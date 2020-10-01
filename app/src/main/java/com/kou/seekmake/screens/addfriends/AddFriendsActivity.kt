@@ -2,7 +2,9 @@ package com.kou.seekmake.screens.addfriends
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.azoft.carousellayoutmanager.CarouselLayoutManager
+import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener
+import com.azoft.carousellayoutmanager.CenterScrollListener
 import com.kou.seekmake.R
 import com.kou.seekmake.models.Firebase.User
 import com.kou.seekmake.screens.common.BaseActivity
@@ -17,16 +19,19 @@ class AddFriendsActivity : BaseActivity(), FriendsAdapter.Listener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_friends)
-
         mAdapter = FriendsAdapter(this)
-
+        add_friends_recycler.apply {
+            val newlayoutmger = CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL, false)
+            layoutManager = newlayoutmger
+            newlayoutmger.setPostLayoutListener(CarouselZoomPostLayoutListener())
+            addOnScrollListener(CenterScrollListener())
+            adapter = mAdapter
+        }
         setupAuthGuard {
             mViewModel = initViewModel()
 
             back_image.setOnClickListener { finish() }
 
-            add_friends_recycler.adapter = mAdapter
-            add_friends_recycler.layoutManager = LinearLayoutManager(this)
 
             mViewModel.userAndFriends.observe(this, Observer {
                 it?.let { (user, otherUsers) ->

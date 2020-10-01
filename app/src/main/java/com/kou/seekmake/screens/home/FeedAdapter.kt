@@ -32,6 +32,7 @@ class FeedAdapter(private val listener: Listener)
         fun openComments(postId: String, postImage: String, postUid: String)
         fun openStories(uid: String)
         fun goUser(uid: String)
+        fun openDialog(uid: String, postId: String, position: Int)
     }
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view)
@@ -57,11 +58,16 @@ class FeedAdapter(private val listener: Listener)
         val post = posts[position]
         val likes = postLikes[position] ?: defaultPostLikes
         with(holder.view) {
+            icMore.setOnClickListener {
+                listener.openDialog(post.uid, postId = post.id, position = position)
+            }
             checkStories(post.uid, user_photo_image)
             user_photo_image.loadUserPhoto(post.avatar)
             username_text.setOnClickListener { listener.goUser(post.uid) }
             username_text.text = post.username
             tx_timing.setDate(post.timestampDate())
+
+
             post_image.apply {
                 val newlayoutmger = CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL, false)
                 layoutManager = newlayoutmger

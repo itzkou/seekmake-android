@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryFaded">
+   >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolbarparent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_roundbom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -18,7 +17,6 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             style="@style/toolbar"
-            android:layout_marginTop="16dp"
             app:contentInsetStart="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,6 +24,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+
                 android:layout_height="wrap_content">
 
                 <ImageView
@@ -38,68 +37,65 @@
 
                 <xyz.schwaab.avvylib.AvatarView
                     android:id="@+id/user_photo_image"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="4dp"
                     android:src="@drawable/ic_launcher_background"
                     app:avvy_border_thickness="0dp"
                     app:avvy_border_thickness_highlight="0dp"
                     app:avvy_distance_to_border="0dp"
                     app:avvy_highlighted="false"
                     app:avvy_loading_arches_degree_area="360"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/back_image"
-                    app:layout_constraintTop_toTopOf="@+id/back_image" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/back_image"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/username_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_width="59dp"
+                    android:layout_height="16dp"
                     android:fontFamily="@font/poppins"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toEndOf="@+id/user_photo_image"
-                    app:layout_constraintTop_toTopOf="@+id/user_photo_image"
-                    tools:text="willsmith" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/poppins_light"
-                    android:text="5 min"
                     android:textSize="10sp"
-                    app:layout_constraintStart_toStartOf="@+id/username_text"
-                    app:layout_constraintTop_toTopOf="@+id/username_text" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/user_photo_image"
-                    app:srcCompat="@drawable/ic_dots" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/user_photo_image"
+                    app:layout_constraintStart_toStartOf="@+id/user_photo_image"
+                    app:layout_constraintTop_toBottomOf="@+id/user_photo_image"
+                    tools:text="willsmith" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.appcompat.widget.Toolbar>
 
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/imBlur"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:riv_corner_radius="8dp" />
+
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/im_comment"
-            android:layout_width="0dp"
-            android:layout_height="400dp"
+            android:layout_width="320dp"
+            android:layout_height="320dp"
             android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar"
-            app:riv_corner_radius="20dp" />
+            app:riv_corner_radius="8dp" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -108,7 +104,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/bg_roundup"
         app:layout_constraintBottom_toTopOf="@+id/post_comment_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

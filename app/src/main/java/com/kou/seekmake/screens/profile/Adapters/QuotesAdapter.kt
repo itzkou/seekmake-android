@@ -31,9 +31,10 @@ class QuotesAdapter(private val listener: Listener) : RecyclerView.Adapter<Quote
 
     override fun getItemCount() = quotes.size
 
-    fun updatePosts(newPosts: List<Demand>) {
-        val diffResult = DiffUtil.calculateDiff(SimpleCallback(this.quotes, newPosts) { it._id })
-        this.quotes = newPosts
+    fun updateDemands(newDemands: List<Demand>) {
+        //todo I just changed this
+        val diffResult = DiffUtil.calculateDiff(SimpleCallback(this.quotes, newDemands) { it._id })
+        this.quotes = newDemands
         diffResult.dispatchUpdatesTo(this)
     }
 

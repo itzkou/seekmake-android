@@ -14,7 +14,6 @@ import android.view.Window
 import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.ViewCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -227,15 +226,13 @@ fun ImageView.loadImageOrHide(image: String?) =
 
 fun Snackbar.config(context: Context) {
 
-    this.view.background = ContextCompat.getDrawable(context, R.color.black)
-
+    this.view.background = ContextCompat.getDrawable(context, R.color.colorPrimary)
     this.setActionTextColor(ContextCompat.getColor(context, R.color.white))
     val text = this.view.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
     text.setTextColor(ContextCompat.getColor(context, R.color.white))
     text.maxLines = 1
     text.textSize = 12f
 
-    ViewCompat.setElevation(this.view, 6f)
 }
 
 fun setupBlur(blurView: BlurView, context: Context, view: Window) {

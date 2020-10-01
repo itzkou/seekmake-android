@@ -2,18 +2,19 @@ package com.kou.seekmake.screens.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.AbsListView
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.kou.seekmake.R
 import com.kou.seekmake.models.Firebase.User
 import com.kou.seekmake.screens.comments.CommentsActivity
-import com.kou.seekmake.screens.common.BaseActivity
-import com.kou.seekmake.screens.common.setupAuthGuard
-import com.kou.seekmake.screens.common.setupBlur
-import com.kou.seekmake.screens.common.setupBottomNavigation
+import com.kou.seekmake.screens.common.*
 import com.kou.seekmake.screens.profile_other.OtherProfileActivity
 import com.kou.seekmake.screens.search.SearchActivity
 import com.kou.seekmake.screens.stories.OpenStoriesActivity
@@ -26,6 +27,7 @@ class HomeActivity : BaseActivity(), FeedAdapter.Listener, FollowerAdapter.Liste
     private lateinit var mFriendsAdapter: FollowerAdapter
     private lateinit var mViewModel: HomeViewModel
     private lateinit var mUser: User
+    lateinit var postDialog: AlertDialog
     private var QUERY_PAGE_SIZE: Int = 4
 
     var isLastPage = false
@@ -51,11 +53,11 @@ class HomeActivity : BaseActivity(), FeedAdapter.Listener, FollowerAdapter.Liste
             mViewModel = initViewModel()
             //todo change this later
             mViewModel.init(uid, 100)
-            mViewModel.feedPosts.observe(this, Observer {
+            mViewModel.feedPosts.observe(this, Observer { posts ->
 
-                it?.let { feedPosts ->
+                posts?.let {
 
-                    mAdapter.updatePosts(it)
+                    mAdapter.updatePosts(posts)
                 }
             })
 
@@ -159,9 +161,36 @@ class HomeActivity : BaseActivity(), FeedAdapter.Listener, FollowerAdapter.Liste
         OtherProfileActivity.start(this, uid)
     }
 
+    override fun openDialog(uid: String, postId: String, position: Int) {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.builder_post, null)
+        val txDelete = dialogView.findViewById<TextView>(R.id.txDelete)
+        val txReport = dialogView.findViewById<TextView>(R.id.txReport)
+
+        val builder = AlertDialog.Builder(this)
+
+        builder.setView(dialogView)
+        postDialog = builder.create()
+        postDialog.show()
+        txDelete.setOnClickListener {
+            mViewModel.deleteFeedPost(uid, postId).addOnSuccessListener {
+                postDialog.dismiss()
+            }
+        }
+
+        txReport.setOnClickListener {
+            postDialog.dismiss()
+            val snacko = Snackbar.make(baro, "We will come back to you soon !", Snackbar.LENGTH_SHORT)
+            snacko.config(baro.context)
+            snacko.show()
+        }
+
+
+    }
+
     private fun setFollow(uid: String, follow: Boolean, onSuccess: () -> Unit) {
         mViewModel.setFollow(mUser.uid, uid, follow)
                 .addOnSuccessListener { onSuccess() }
     }
+
 
 }

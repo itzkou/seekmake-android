@@ -49,7 +49,7 @@ dependencies {
 
     implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
     //noinspection GradleCompatible
-    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.google.android.material:material:1.2.1'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     implementation 'com.nhaarman.supertooltips:library:3.0.+'

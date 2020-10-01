@@ -7,10 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kou.seekmake.R
 import com.kou.seekmake.models.Firebase.User
-import com.kou.seekmake.screens.common.BaseActivity
-import com.kou.seekmake.screens.common.loadImageRounded
-import com.kou.seekmake.screens.common.loadUserPhoto
-import com.kou.seekmake.screens.common.setupAuthGuard
+import com.kou.seekmake.screens.common.*
 import kotlinx.android.synthetic.main.activity_comments.*
 
 class CommentsActivity : BaseActivity() {
@@ -52,6 +49,7 @@ class CommentsActivity : BaseActivity() {
                     user_photo_image.loadUserPhoto(other.photo)
                     username_text.text = other.username
                     im_comment.loadImageRounded(postImage)
+                    imBlur.loadblur(postImage)
 
                 }
             })

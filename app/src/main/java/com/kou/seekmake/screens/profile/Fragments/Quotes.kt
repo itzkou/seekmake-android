@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kou.seekmake.R
+import com.kou.seekmake.models.SeekMake.Demand
 import com.kou.seekmake.models.SeekMake.OrderStatus
 import com.kou.seekmake.screens.common.SharedUtils.PrefsManager
 import com.kou.seekmake.screens.profile.Adapters.QuotesAdapter
@@ -33,8 +34,16 @@ class Quotes : Fragment(), QuotesAdapter.Listener {
         viewModel.getDemands(PrefsManager.geToken(requireActivity())!!, PrefsManager.geID(requireActivity())!!
         ).observe(requireActivity(), Observer {
             it?.let { demandsResponse ->
-                if (demandsResponse.data != null)
-                    mAdapter.updatePosts(demandsResponse.data)
+                if (demandsResponse.data != null) {
+                    val arrStatus = arrayListOf<Demand>()
+                    demandsResponse.data.forEach { demand ->
+                        //if (demand.status == "verified")
+                        arrStatus.add(demand)
+                    }
+
+                    mAdapter.updateDemands(arrStatus)
+                }
+
             }
         })
     }

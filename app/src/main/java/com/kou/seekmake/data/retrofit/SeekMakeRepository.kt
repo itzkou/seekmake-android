@@ -201,7 +201,6 @@ class SeekMakeRepository {
 
     }
 
-    //fix this
     fun updateDemand(api: SeekMakeApi, token: String, id: String, status: OrderStatus): LiveData<UpdateDemandResponse> {
         val apiresp = MutableLiveData<UpdateDemandResponse>()
         api.updateDemand("Bearer $token", id, status = status).enqueue(object : Callback<UpdateDemandResponse> {

@@ -39,6 +39,10 @@ class HomeViewModel(onFailureListener: OnFailureListener,
 
     }
 
+    fun deleteFeedPost(uid: String, postId: String): Task<Unit> {
+        return feedPostsRepo.deleteFeedPost(uid, postId)
+    }
+
     fun toggleLike(postId: String) {
         feedPostsRepo.toggleLike(postId, uid).addOnFailureListener(onFailureListener)
     }
