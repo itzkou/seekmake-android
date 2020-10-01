@@ -47,8 +47,8 @@ class CommentsActivity : BaseActivity() {
                 it?.let {
                     other = it
                     user_photo_image.loadUserPhoto(other.photo)
-                    username_text.text = other.username
-                    im_comment.loadImageRounded(postImage)
+
+                    im_comment.loadImgRound(postImage, 8)
                     imBlur.loadblur(postImage)
 
                 }

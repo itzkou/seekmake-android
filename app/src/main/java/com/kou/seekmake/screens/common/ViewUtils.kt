@@ -185,10 +185,10 @@ fun ImageView.loadUserPhoto(photoUrl: String?) =
             Glide.with(this).load(photoUrl).fallback(R.drawable.person).into(this)
         }
 
-fun ImageView.loadImgRound(photoUrl: String?) =
+fun ImageView.loadImgRound(photoUrl: String?, radius: Int) =
         ifNotDestroyed {
             var requestOptions = RequestOptions()
-            requestOptions = requestOptions.transforms(CenterCrop(), RoundedCorners(16))
+            requestOptions = requestOptions.transforms(CenterCrop(), RoundedCorners(radius))
             Glide.with(this).load(photoUrl).apply(requestOptions).fallback(R.drawable.person).into(this)
         }
 
@@ -242,7 +242,7 @@ fun setupBlur(blurView: BlurView, context: Context, view: Window) {
     blurView.setupWith(decorView.findViewById(android.R.id.content))
             .setFrameClearDrawable(windowBackground)
             .setBlurAlgorithm(RenderScriptBlur(context))
-            .setBlurRadius(20f)
+            .setBlurRadius(15f)
             .setHasFixedTransformationMatrix(true)
 }
 

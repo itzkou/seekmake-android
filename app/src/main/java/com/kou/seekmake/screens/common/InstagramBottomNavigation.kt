@@ -151,6 +151,6 @@ fun BaseActivity.setupBottomNavigation(uid: String, navNumber: Int) {
     bottom_navigation_view.setIconSize(22f)
     bottom_navigation_view.enableAnimation(false)
     if (PrefsManager.geAvatar(this)!!.isNotEmpty())
-        bottom_navigation_view.getIconAt(4).loadImgRound(PrefsManager.geAvatar(this))
+        bottom_navigation_view.getIconAt(4).loadImgRound(PrefsManager.geAvatar(this), 16)
     this.lifecycle.addObserver(bnv)
 }

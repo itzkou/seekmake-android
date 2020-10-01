@@ -66,8 +66,6 @@ class FeedAdapter(private val listener: Listener)
             username_text.setOnClickListener { listener.goUser(post.uid) }
             username_text.text = post.username
             tx_timing.setDate(post.timestampDate())
-
-
             post_image.apply {
                 val newlayoutmger = CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL, false)
                 layoutManager = newlayoutmger
