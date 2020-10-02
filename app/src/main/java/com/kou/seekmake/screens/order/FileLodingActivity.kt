@@ -31,9 +31,10 @@ class FileLodingActivity : BaseActivity() {
     private lateinit var vm: FileLoadingViewModel
     private lateinit var mFile: File
     private lateinit var mClient: Client
-    var M1 = Material("Acier", R.drawable.ic_launcher_background)
-    var M2 = Material("Alucobond", R.drawable.ic_launcher_background)
-    var arr = arrayListOf(M1, M2)
+    var M1 = Material("Acier", R.drawable.ic_acier)
+    var M2 = Material("Alucobond", R.drawable.ic_aluco)
+    var M3 = Material("Bois", R.drawable.ic_bois)
+    var arr = arrayListOf(M1, M2, M3)
 
     /** extra order criteria**/
     private var chosenMaterial: String? = null
@@ -76,8 +77,19 @@ class FileLodingActivity : BaseActivity() {
 
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                     when (position) {
-                        0 -> chosenMaterial = "acier"
-                        1 -> chosenMaterial = "alucobond"
+                        0 -> {
+                            chosenMaterial = "acier"
+                            imHint.setImageResource(R.drawable.ic_acier)
+                        }
+                        1 -> {
+                            chosenMaterial = "alucobond"
+                            imHint.setImageResource(R.drawable.ic_aluco)
+                        }
+                        2 -> {
+                            chosenMaterial = "bois"
+                            imHint.setImageResource(R.drawable.ic_bois)
+                        }
+
 
                     }
                 }

@@ -114,6 +114,8 @@
 
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/spinner_material"
+            android:background="@drawable/sp_bg"
+            android:popupBackground="@drawable/bg_roundbom"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -149,6 +151,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/note_input"
             app:srcCompat="@drawable/btn_next" />
+
+        <ImageView
+            android:id="@+id/imHint"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            app:layout_constraintBottom_toBottomOf="@+id/spinner_material"
+            app:layout_constraintStart_toStartOf="@+id/spinner_material"
+            app:layout_constraintTop_toTopOf="@+id/spinner_material"
+            tools:srcCompat="@tools:sample/avatars" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
