@@ -1,21 +1,17 @@
-package com.kou.seekmake.screens.common
+package com.kou.seekmake.screens.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.request.RequestOptions
 import com.kou.seekmake.R
+import com.kou.seekmake.screens.common.ImagePreviewer
+import com.kou.seekmake.screens.common.SimpleCallback
+import com.kou.seekmake.screens.common.fitCenter
 import kotlinx.android.synthetic.main.search_item.view.*
 
 class SearchAdapter(private val listener: Listener) : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
-    var requestOptions: RequestOptions? = null
-
-    init {
-        requestOptions = RequestOptions().fitCenter()
-
-    }
 
     interface Listener {
         fun managePost()
@@ -38,7 +34,7 @@ class SearchAdapter(private val listener: Listener) : RecyclerView.Adapter<Searc
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.im.search_image.loadImageRounded(images[position])
+        holder.im.search_image.fitCenter(images[position])
         holder.im.setOnLongClickListener { v ->
             ImagePreviewer().show(v!!.context, holder.im.search_image)
             false

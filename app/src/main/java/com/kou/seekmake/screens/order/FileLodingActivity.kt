@@ -137,7 +137,7 @@ class FileLodingActivity : BaseActivity() {
                                 Toast.makeText(this, "Network Faillure", Toast.LENGTH_SHORT).show()
                             else if (orderResponse.data != null) {
                                 Toast.makeText(this, "Order submitted !", Toast.LENGTH_SHORT).show()
-                                //startActivity(Intent(this,ProfileActivity))
+                                startActivity(Intent(this, DeliveryActivity::class.java))
                             }
 
                         })

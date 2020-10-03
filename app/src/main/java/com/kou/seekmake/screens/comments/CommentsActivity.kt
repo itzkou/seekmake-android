@@ -59,8 +59,11 @@ class CommentsActivity : BaseActivity() {
                 }
             })
             post_comment_text.setOnClickListener {
-                viewModel.createComment(comment_text.text.toString(), mUser)
-                comment_text.setText("")
+                if (comment_text.text.toString().isNotEmpty()) {
+                    viewModel.createComment(comment_text.text.toString(), mUser)
+                    comment_text.setText("")
+                }
+
             }
         }
     }

@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import com.kou.seekmake.R
+import com.kou.seekmake.screens.common.config
 import kotlinx.android.synthetic.main.activity_delivery.*
 
 class DeliveryActivity : AppCompatActivity() {
@@ -21,12 +23,18 @@ class DeliveryActivity : AppCompatActivity() {
                 when (view.getId()) {
                     R.id.radio24 -> {
                         if (checked) {
-                            //TODO
+                            val snacko = Snackbar.make(btn_send, " Your order is pending approval !", Snackbar.LENGTH_SHORT)
+                            snacko.config(btn_send.context)
+                            snacko.show()
+                            //startActivity(Intent(this,ProfileActivity::class.java))
                         }
                     }
                     R.id.radio72 ->
                         if (checked) {
-                            //TODO
+                            val snacko = Snackbar.make(btn_send, " Your order is pending approval !", Snackbar.LENGTH_SHORT)
+                            snacko.config(btn_send.context)
+                            snacko.show()
+                            //startActivity(Intent(this,ProfileActivity::class.java))
                         }
                 }
             }

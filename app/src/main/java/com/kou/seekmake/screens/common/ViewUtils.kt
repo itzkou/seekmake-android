@@ -21,7 +21,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.snackbar.Snackbar
 import com.kou.seekmake.R
 import com.kou.seekmake.common.formatRelativeTimestamp
-import com.makeramen.roundedimageview.RoundedImageView
 import eightbitlab.com.blurview.BlurView
 import eightbitlab.com.blurview.RenderScriptBlur
 import jp.wasabeef.glide.transformations.BlurTransformation
@@ -209,11 +208,10 @@ fun ImageView.loadImage(image: String?) =
             Glide.with(this).load(image).centerCrop().into(this)
         }
 
-
-fun RoundedImageView.loadImageRounded(image: String?) =
-        ifNotDestroyed {
-            Glide.with(this).load(image).centerCrop().into(this)
-        }
+fun ImageView.fitCenter(im: String?) = ifNotDestroyed {
+    val requestOptions = RequestOptions().fitCenter()
+    Glide.with(this).load(im).apply(requestOptions).into(this)
+}
 
 
 fun ImageView.loadImageOrHide(image: String?) =
@@ -225,13 +223,14 @@ fun ImageView.loadImageOrHide(image: String?) =
         }
 
 fun Snackbar.config(context: Context) {
-
     this.view.background = ContextCompat.getDrawable(context, R.color.colorPrimary)
     this.setActionTextColor(ContextCompat.getColor(context, R.color.white))
     val text = this.view.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
     text.setTextColor(ContextCompat.getColor(context, R.color.white))
     text.maxLines = 1
     text.textSize = 12f
+    text.fontFeatureSettings
+    text.typeface = ResourcesCompat.getFont(this.context, R.font.poppins)
 
 }
 

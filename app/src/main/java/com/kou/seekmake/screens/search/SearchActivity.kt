@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.kou.seekmake.R
 import com.kou.seekmake.screens.common.BaseActivity
-import com.kou.seekmake.screens.common.SearchAdapter
 import com.kou.seekmake.screens.common.setupAuthGuard
 import kotlinx.android.synthetic.main.activity_search.*
 
