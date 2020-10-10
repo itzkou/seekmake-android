@@ -37,15 +37,17 @@ class ProfileActivity : BaseActivity(), ImagesAdapter.Listener {
         mDrawer.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL)
 
 
+
         add_story.setOnClickListener {
             startActivity(Intent(this, StoryActivity::class.java))
         }
         edit_profile_btn.setOnClickListener {
             val intent = Intent(this, EditProfileActivity::class.java)
             startActivity(intent)
+            mDrawer.closeMenu(false)
         }
         settings_image.setOnClickListener {
-            mDrawer.openMenu()
+            mDrawer.openMenu(false)
         }
         add_friends_image.setOnClickListener {
             val intent = Intent(this, AddFriendsActivity::class.java)

@@ -67,6 +67,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginEnd">20dp</item>
         <item name="android:layout_marginStart">20dp</item>
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="edit_profile_label">
@@ -75,6 +77,9 @@
         <item name="android:layout_marginStart">23dp</item>
         <item name="android:layout_marginTop">20dp</item>
         <item name="android:textColor">@color/grey</item>
+        <item name="fontFamily">@font/poppins_light</item>
+        <item name="android:textSize">12sp</item>
+
     </style>
 
     <style name="big_input">
