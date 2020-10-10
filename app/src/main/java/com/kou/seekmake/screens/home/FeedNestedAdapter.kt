@@ -13,9 +13,9 @@ class FeedNestedAdapter(private val images: List<String>)
     : RecyclerView.Adapter<FeedNestedAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(parent.context)
+        val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.feed_nested, parent, false)
-        return ViewHolder(v)
+        return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
