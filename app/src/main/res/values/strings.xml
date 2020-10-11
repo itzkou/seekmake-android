@@ -43,4 +43,9 @@
         <item quantity="one">%d like</item>
         <item quantity="other">%d likes</item>
     </plurals>
+
+    <plurals name="qty_count">
+        <item quantity="one">piece</item>
+        <item quantity="other">pieces</item>
+    </plurals>
 </resources>

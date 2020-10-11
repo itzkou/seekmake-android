@@ -93,7 +93,7 @@
             app:layout_constraintTop_toTopOf="@+id/imTech" />
 
         <TextView
-            android:id="@+id/textView16"
+            android:id="@+id/tvQtycount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_light"

@@ -53,6 +53,18 @@ class QuotesAdapter(private val listener: Listener) : RecyclerView.Adapter<Quote
             }
             )
 
+            imMaterial.setImageResource(when (quote.matiere.toLowerCase()) {
+                "acier" -> R.drawable.ic_acier
+                "alucobond" -> R.drawable.ic_aluco
+                else -> R.drawable.ic_bois
+            }
+            )
+
+            val qtyCount = holder.view.context.resources.getQuantityString(
+                    R.plurals.qty_count, quote.quantite, quote.quantite)
+
+            tvQtycount.text = qtyCount
+
 
         }
 
