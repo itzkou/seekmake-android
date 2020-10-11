@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="160dp"
     android:layout_margin="8dp"
@@ -12,7 +11,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imTech"
             android:layout_width="82dp"
             android:layout_height="82dp"
             android:layout_marginStart="16dp"
@@ -53,29 +52,11 @@
             android:text="technique"
             android:textAlignment="center"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-            app:layout_constraintEnd_toEndOf="@+id/imageView3"
-            app:layout_constraintStart_toStartOf="@+id/imageView3"
-            app:layout_constraintTop_toTopOf="@+id/imageView3" />
+            app:layout_constraintBottom_toBottomOf="@+id/imTech"
+            app:layout_constraintEnd_toEndOf="@+id/imTech"
+            app:layout_constraintStart_toStartOf="@+id/imTech"
+            app:layout_constraintTop_toTopOf="@+id/imTech" />
 
-        <ImageView
-            android:id="@+id/im_tick"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:srcCompat="@drawable/ic_tick"
-            tools:layout_editor_absoluteX="192dp"
-            tools:layout_editor_absoluteY="133dp" />
-
-
-        <ImageView
-            android:id="@+id/ic_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:srcCompat="@drawable/ic_cancel"
-            tools:layout_editor_absoluteX="224dp"
-            tools:layout_editor_absoluteY="133dp" />
 
         <TextView
             android:id="@+id/tvName"
@@ -85,8 +66,8 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins"
             android:text="name"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
-            app:layout_constraintTop_toTopOf="@+id/imageView3" />
+            app:layout_constraintStart_toEndOf="@+id/imTech"
+            app:layout_constraintTop_toTopOf="@+id/imTech" />
 
         <ImageView
             android:id="@+id/imageView4"

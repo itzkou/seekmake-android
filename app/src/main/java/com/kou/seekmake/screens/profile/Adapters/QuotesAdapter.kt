@@ -32,7 +32,6 @@ class QuotesAdapter(private val listener: Listener) : RecyclerView.Adapter<Quote
     override fun getItemCount() = quotes.size
 
     fun updateDemands(newDemands: List<Demand>) {
-        //todo I just changed this
         val diffResult = DiffUtil.calculateDiff(SimpleCallback(this.quotes, newDemands) { it._id })
         this.quotes = newDemands
         diffResult.dispatchUpdatesTo(this)
@@ -44,16 +43,17 @@ class QuotesAdapter(private val listener: Listener) : RecyclerView.Adapter<Quote
             val sdf = SimpleDateFormat("MM/dd/yyyy")
             val netDate = Date(quote.createdDate)
             tx_qty.text = quote.quantite.toString()
-            tx_type.text = quote.type
             tx_date.text = sdf.format(netDate)
             tx_technqiue.text = quote.technique
+            tvStatus.text = quote.status
+            imTech.setImageResource(when (quote.technique) {
+                "laser" -> R.drawable.bg_laser
+                "impression" -> R.drawable.bg_3d
+                else -> R.drawable.bg_fraisage
+            }
+            )
 
-            im_tick.setOnClickListener {
-                listener.confirm(quote._id)
-            }
-            ic_cancel.setOnClickListener {
-                listener.deny(quote._id)
-            }
+
         }
 
 

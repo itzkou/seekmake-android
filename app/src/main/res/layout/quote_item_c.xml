@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imTech"
             android:layout_width="82dp"
             android:layout_height="82dp"
             android:layout_marginStart="16dp"
@@ -52,10 +52,10 @@
             android:text="technique"
             android:textAlignment="center"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-            app:layout_constraintEnd_toEndOf="@+id/imageView3"
-            app:layout_constraintStart_toStartOf="@+id/imageView3"
-            app:layout_constraintTop_toTopOf="@+id/imageView3" />
+            app:layout_constraintBottom_toBottomOf="@+id/imTech"
+            app:layout_constraintEnd_toEndOf="@+id/imTech"
+            app:layout_constraintStart_toStartOf="@+id/imTech"
+            app:layout_constraintTop_toTopOf="@+id/imTech" />
 
 
         <TextView
@@ -66,8 +66,8 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins"
             android:text="name"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
-            app:layout_constraintTop_toTopOf="@+id/imageView3" />
+            app:layout_constraintStart_toEndOf="@+id/imTech"
+            app:layout_constraintTop_toTopOf="@+id/imTech" />
 
         <ImageView
             android:id="@+id/imageView4"
@@ -87,10 +87,10 @@
             android:text="13$"
             android:textColor="@color/blue"
             android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+            app:layout_constraintBottom_toBottomOf="@+id/imTech"
             app:layout_constraintEnd_toStartOf="@+id/tx_qty"
             app:layout_constraintStart_toEndOf="@+id/tvName"
-            app:layout_constraintTop_toTopOf="@+id/imageView3" />
+            app:layout_constraintTop_toTopOf="@+id/imTech" />
 
         <TextView
             android:id="@+id/textView16"
