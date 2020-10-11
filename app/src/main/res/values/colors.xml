@@ -6,11 +6,15 @@
     <color name="white">#FFF</color>
     <color name="black">#000</color>
     <color name="grey">#E1E1E1</color>
+    <color name="darkGrey">#989898</color>
     <color name="greyTopBar">#83F8F8F8</color>
     <color name="blancasse">#FEFEFE</color>
     <color name="blue">#3897F0</color>
     <color name="red">#D9555A</color>
     <color name="trans">#00000000</color>
     <color name="shadow">#29000000</color>
+    <color name="violet">#463E94</color>
+    <color name="brown">#3B2710</color>
+    <color name="green">#28C76A</color>
 
 </resources>

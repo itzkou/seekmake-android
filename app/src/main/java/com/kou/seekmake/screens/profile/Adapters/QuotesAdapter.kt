@@ -46,7 +46,7 @@ class QuotesAdapter(private val listener: Listener) : RecyclerView.Adapter<Quote
             tx_qty.text = quote.quantite.toString()
             tx_type.text = quote.type
             tx_date.text = sdf.format(netDate)
-            tx_technqiue.text = quote.status
+            tx_technqiue.text = quote.technique
 
             im_tick.setOnClickListener {
                 listener.confirm(quote._id)
