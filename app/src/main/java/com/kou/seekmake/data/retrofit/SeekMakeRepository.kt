@@ -165,7 +165,6 @@ class SeekMakeRepository {
             }
 
             override fun onResponse(call: Call<OrderResponse>, response: Response<OrderResponse>) {
-                //TODO code 200
                 if (response.code() == 200)
                     apiresp.postValue(response.body())
                 else {

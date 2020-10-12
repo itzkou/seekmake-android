@@ -12,7 +12,6 @@ import com.kou.seekmake.screens.common.*
 import kotlinx.android.synthetic.main.activity_story.*
 import java.io.File
 
-//TODO compress every image you are sending
 class StoryActivity : BaseActivity() {
     private lateinit var mCamera: CameraHelper
     private lateinit var mFirebase: FirebaseHelper

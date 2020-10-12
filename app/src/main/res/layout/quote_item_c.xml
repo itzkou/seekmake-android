@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
+    android:layout_height="100dp"
     android:layout_margin="8dp"
     app:cardCornerRadius="8dp">
 
@@ -12,34 +12,37 @@
 
         <ImageView
             android:id="@+id/imTech"
-            android:layout_width="82dp"
-            android:layout_height="82dp"
-            android:layout_marginStart="16dp"
+            android:layout_width="74dp"
+            android:layout_height="74dp"
+            android:layout_marginStart="8dp"
             android:background="@drawable/bg_laser"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tx_qty"
+            android:id="@+id/tx_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:fontFamily="@font/poppins"
-            android:text="qty"
+            android:text="status"
             android:textColor="@color/violet"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/tx_date"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tvName" />
+            app:layout_constraintHorizontal_bias="0.54"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.506" />
 
         <TextView
             android:id="@+id/tx_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
+            android:fontFamily="@font/poppins_light"
             android:text="date"
             android:textColor="@color/darkGrey"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/tvName"
             app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
@@ -52,6 +55,7 @@
             android:text="technique"
             android:textAlignment="center"
             android:textColor="@color/white"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/imTech"
             app:layout_constraintEnd_toEndOf="@+id/imTech"
             app:layout_constraintStart_toStartOf="@+id/imTech"
@@ -66,6 +70,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins"
             android:text="name"
+            android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/imTech"
             app:layout_constraintTop_toTopOf="@+id/imTech" />
 
@@ -73,10 +78,9 @@
             android:id="@+id/imageView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_dots" />
 
         <TextView
@@ -87,30 +91,19 @@
             android:text="13$"
             android:textColor="@color/blue"
             android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imTech"
-            app:layout_constraintEnd_toStartOf="@+id/tx_qty"
-            app:layout_constraintStart_toEndOf="@+id/tvName"
-            app:layout_constraintTop_toTopOf="@+id/imTech" />
-
-        <TextView
-            android:id="@+id/tvQtycount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_light"
-            android:text="pieces"
-            android:textColor="@color/darkGrey"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/tx_qty"
-            app:layout_constraintStart_toStartOf="@+id/tx_qty"
-            app:layout_constraintTop_toBottomOf="@+id/tx_qty" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/radio_group"
+            app:layout_constraintHorizontal_bias="0.58"
+            app:layout_constraintStart_toEndOf="@+id/tx_status"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <RadioGroup
             android:id="@+id/radio_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout

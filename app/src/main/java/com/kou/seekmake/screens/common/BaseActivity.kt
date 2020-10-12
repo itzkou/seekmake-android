@@ -12,7 +12,6 @@ import com.kou.seekmake.screens.login.LoginActivity
 abstract class BaseActivity : AppCompatActivity() {
     lateinit var commonViewModel: CommonViewModel
 
-    //TODO here u can make connectivity check
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT

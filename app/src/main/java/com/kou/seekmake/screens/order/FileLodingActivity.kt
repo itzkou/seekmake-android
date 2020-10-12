@@ -51,7 +51,6 @@ class FileLodingActivity : BaseActivity() {
         spinner_material.adapter = CustomAdapter(this, arr)
 
 
-        //TODO you need to validate all user inputs in signup
         setupAuthGuard {
             vm = initViewModel()
             /*** getting the client **/

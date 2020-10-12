@@ -1,6 +1,7 @@
 package com.kou.seekmake.screens.home
 
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -102,11 +103,10 @@ class FeedAdapter(private val listener: Listener)
     }
 
 
-    //TODO stories are messed up
     fun checkStories(uid: String, photo_image: AvatarView) {
         database.child("story-user").child(uid).orderByKey().limitToLast(1).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                Log.d("fireroro", error.message)
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {

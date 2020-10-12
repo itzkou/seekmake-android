@@ -74,7 +74,6 @@ fun coordinatePwd(btn: Button, input: EditText) {
 fun coordinateName(btn: Button, input: EditText) {
     val watcher = object : TextWatcher {
         override fun afterTextChanged(s: Editable?) {
-            //Todo optimize when user enters only fname with 6 characters
             if (input.text.toString().indexOf(" ") == -1) {
                 val snacko = Snackbar.make(btn, "Firstname and Lastname are at least 3 characters", Snackbar.LENGTH_SHORT)
                 snacko.config(btn.context)

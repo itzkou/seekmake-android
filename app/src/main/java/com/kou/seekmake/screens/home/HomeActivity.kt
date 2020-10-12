@@ -51,7 +51,7 @@ class HomeActivity : BaseActivity(), FeedAdapter.Listener, FollowerAdapter.Liste
         setupAuthGuard { uid ->
             setupBottomNavigation(uid, 1)
             mViewModel = initViewModel()
-            //todo change this later
+            //todo pagination
             mViewModel.init(uid, 100)
             mViewModel.feedPosts.observe(this, Observer { posts ->
 

@@ -73,7 +73,6 @@ class OpenStoriesActivity : BaseActivity(), StoriesProgressView.StoriesListener 
 
                     }
 
-                    //todo change it
                     rainHeart.visibility = View.INVISIBLE
                     imloveReact.setOnClickListener {
                         isLiked = !isLiked

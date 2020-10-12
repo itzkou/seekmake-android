@@ -160,7 +160,6 @@ class EditProfileActivity : BaseActivity(), PasswordDialog.Listener {
         builder.setNegativeButton("Gallery") { _, _ ->
             requestToOpenImagePicker(ShareActivity.PERMISSION_REQUEST_CODE_PICK_IMAGE_VIDEO, UwMediaPicker.GalleryMode.ImageGallery, ::openUwMediaPicker)
         }
-        //TODO add videos next time
 
         builder.setNeutralButton("Cancel") { dialog, _ ->
             dialog.dismiss()
