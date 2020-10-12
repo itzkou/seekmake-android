@@ -108,7 +108,7 @@ class InstagramBottomNavigation(private val uid: String,
     }
 
     init {
-        bnv.setIconSize(29f, 29f)
+        bnv.setIconSize(22f)
         bnv.setTextVisibility(false)
         bnv.enableItemShiftingMode(false)
         bnv.enableShiftingMode(false)
@@ -148,9 +148,8 @@ class InstagramBottomNavigation(private val uid: String,
 
 fun BaseActivity.setupBottomNavigation(uid: String, navNumber: Int) {
     val bnv = InstagramBottomNavigation(uid, bottom_navigation_view, tooltip_layout, navNumber, this)
-    bottom_navigation_view.setIconSize(22f)
-    bottom_navigation_view.enableAnimation(false)
+    //bottom_navigation_view.setIconSize(22f)
     if (PrefsManager.geAvatar(this)!!.isNotEmpty())
-        bottom_navigation_view.getIconAt(4).loadImgRound(PrefsManager.geAvatar(this), 16)
+        bottom_navigation_view.getIconAt(4).loadImgRound(PrefsManager.geAvatar(this), 12)
     this.lifecycle.addObserver(bnv)
 }

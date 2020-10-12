@@ -6,7 +6,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.kou.seekmake.R
 import com.kou.seekmake.screens.addfriends.AddFriendsActivity
@@ -15,6 +14,7 @@ import com.kou.seekmake.screens.common.SharedUtils.PrefsManager
 import com.kou.seekmake.screens.editprofile.EditProfileActivity
 import com.kou.seekmake.screens.profile.Fragments.Images
 import com.kou.seekmake.screens.profile.Fragments.Quotes
+import com.kou.seekmake.screens.profile.Fragments.Updates
 import com.kou.seekmake.screens.stories.OpenStoriesActivity
 import com.kou.seekmake.screens.stories.StoryActivity
 import com.mxn.soul.flowingdrawer_core.ElasticDrawer
@@ -64,12 +64,12 @@ class ProfileActivity : BaseActivity(), ImagesAdapter.Listener {
         val adapter = VpProfileAdapter(supportFragmentManager)
         val images = Images.newInstance()
         val quotes = Quotes.newInstance()
-        val loading = Fragment()
+        val updates = Updates.newInstance()
 
 
         adapter.addFragment(images)
         adapter.addFragment(quotes)
-        adapter.addFragment(loading)
+        adapter.addFragment(updates)
 
         vp_profile.adapter = adapter
 

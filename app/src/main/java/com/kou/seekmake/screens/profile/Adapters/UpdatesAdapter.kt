@@ -8,14 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kou.seekmake.R
 import com.kou.seekmake.models.SeekMake.Demand
 import com.kou.seekmake.screens.common.SimpleCallback
-import kotlinx.android.synthetic.main.quote_item.view.*
+import kotlinx.android.synthetic.main.quote_item_c.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class QuotesAdapter(private val listener: Listener) : RecyclerView.Adapter<QuotesAdapter.ViewHolder>() {
+class UpdatesAdapter(private val listener: Listener) : RecyclerView.Adapter<UpdatesAdapter.ViewHolder>() {
     interface Listener {
-        fun updateDemand(demandId: String)
-
+        fun confirm(demandId: String)
+        fun deny(demandId: String)
     }
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view)
@@ -24,7 +24,7 @@ class QuotesAdapter(private val listener: Listener) : RecyclerView.Adapter<Quote
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.quote_item, parent, false)
+                .inflate(R.layout.quote_item_c, parent, false)
         return ViewHolder(view)
     }
 
@@ -42,12 +42,10 @@ class QuotesAdapter(private val listener: Listener) : RecyclerView.Adapter<Quote
         with(holder.view) {
             val sdf = SimpleDateFormat("MM/dd/yyyy")
             val netDate = Date(quote.createdDate)
-            tx_qty.text = quote.quantite.toString()
             tx_date.text = sdf.format(netDate)
             tx_technqiue.text = quote.technique
-            tvStatus.text = quote.status
+            tvPrice.text = "13 $"
             tvType.text = quote.type
-
             imTech.setImageResource(when (quote.technique) {
                 "laser" -> R.drawable.bg_laser
                 "impression" -> R.drawable.bg_3d
@@ -55,17 +53,8 @@ class QuotesAdapter(private val listener: Listener) : RecyclerView.Adapter<Quote
             }
             )
 
-            imMaterial.setImageResource(when (quote.matiere.toLowerCase()) {
-                "acier" -> R.drawable.ic_acier
-                "alucobond" -> R.drawable.ic_aluco
-                else -> R.drawable.ic_bois
-            }
-            )
-
-            val qtyCount = holder.view.context.resources.getQuantityString(
-                    R.plurals.qty_count, quote.quantite, quote.quantite)
-
-            tvQtycount.text = qtyCount
+            ic_confirm.setOnClickListener { listener.confirm(quote._id) }
+            ic_deny.setOnClickListener { listener.deny(quote._id) }
 
 
         }

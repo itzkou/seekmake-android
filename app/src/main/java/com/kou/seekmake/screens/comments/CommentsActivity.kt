@@ -48,7 +48,7 @@ class CommentsActivity : BaseActivity() {
                     other = it
                     user_photo_image.loadUserPhoto(other.photo)
 
-                    im_comment.loadImgRound(postImage, 8)
+                    im_comment.loadImgRound(postImage, 10)
                     imBlur.loadblur(postImage)
 
                 }

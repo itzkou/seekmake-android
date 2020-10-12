@@ -18,6 +18,7 @@ data class Demand(
         val matiere: String,
         val phone: String,
         val priceByMachins: List<Any>,
+        val priceToClient: String,
         val quantite: Int,
         val resolution: String,
         val status: String,

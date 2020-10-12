@@ -14,7 +14,7 @@ class EditProfileViewModel(onFailureListener: OnFailureListener,
     val user: LiveData<User> = usersRepo.getUser()
     private val _shareCompletedEvent = SingleLiveEvent<Unit>()
     val shareCompletedEvent = _shareCompletedEvent
-
+    //todo update feedpost avatar too
     fun uploadAndSetUserPhoto(localImage: Uri): Task<Unit> =
             usersRepo.uploadUserPhoto(localImage).onSuccessTask { downloadUrl ->
                 usersRepo.updateUserPhoto(downloadUrl!!).addOnSuccessListener {
