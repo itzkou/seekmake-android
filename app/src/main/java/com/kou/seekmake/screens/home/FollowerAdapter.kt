@@ -81,7 +81,7 @@ class FollowerAdapter(private val listener: Listener)
         notifyItemChanged(mPositions[uid]!!)
     }
 
-    fun checkStories(user: User, photo_image: AvatarView) {
+    private fun checkStories(user: User, photo_image: AvatarView) {
         database.child("story-user").child(user.uid).orderByKey().limitToLast(1).addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
                 Log.d("fireroro", error.message)

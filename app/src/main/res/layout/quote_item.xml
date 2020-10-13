@@ -21,6 +21,7 @@
             android:background="@drawable/bg_laser"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:contentDescription="TODO"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -55,6 +56,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/imTech"
             app:layout_constraintEnd_toEndOf="@+id/imTech"
             app:layout_constraintStart_toStartOf="@+id/imTech"
+            android:contentDescription="TODO"
             app:layout_constraintTop_toTopOf="@+id/imTech" />
 
 
@@ -71,12 +73,12 @@
             app:layout_constraintTop_toTopOf="@+id/imTech" />
 
         <ImageView
-            android:id="@+id/imageView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="TODO"
             app:srcCompat="@drawable/ic_dots" />
 
         <TextView
@@ -113,6 +115,7 @@
             app:layout_constraintHorizontal_bias="0.8"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="TODO"
             app:srcCompat="@drawable/ic_acier" />
 
 

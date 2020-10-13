@@ -27,8 +27,8 @@ class HomeActivity : BaseActivity(), FeedAdapter.Listener, FollowerAdapter.Liste
     private lateinit var mFriendsAdapter: FollowerAdapter
     private lateinit var mViewModel: HomeViewModel
     private lateinit var mUser: User
-    lateinit var postDialog: AlertDialog
-    private var QUERY_PAGE_SIZE: Int = 4
+    private lateinit var postDialog: AlertDialog
+    private var queryPageSize: Int = 4
 
     var isLastPage = false
     var isScrolling = false
@@ -73,7 +73,7 @@ class HomeActivity : BaseActivity(), FeedAdapter.Listener, FollowerAdapter.Liste
                     val isNotLastPage = !isLastPage
                     val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
                     val isNotAtBeginning = firstVisibleItemPosition >= 0
-                    val isTotalMoreThanVisible = totalItemCount >= QUERY_PAGE_SIZE
+                    val isTotalMoreThanVisible = totalItemCount >= queryPageSize
 
                     val shouldPaginate = isAtLastItem && isNotAtBeginning
                     if (shouldPaginate) {

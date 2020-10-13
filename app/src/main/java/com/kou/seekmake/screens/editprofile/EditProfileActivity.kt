@@ -68,7 +68,7 @@ class EditProfileActivity : BaseActivity(), PasswordDialog.Listener {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == mCamera.REQUEST_CODE) {
+        if (requestCode == mCamera.requestCode) {
             if (resultCode == RESULT_OK) {
                 Log.d("cam", "Camera data retrieved")
 

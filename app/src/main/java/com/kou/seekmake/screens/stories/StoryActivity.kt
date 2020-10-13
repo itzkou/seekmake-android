@@ -48,7 +48,7 @@ class StoryActivity : BaseActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == mCamera.REQUEST_CODE) {
+        if (requestCode == mCamera.requestCode) {
             if (resultCode == RESULT_OK) {
                 post_image.loadImage(mCamera.imageUri?.toString())
             } else {

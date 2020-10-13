@@ -34,12 +34,12 @@
         app:layout_constraintTop_toBottomOf="@+id/txDelete" />
 
     <ImageView
-        android:id="@+id/imageView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/txReport"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txDelete"
+        android:contentDescription="TODO"
         app:srcCompat="@drawable/divider_blue" />
 </androidx.constraintlayout.widget.ConstraintLayout>

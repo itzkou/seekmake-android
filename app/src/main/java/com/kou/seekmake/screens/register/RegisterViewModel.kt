@@ -39,7 +39,7 @@ class RegisterViewModel(private val commonViewModel: CommonViewModel,
 
     }
 
-    fun onRegister(fullName: String, password: String) {
+    private fun onRegister(fullName: String, password: String) {
         if (fullName.isNotEmpty() && password.isNotEmpty()) {
             val localEmail = email
             if (localEmail != null) {

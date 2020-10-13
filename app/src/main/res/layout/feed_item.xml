@@ -63,6 +63,7 @@
             android:padding="12dp"
             android:src="@drawable/ic_heartd"
             app:layout_constraintStart_toStartOf="parent"
+            android:contentDescription="TODO"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -86,6 +87,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/likes_text"
             app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="TODO"
             app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -126,6 +128,7 @@
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="@+id/post_image"
         app:layout_constraintTop_toTopOf="@+id/user_photo_image"
+        android:contentDescription="TODO"
         app:srcCompat="@drawable/ic_dots" />
 
 

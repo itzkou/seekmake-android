@@ -128,7 +128,7 @@ class ProfileActivity : BaseActivity(), ImagesAdapter.Listener {
         const val TAG = "ProfileActivity"
     }
 
-    fun openStories(uid: String) {
+    private fun openStories(uid: String) {
         val intent = Intent(this, OpenStoriesActivity::class.java)
         intent.putExtra("user_uid", uid)
         startActivity(intent)

@@ -31,16 +31,13 @@ class FileLodingActivity : BaseActivity() {
     private lateinit var vm: FileLoadingViewModel
     private lateinit var mFile: File
     private lateinit var mClient: Client
-    var M1 = Material("Acier", R.drawable.ic_acier)
-    var M2 = Material("Alucobond", R.drawable.ic_aluco)
-    var M3 = Material("Bois", R.drawable.ic_bois)
-    var arr = arrayListOf(M1, M2, M3)
+    private var m1 = Material("Acier", R.drawable.ic_acier)
+    private var m2 = Material("Alucobond", R.drawable.ic_aluco)
+    private var m3 = Material("Bois", R.drawable.ic_bois)
+    private var arr = arrayListOf(m1, m2, m3)
 
     /** extra order criteria**/
     private var chosenMaterial: String? = null
-    private var epaisseur: String? = null
-    private var resolution: String? = null
-    private var quantite: Int? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -20,7 +20,6 @@
 
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:id="@+id/homecolla"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
@@ -67,6 +66,7 @@
                 app:layout_constraintEnd_toEndOf="@id/feed_recycler"
                 app:layout_constraintStart_toStartOf="@id/feed_recycler"
                 app:layout_constraintTop_toTopOf="@id/feed_recycler"
+                android:contentDescription="TODO"
                 app:srcCompat="@drawable/divider_blue" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -89,5 +89,6 @@
         android:background="@drawable/ic_search_active"
         app:layout_constraintBottom_toBottomOf="@+id/baro"
         app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="TODO"
         app:layout_constraintTop_toTopOf="@+id/coordinatorLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

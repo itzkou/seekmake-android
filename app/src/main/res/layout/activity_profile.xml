@@ -82,6 +82,7 @@
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="@+id/profile_image"
                         app:layout_constraintTop_toTopOf="@+id/profile_image"
+                        android:contentDescription="TODO"
                         app:srcCompat="@drawable/ic_adda" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -190,6 +191,7 @@
             android:layout_marginEnd="16dp"
             android:src="@drawable/ic_more"
             app:layout_anchor="@id/toolbar"
+            android:contentDescription="TODO"
             app:layout_anchorGravity="top|end" />
 
 
@@ -215,7 +217,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
 
-                />
+                android:contentDescription="TODO" />
 
 
             <Button

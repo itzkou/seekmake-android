@@ -23,6 +23,7 @@
                 android:src="@drawable/ic_back"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                android:contentDescription="TODO"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -40,6 +41,7 @@
                 android:src="@drawable/ic_share_new"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:contentDescription="TODO"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -64,6 +66,7 @@
             android:id="@+id/post_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:contentDescription="TODO"
             android:scaleType="centerCrop" />
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,12 +5,13 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import com.google.firebase.auth.FirebaseAuth
 import com.kou.seekmake.data.firebase.common.auth
+import com.kou.seekmake.screens.common.SharedUtils.PrefsManager
 
 class AuthGuard(private val activity: BaseActivity, f: (String) -> Unit) : LifecycleObserver {
 
     init {
         val user = auth.currentUser
-        if (user == null) {
+        if (user == null || PrefsManager.geToken(activity) == null) {
             activity.goToLogin()
         } else {
             f(user.uid)

@@ -15,7 +15,6 @@
 
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/homecolla"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
@@ -43,9 +42,7 @@
         android:paddingBottom="@dimen/toolbar_height"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
-    <include
-        android:id="@+id/topbar"
-        layout="@layout/top_bar" />
+    <include layout="@layout/top_bar" />
 
     <ImageView
         android:id="@+id/btn_upload"
@@ -54,6 +51,7 @@
         android:layout_gravity="end|top"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="4dp"
+        android:contentDescription="TODO"
         android:src="@drawable/ic_cloudblu" />
 
     <include layout="@layout/bottom_navigation_view" />

@@ -11,15 +11,11 @@ import com.kou.seekmake.R
 import com.kou.seekmake.models.SeekMake.Material
 
 
-class CustomAdapter(val mContext: Context, val mData: ArrayList<Material>) : BaseAdapter() {
-    private val mInflate: LayoutInflater
-
-    init {
-        mInflate = LayoutInflater.from(mContext)
-    }
+class CustomAdapter(mContext: Context, private val mData: ArrayList<Material>) : BaseAdapter() {
+    private val mInflate: LayoutInflater = LayoutInflater.from(mContext)
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        var viewHolder: ViewHolder
+        val viewHolder: ViewHolder
         var view = convertView
 
         if (view == null) {
@@ -70,11 +66,10 @@ class CustomAdapter(val mContext: Context, val mData: ArrayList<Material>) : Bas
     }
 
     class DropdownViewHolder(view: View) {
-        lateinit var text: TextView
+        var text: TextView = view.findViewById(R.id.tx_spinner)
         lateinit var image: ImageView
 
         init {
-            text = view.findViewById(R.id.tx_spinner)
             image = view.findViewById(R.id.im_spinner)
         }
     }

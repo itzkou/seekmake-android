@@ -51,16 +51,16 @@ class HomeViewModel(onFailureListener: OnFailureListener,
 
     fun loadLikes(postId: String): LiveData<FeedPostLikes> {
         val existingLoadedLikes = loadedLikes[postId]
-        if (existingLoadedLikes == null) {
+        return if (existingLoadedLikes == null) {
             val liveData = feedPostsRepo.getLikes(postId).map { likes ->
                 FeedPostLikes(
                         likesCount = likes.size,
                         likedByUser = likes.find { it.userId == uid } != null)
             }
-            loadedLikes += postId to liveData
-            return liveData
+            loadedLikes = loadedLikes + (postId to liveData)
+            liveData
         } else {
-            return existingLoadedLikes
+            existingLoadedLikes
         }
     }
 

@@ -15,7 +15,6 @@
 
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/homecolla"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"

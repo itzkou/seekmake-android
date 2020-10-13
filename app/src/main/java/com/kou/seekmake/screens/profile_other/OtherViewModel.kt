@@ -14,8 +14,7 @@ import com.kou.seekmake.screens.common.BaseViewModel
 class OtherViewModel(private val usersRepo: UsersRepository, private val feedPostsRepo: FeedPostsRepository,
                      onFailureListener: OnFailureListener) :
         BaseViewModel(onFailureListener) {
-    var otherUser: LiveData<User> = MutableLiveData()
-    var me = usersRepo.getUser()
+    private var otherUser: LiveData<User> = MutableLiveData()
     val userAndFriends: LiveData<Pair<User, List<User>>> =
             usersRepo.getUsers().map { allUsers ->
 

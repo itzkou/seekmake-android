@@ -12,7 +12,7 @@ import java.util.*
 
 class CameraHelper(private val activity: Activity) {
     var imageUri: Uri? = null
-    val REQUEST_CODE = 1
+    val requestCode = 1
     lateinit var cameraFile: File
     private val simpleDateFormat = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US)
 
@@ -24,7 +24,7 @@ class CameraHelper(private val activity: Activity) {
             imageUri = FileProvider.getUriForFile(activity, "com.kou.seekmake.fileprovider",
                     imageFile)
             intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
-            activity.startActivityForResult(intent, REQUEST_CODE)
+            activity.startActivityForResult(intent, requestCode)
         }
     }
 

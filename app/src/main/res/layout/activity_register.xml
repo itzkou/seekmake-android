@@ -21,6 +21,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="TODO"
             app:srcCompat="@drawable/logo" />
 
         <TextView
@@ -98,6 +99,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/full_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/full_name"
+            android:contentDescription="TODO"
             app:srcCompat="@drawable/ic_pro" />
 
         <ImageView
@@ -107,6 +109,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/pwd_register"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/pwd_register"
+            android:contentDescription="TODO"
             app:srcCompat="@drawable/ic_lock" />
 
         <ImageView
@@ -116,6 +119,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/email_input"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/email_input"
+            android:contentDescription="TODO"
             app:srcCompat="@drawable/ic_mailo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

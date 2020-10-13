@@ -36,6 +36,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             app:layout_constraintStart_toStartOf="parent"
+            android:contentDescription="TODO"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -95,10 +96,10 @@
                     android:background="@drawable/ic_hearts"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    android:contentDescription="TODO"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/txlovCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -118,10 +119,10 @@
                     app:layout_constraintBottom_toTopOf="@+id/imShare"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    android:contentDescription="TODO"
                     app:layout_constraintTop_toBottomOf="@id/imloveReact" />
 
                 <TextView
-                    android:id="@+id/txViewCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -141,6 +142,7 @@
                     android:background="@drawable/ic_shares"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    android:contentDescription="TODO"
                     app:layout_constraintStart_toStartOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

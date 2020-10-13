@@ -16,7 +16,7 @@ class SplashAdapter(context: Context) : PagerAdapter() {
 
 
     //  Arrays used to bind data into a single layout file "slide_layout"
-    var slider_image = intArrayOf(R.drawable.ic_3d, R.drawable.ic_fraisage, R.drawable.ic_laser)
+    private var sliderImages = intArrayOf(R.drawable.ic_3d, R.drawable.ic_fraisage, R.drawable.ic_laser)
 
 
     override fun isViewFromObject(view: View, obj: Any): Boolean {
@@ -24,7 +24,7 @@ class SplashAdapter(context: Context) : PagerAdapter() {
     }
 
     override fun getCount(): Int {
-        return slider_image.size
+        return sliderImages.size
 
     }
 
@@ -36,12 +36,12 @@ class SplashAdapter(context: Context) : PagerAdapter() {
         //now find slider views by id
 
         val imslide = view.findViewById<ImageView>(R.id.imslide)
-        val dots: LottieAnimationView = view.findViewById<LottieAnimationView>(R.id.dots)
+        val dots: LottieAnimationView = view.findViewById(R.id.dots)
         dots.playAnimation()
 
 
         //data binding
-        imslide.setImageResource(slider_image[position])
+        imslide.setImageResource(sliderImages[position])
 
         container.addView(view)
 

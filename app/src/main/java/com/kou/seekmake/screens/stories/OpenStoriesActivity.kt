@@ -18,7 +18,7 @@ class OpenStoriesActivity : BaseActivity(), StoriesProgressView.StoriesListener 
 
     private var counter = 0
     private var userStories: MutableList<String> = mutableListOf()
-    lateinit var arrStories: List<Story>
+    private lateinit var arrStories: List<Story>
     private var pressTime = 0L
     private var limit = 500L
 

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.kou.seekmake.R
 
-class ImagesAdapter(private val listener: ImagesAdapter.Listener) : RecyclerView.Adapter<ImagesAdapter.ViewHolder>() {
+class ImagesAdapter(private val listener: Listener) : RecyclerView.Adapter<ImagesAdapter.ViewHolder>() {
     interface Listener {
         fun managePost()
     }

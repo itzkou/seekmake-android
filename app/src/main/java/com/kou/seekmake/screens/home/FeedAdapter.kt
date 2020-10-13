@@ -51,7 +51,7 @@ class FeedAdapter(private val listener: Listener)
     }
 
     fun updatePostLikes(position: Int, likes: FeedPostLikes) {
-        postLikes += (position to likes)
+        postLikes = postLikes + (position to likes)
         notifyItemChanged(position)
     }
 

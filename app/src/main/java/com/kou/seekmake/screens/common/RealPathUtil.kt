@@ -3,10 +3,8 @@ package com.kou.seekmake.screens.common
 import android.annotation.SuppressLint
 import android.content.ContentUris
 import android.content.Context
-import android.content.CursorLoader
 import android.database.Cursor
 import android.net.Uri
-import android.os.Build
 import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
@@ -16,29 +14,9 @@ object RealPathUtil {
 
     fun getRealPath(context: Context, fileUri: Uri): String? {
         // SDK >= 11 && SDK < 19
-        return if (Build.VERSION.SDK_INT < 19) {
-            getRealPathFromURIAPI11to18(context, fileUri)
-        } else {
-            getRealPathFromURIAPI19(context, fileUri)
-        }// SDK > 19 (Android 4.4) and up
+        return getRealPathFromURIAPI19(context, fileUri)// SDK > 19 (Android 4.4) and up
     }
 
-    @SuppressLint("NewApi")
-    fun getRealPathFromURIAPI11to18(context: Context, contentUri: Uri): String? {
-        val proj = arrayOf(MediaStore.Images.Media.DATA)
-        var result: String? = null
-
-        val cursorLoader = CursorLoader(context, contentUri, proj, null, null, null)
-        val cursor = cursorLoader.loadInBackground()
-
-        if (cursor != null) {
-            val columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-            cursor.moveToFirst()
-            result = cursor.getString(columnIndex)
-            cursor.close()
-        }
-        return result
-    }
 
     /**
      * Get a file path from a Uri. This will get the the path for Storage Access
@@ -52,10 +30,9 @@ object RealPathUtil {
     @SuppressLint("NewApi")
     fun getRealPathFromURIAPI19(context: Context, uri: Uri): String? {
 
-        val isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
 
         // DocumentProvider
-        if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+        if (DocumentsContract.isDocumentUri(context, uri)) {
             // ExternalStorageProvider
             if (isExternalStorageDocument(uri)) {
                 val docId = DocumentsContract.getDocumentId(uri)

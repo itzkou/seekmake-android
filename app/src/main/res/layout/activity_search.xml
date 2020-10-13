@@ -26,6 +26,7 @@
             android:fontFamily="@font/poppins_light"
             android:hint="@string/search"
             android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:drawablePadding="8dp"
             android:paddingTop="2dp"
             android:textSize="14sp" />

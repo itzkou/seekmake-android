@@ -16,7 +16,7 @@ class CommentsViewModel(private val feedPostsRepo: FeedPostsRepository,
     lateinit var comments: LiveData<List<Comment>>
     private lateinit var postId: String
     val user: LiveData<User> = usersRepo.getUser()
-    var otherUser: LiveData<User> = MutableLiveData()
+    private var otherUser: LiveData<User> = MutableLiveData()
 
 
     fun init(postId: String) {
