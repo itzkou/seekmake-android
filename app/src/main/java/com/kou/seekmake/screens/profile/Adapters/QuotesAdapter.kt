@@ -44,7 +44,12 @@ class QuotesAdapter(private val listener: Listener) : RecyclerView.Adapter<Quote
             val netDate = Date(quote.createdDate)
             tx_qty.text = quote.quantite.toString()
             tx_date.text = sdf.format(netDate)
-            tx_technqiue.text = quote.technique
+            tx_technqiue.setImageResource(when (quote.technique) {
+                "laser" -> R.drawable.laser_small
+                "impression" -> R.drawable.small_3d
+                else -> R.drawable.frais_small
+            }
+            )
             tvStatus.text = quote.status
             tvType.text = quote.type
 

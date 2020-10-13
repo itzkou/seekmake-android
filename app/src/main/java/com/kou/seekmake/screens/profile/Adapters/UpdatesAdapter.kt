@@ -43,7 +43,12 @@ class UpdatesAdapter(private val listener: Listener) : RecyclerView.Adapter<Upda
             val sdf = SimpleDateFormat("MM/dd/yyyy")
             val netDate = Date(quote.createdDate)
             tx_date.text = sdf.format(netDate)
-            tx_technqiue.text = quote.technique
+            tx_technqiue.setImageResource(when (quote.technique) {
+                "laser" -> R.drawable.laser_small
+                "impression" -> R.drawable.small_3d
+                else -> R.drawable.frais_small
+            }
+            )
             tvPrice.text = "13 $"
             tvType.text = quote.type
             imTech.setImageResource(when (quote.technique) {
