@@ -14,5 +14,6 @@ data class Order(
         val epaiseur: String? = "", ///extra criteria
         val matiere: String? = "",
         val quantite: Int? = 1,
-        val resolution: String? = ""
+        val resolution: String? = "",
+        val conception: Boolean
 )

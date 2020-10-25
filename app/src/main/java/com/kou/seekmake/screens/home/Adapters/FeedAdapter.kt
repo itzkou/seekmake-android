@@ -1,4 +1,4 @@
-package com.kou.seekmake.screens.home
+package com.kou.seekmake.screens.home.Adapters
 
 import android.os.Handler
 import android.util.Log
@@ -20,6 +20,7 @@ import com.kou.seekmake.screens.common.SimpleCallback
 import com.kou.seekmake.screens.common.loadUserPhoto
 import com.kou.seekmake.screens.common.setCaptionText
 import com.kou.seekmake.screens.common.setDate
+import com.kou.seekmake.screens.home.FeedPostLikes
 import kotlinx.android.synthetic.main.feed_item.view.*
 import xyz.schwaab.avvylib.AvatarView
 

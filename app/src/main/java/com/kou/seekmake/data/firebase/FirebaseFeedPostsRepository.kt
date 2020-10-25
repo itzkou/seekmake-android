@@ -62,8 +62,8 @@ class FirebaseFeedPostsRepository : FeedPostsRepository {
             database.child("feed-posts").child(uid).child(postId).removeValue().toUnit()
 
 
-    override fun getFeedPosts(uid: String, page: Int): LiveData<List<FeedPost>> =
-            FirebaseLiveData(database.child("feed-posts").child(uid).limitToLast(page)).map {
+    override fun getFeedPosts(uid: String, querySize: Int, currentPage: Int): LiveData<List<FeedPost>> =
+            FirebaseLiveData(database.child("feed-posts").child(uid).limitToLast(querySize * currentPage)).map {
                 it.children.map { it.asFeedPost()!! }
             }
 

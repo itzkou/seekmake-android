@@ -2,19 +2,23 @@ package com.kou.seekmake.screens.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
-import android.widget.AbsListView
+import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.kou.seekmake.R
+import com.kou.seekmake.data.firebase.common.FirebaseHelper
 import com.kou.seekmake.models.Firebase.User
 import com.kou.seekmake.screens.comments.CommentsActivity
 import com.kou.seekmake.screens.common.*
+import com.kou.seekmake.screens.home.Adapters.FeedAdapter
+import com.kou.seekmake.screens.home.Adapters.FollowerAdapter
 import com.kou.seekmake.screens.profile_other.OtherProfileActivity
 import com.kou.seekmake.screens.search.SearchActivity
 import com.kou.seekmake.screens.stories.OpenStoriesActivity
@@ -23,15 +27,14 @@ import kotlinx.android.synthetic.main.top_bar.*
 
 
 class HomeActivity : BaseActivity(), FeedAdapter.Listener, FollowerAdapter.Listener {
+    private lateinit var mFirebase: FirebaseHelper
     private lateinit var mAdapter: FeedAdapter
     private lateinit var mFriendsAdapter: FollowerAdapter
     private lateinit var mViewModel: HomeViewModel
     private lateinit var mUser: User
     private lateinit var postDialog: AlertDialog
-    private var queryPageSize: Int = 4
-
-    var isLastPage = false
-    var isScrolling = false
+    private var queryPageSize: Int = 5
+    private var currentPage: Int = 1
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,46 +54,31 @@ class HomeActivity : BaseActivity(), FeedAdapter.Listener, FollowerAdapter.Liste
         setupAuthGuard { uid ->
             setupBottomNavigation(uid, 1)
             mViewModel = initViewModel()
+            mFirebase = FirebaseHelper(this)
             //todo pagination
-            mViewModel.init(uid, 100)
+            mViewModel.init(uid, queryPageSize, currentPage)
             mViewModel.feedPosts.observe(this, Observer { posts ->
 
                 posts?.let {
 
                     mAdapter.updatePosts(posts)
                 }
+                Log.d("posts", posts.size.toString())
             })
 
             val scrollListener = object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
+                    if (!recyclerView.canScrollVertically(1)) {
+                        Log.d("pago", "last")
+                        ++currentPage
+                        mViewModel.init(uid, queryPageSize, currentPage)
 
-                    val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-                    val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
-                    val visibleItemCount = layoutManager.childCount
-                    val totalItemCount = layoutManager.itemCount
-
-                    val isNotLastPage = !isLastPage
-                    val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
-                    val isNotAtBeginning = firstVisibleItemPosition >= 0
-                    val isTotalMoreThanVisible = totalItemCount >= queryPageSize
-
-                    val shouldPaginate = isAtLastItem && isNotAtBeginning
-                    if (shouldPaginate) {
-                        Toast.makeText(this@HomeActivity, "Should Paginate", Toast.LENGTH_SHORT).show()
-                        isScrolling = false
-                    } else {
-                        Toast.makeText(this@HomeActivity, "Should not Paginate", Toast.LENGTH_SHORT).show()
 
                     }
+
                 }
 
-                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                    super.onScrollStateChanged(recyclerView, newState)
-                    if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
-                        isScrolling = true
-                    }
-                }
             }
             feed_recycler.addOnScrollListener(scrollListener)
 
@@ -165,12 +153,27 @@ class HomeActivity : BaseActivity(), FeedAdapter.Listener, FollowerAdapter.Liste
         val dialogView = LayoutInflater.from(this).inflate(R.layout.builder_post, null)
         val txDelete = dialogView.findViewById<TextView>(R.id.txDelete)
         val txReport = dialogView.findViewById<TextView>(R.id.txReport)
+        val txShare = dialogView.findViewById<TextView>(R.id.txShare)
+        val imStrip = dialogView.findViewById<ImageView>(R.id.imStrip)
 
         val builder = AlertDialog.Builder(this)
 
         builder.setView(dialogView)
         postDialog = builder.create()
         postDialog.show()
+        if (uid != mFirebase.currentUid()) {
+            txDelete.visibility = View.GONE
+            imStrip.visibility = View.GONE
+
+        } else {
+            txDelete.visibility = View.VISIBLE
+            imStrip.visibility = View.VISIBLE
+
+        }
+
+
+
+
         txDelete.setOnClickListener {
             mViewModel.deleteFeedPost(uid, postId).addOnSuccessListener {
                 postDialog.dismiss()

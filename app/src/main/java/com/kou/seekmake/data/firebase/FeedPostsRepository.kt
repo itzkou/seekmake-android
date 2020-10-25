@@ -10,7 +10,7 @@ interface FeedPostsRepository {
     fun deleteFeedPosts(postsAuthorUid: String, uid: String): Task<Unit>
     fun getFeedPost(uid: String, postId: String): LiveData<FeedPost>
     fun deleteFeedPost(uid: String, postId: String): Task<Unit>
-    fun getFeedPosts(uid: String, page: Int): LiveData<List<FeedPost>>
+    fun getFeedPosts(uid: String, querySize: Int, currentPage: Int): LiveData<List<FeedPost>>
     fun toggleLike(postId: String, uid: String): Task<Unit>
     fun getLikes(postId: String): LiveData<List<FeedPostLike>>
     fun getComments(postId: String): LiveData<List<Comment>>

@@ -1,4 +1,4 @@
-package com.kou.seekmake.screens.home
+package com.kou.seekmake.screens.home.Adapters
 
 import android.os.Handler
 import android.util.Log

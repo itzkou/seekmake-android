@@ -9,7 +9,7 @@ import com.kou.seekmake.screens.common.BaseActivity
 import com.kou.seekmake.screens.common.setupAuthGuard
 import com.kou.seekmake.screens.common.setupBlur
 import com.kou.seekmake.screens.common.setupBottomNavigation
-import com.kou.seekmake.screens.home.FeedAdapter
+import com.kou.seekmake.screens.home.Adapters.FeedAdapter
 import com.kou.seekmake.screens.order.OrderActivity
 import kotlinx.android.synthetic.main.activity_seek_home.*
 import kotlinx.android.synthetic.main.top_bar.*

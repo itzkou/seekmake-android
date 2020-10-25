@@ -28,16 +28,16 @@ class HomeViewModel(onFailureListener: OnFailureListener,
                 userList.first() to otherUsersList
             }
 
-    fun init(uid: String, page: Int) {
+    fun init(uid: String, querySize: Int, curentPage: Int) {
         if (!this::uid.isInitialized) {
             this.uid = uid
-            feedPosts = feedPostsRepo.getFeedPosts(uid, page).map {
+            feedPosts = feedPostsRepo.getFeedPosts(uid, querySize, curentPage).map {
                 it.sortedByDescending { it.timestampDate() }
             }
         }
 
-
     }
+
 
     fun deleteFeedPost(uid: String, postId: String): Task<Unit> {
         return feedPostsRepo.deleteFeedPost(uid, postId)
