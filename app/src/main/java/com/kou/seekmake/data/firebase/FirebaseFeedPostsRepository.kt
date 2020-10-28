@@ -58,6 +58,8 @@ class FirebaseFeedPostsRepository : FeedPostsRepository {
             }
 
     //todo delete images from firebase storage
+    //todo retrieve all followers who follow me + post that I deleted and delete it from their feed
+
     override fun deleteFeedPost(uid: String, postId: String): Task<Unit> =
             database.child("feed-posts").child(uid).child(postId).removeValue().toUnit()
 
@@ -67,7 +69,7 @@ class FirebaseFeedPostsRepository : FeedPostsRepository {
                 it.children.map { it.asFeedPost()!! }
             }
 
-
+    //todo the copy occurs only once the user clicks follow use onChildListener
     override fun copyFeedPosts(postsAuthorUid: String, uid: String): Task<Unit> =
             task { taskSource ->
                 database.child("feed-posts").child(postsAuthorUid)
@@ -79,6 +81,8 @@ class FirebaseFeedPostsRepository : FeedPostsRepository {
                                     .toUnit()
                                     .addOnCompleteListener(TaskSourceOnCompleteListener(taskSource))
                         })
+
+
             }
 
 

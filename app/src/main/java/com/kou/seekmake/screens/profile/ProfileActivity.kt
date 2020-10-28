@@ -1,12 +1,12 @@
 package com.kou.seekmake.screens.profile
 
-import android.app.ActivityManager
-import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import androidx.lifecycle.Observer
+import androidx.preference.PreferenceManager.getDefaultSharedPreferences
 import com.kou.seekmake.R
 import com.kou.seekmake.screens.addfriends.AddFriendsActivity
 import com.kou.seekmake.screens.common.*
@@ -35,29 +35,6 @@ class ProfileActivity : BaseActivity(), ImagesAdapter.Listener {
 
         val mDrawer = findViewById<FlowingDrawer>(R.id.drawerlayout)
         mDrawer.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL)
-
-
-
-        add_story.setOnClickListener {
-            startActivity(Intent(this, StoryActivity::class.java))
-        }
-        edit_profile_btn.setOnClickListener {
-            val intent = Intent(this, EditProfileActivity::class.java)
-            startActivity(intent)
-            mDrawer.closeMenu(false)
-        }
-        settings_image.setOnClickListener {
-            mDrawer.openMenu(false)
-        }
-        add_friends_image.setOnClickListener {
-            val intent = Intent(this, AddFriendsActivity::class.java)
-            startActivity(intent)
-        }
-        tx_logout.setOnClickListener {
-            (this.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager)
-                    .clearApplicationUserData()
-
-        }
 
 
         /*** setup viewpager ***/
@@ -113,12 +90,48 @@ class ProfileActivity : BaseActivity(), ImagesAdapter.Listener {
                 }
             })
 
-            /*
-            viewModel.images.observe(this, Observer {
-                it?.let { images ->
-                    //posts_count_text.text = images.size.toString()
-                }
-            })*/
+            add_story.setOnClickListener {
+                startActivity(Intent(this, StoryActivity::class.java))
+            }
+            imEditProfile.setOnClickListener {
+                val intent = Intent(this, EditProfileActivity::class.java)
+                startActivity(intent)
+                mDrawer.closeMenu(false)
+            }
+            tvEditProfile.setOnClickListener {
+                val intent = Intent(this, EditProfileActivity::class.java)
+                startActivity(intent)
+                mDrawer.closeMenu(false)
+            }
+            settings_image.setOnClickListener {
+                mDrawer.openMenu(false)
+            }
+            imDiscover.setOnClickListener {
+                val intent = Intent(this, AddFriendsActivity::class.java)
+                startActivity(intent)
+                mDrawer.closeMenu(false)
+
+            }
+            tvDiscover.setOnClickListener {
+                val intent = Intent(this, AddFriendsActivity::class.java)
+                startActivity(intent)
+                mDrawer.closeMenu(false)
+
+            }
+            imLogout.setOnClickListener {
+                viewModel.signOut()
+                val sharedPrefs: SharedPreferences = getDefaultSharedPreferences(this)
+                val editor: SharedPreferences.Editor = sharedPrefs.edit()
+                editor.clear()
+                editor.apply()
+            }
+            tv_logout.setOnClickListener {
+                viewModel.signOut()
+                val sharedPrefs: SharedPreferences = getDefaultSharedPreferences(this)
+                val editor: SharedPreferences.Editor = sharedPrefs.edit()
+                editor.clear()
+                editor.apply()
+            }
 
 
         }

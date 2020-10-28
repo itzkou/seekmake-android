@@ -2,6 +2,7 @@ package com.kou.seekmake.screens.profile
 
 import androidx.lifecycle.LiveData
 import com.google.android.gms.tasks.OnFailureListener
+import com.kou.seekmake.common.AuthManager
 import com.kou.seekmake.data.firebase.UsersRepository
 import com.kou.seekmake.data.retrofit.SeekMakeApi
 import com.kou.seekmake.data.retrofit.SeekMakeRepository
@@ -11,8 +12,8 @@ import com.kou.seekmake.models.SeekMake.OrderStatus
 import com.kou.seekmake.models.SeekMake.UpdateDemandResponse
 import com.kou.seekmake.screens.common.BaseViewModel
 
-class ProfileViewModel(private val usersRepo: UsersRepository, private val repository: SeekMakeRepository, onFailureListener: OnFailureListener)
-    : BaseViewModel(onFailureListener) {
+class ProfileViewModel(private val authManager: AuthManager, private val usersRepo: UsersRepository, private val repository: SeekMakeRepository, onFailureListener: OnFailureListener)
+    : BaseViewModel(onFailureListener), AuthManager by authManager {
     val user = usersRepo.getUser()
     lateinit var images: LiveData<List<String>>
     lateinit var story: LiveData<Story?>

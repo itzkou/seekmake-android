@@ -33,7 +33,7 @@ class HomeActivity : BaseActivity(), FeedAdapter.Listener, FollowerAdapter.Liste
     private lateinit var mViewModel: HomeViewModel
     private lateinit var mUser: User
     private lateinit var postDialog: AlertDialog
-    private var queryPageSize: Int = 5
+    private var queryPageSize: Int = 20
     private var currentPage: Int = 1
 
 

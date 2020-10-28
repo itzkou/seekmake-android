@@ -38,8 +38,8 @@ class Updates : Fragment(), UpdatesAdapter.Listener {
                 if (demandsResponse.data != null) {
                     val arrStatus = arrayListOf<Demand>()
                     demandsResponse.data.forEach { demand ->
-                        //if (demand.status == "verified")
-                        arrStatus.add(demand)
+                        if (demand.status == "verified")
+                            arrStatus.add(demand)
                     }
 
                     mAdapter.updateDemands(arrStatus)

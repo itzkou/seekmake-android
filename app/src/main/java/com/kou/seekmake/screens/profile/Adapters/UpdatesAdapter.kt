@@ -49,7 +49,7 @@ class UpdatesAdapter(private val listener: Listener) : RecyclerView.Adapter<Upda
                 else -> R.drawable.frais_small
             }
             )
-            tvPrice.text = "13 $"
+            tvPrice.text = "${quote.priceToClient} $"
             tvType.text = quote.type
             imTech.setImageResource(when (quote.technique) {
                 "laser" -> R.drawable.bg_laser

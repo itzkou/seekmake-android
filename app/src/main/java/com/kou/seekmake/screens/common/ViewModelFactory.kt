@@ -51,7 +51,7 @@ class ViewModelFactory(private val app: SeekMakeApp,
                 return LoginViewModel(seekMakeRepo, usersRepo, authManager, app, commonViewModel, onFailureListener) as T
             }
             modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
-                return ProfileViewModel(usersRepo, seekMakeRepo, onFailureListener) as T
+                return ProfileViewModel(authManager, usersRepo, seekMakeRepo, onFailureListener) as T
             }
             modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
                 return RegisterViewModel(commonViewModel, app, onFailureListener, usersRepo) as T
