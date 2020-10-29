@@ -55,9 +55,6 @@ class QuotesAdapter(private val listener: Listener) : RecyclerView.Adapter<Quote
             if (quote.status == "acceptedClient")
                 tvStatus.text = "accepted"
 
-
-
-
             tvType.text = quote.type
 
             imTech.setImageResource(when (quote.technique) {

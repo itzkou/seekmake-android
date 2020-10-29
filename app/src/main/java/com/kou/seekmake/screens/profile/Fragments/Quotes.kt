@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.kou.seekmake.R
 import com.kou.seekmake.models.SeekMake.Demand
 import com.kou.seekmake.screens.common.SharedUtils.PrefsManager
@@ -49,6 +51,10 @@ class Quotes : Fragment(), QuotesAdapter.Listener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_quotes, container, false)
         val rvQuotes = v.findViewById<RecyclerView>(R.id.quotes_recycler)
+        val animVerif = v.findViewById<LottieAnimationView>(R.id.animVerified)
+        val tvVerif = v.findViewById<TextView>(R.id.tvVerif)
+        animVerif.visibility = View.GONE
+        tvVerif.visibility = View.GONE
         mAdapter = QuotesAdapter(this)
         rvQuotes.layoutManager = LinearLayoutManager(activity)
         rvQuotes.adapter = mAdapter
