@@ -1,6 +1,7 @@
 package com.kou.seekmake.data.firebase
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
 import com.kou.seekmake.common.*
@@ -64,10 +65,17 @@ class FirebaseFeedPostsRepository : FeedPostsRepository {
             database.child("feed-posts").child(uid).child(postId).removeValue().toUnit()
 
 
-    override fun getFeedPosts(uid: String, querySize: Int, currentPage: Int): LiveData<List<FeedPost>> =
+    override fun getFeedPosts(uid: String, querySize: Int, currentPage: Int): LiveData<List<FeedPost>> {
+        val response = MutableLiveData<List<FeedPost>>()
+        database.child("feed-posts").child(uid).limitToLast(querySize * currentPage).addValueEventListener(object : ValueE)
+
+        return response
+
+    }/* =
             FirebaseLiveData(database.child("feed-posts").child(uid).limitToLast(querySize * currentPage)).map {
-                it.children.map { it.asFeedPost()!! }
-            }
+                it.children.map { it.asFeedPost()!!
+                }
+            }*/
 
     //todo the copy occurs only once the user clicks follow use onChildListener
     override fun copyFeedPosts(postsAuthorUid: String, uid: String): Task<Unit> =

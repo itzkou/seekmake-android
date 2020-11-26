@@ -10,7 +10,7 @@ android {
         applicationId "com.kou.seekmake"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 14
+        versionCode 15
         versionName "2.0"
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'

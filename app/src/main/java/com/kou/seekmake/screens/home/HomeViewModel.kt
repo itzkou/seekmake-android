@@ -1,5 +1,6 @@
 package com.kou.seekmake.screens.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.Task
@@ -14,6 +15,8 @@ import com.kou.seekmake.screens.common.BaseViewModel
 
 class HomeViewModel(onFailureListener: OnFailureListener,
                     private val feedPostsRepo: FeedPostsRepository, private val usersRepo: UsersRepository) : BaseViewModel(onFailureListener) {
+
+
     lateinit var uid: String
     lateinit var feedPosts: LiveData<List<FeedPost>>
     private var loadedLikes = mapOf<String, LiveData<FeedPostLikes>>()
@@ -28,13 +31,35 @@ class HomeViewModel(onFailureListener: OnFailureListener,
                 userList.first() to otherUsersList
             }
 
-    fun init(uid: String, querySize: Int, curentPage: Int) {
+
+    fun init(uid: String, loadMore: Boolean) {
+
+        var curentPage = 1
+        val querySize = 5
+
+        if (loadMore) {
+
+            ++curentPage
+
+            feedPosts = feedPostsRepo.getFeedPosts(uid, querySize, curentPage).map {
+                it.sortedByDescending { it.timestampDate() }
+            }
+            Log.d("lool", feedPosts.value.toString())
+
+
+        }
+
         if (!this::uid.isInitialized) {
+
             this.uid = uid
             feedPosts = feedPostsRepo.getFeedPosts(uid, querySize, curentPage).map {
                 it.sortedByDescending { it.timestampDate() }
             }
+            Log.d("lool", feedPosts.value.toString())
+
+
         }
+
 
     }
 

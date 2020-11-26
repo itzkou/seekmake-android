@@ -33,8 +33,7 @@ class HomeActivity : BaseActivity(), FeedAdapter.Listener, FollowerAdapter.Liste
     private lateinit var mViewModel: HomeViewModel
     private lateinit var mUser: User
     private lateinit var postDialog: AlertDialog
-    private var queryPageSize: Int = 20
-    private var currentPage: Int = 1
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,25 +54,11 @@ class HomeActivity : BaseActivity(), FeedAdapter.Listener, FollowerAdapter.Liste
             setupBottomNavigation(uid, 1)
             mViewModel = initViewModel()
             mFirebase = FirebaseHelper(this)
-            //todo pagination
-            mViewModel.init(uid, queryPageSize, currentPage)
-            mViewModel.feedPosts.observe(this, Observer { posts ->
-
-                posts?.let {
-
-                    mAdapter.updatePosts(posts)
-                }
-                Log.d("posts", posts.size.toString())
-            })
-
             val scrollListener = object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
                     if (!recyclerView.canScrollVertically(1)) {
-                        Log.d("pago", "last")
-                        ++currentPage
-                        mViewModel.init(uid, queryPageSize, currentPage)
-
+                        mViewModel.init(uid, true)
 
                     }
 
@@ -81,6 +66,21 @@ class HomeActivity : BaseActivity(), FeedAdapter.Listener, FollowerAdapter.Liste
 
             }
             feed_recycler.addOnScrollListener(scrollListener)
+            //todo pagination
+            mViewModel.init(uid, false)
+            mViewModel.feedPosts.observe(this, Observer { posts ->
+
+                posts?.let {
+
+                    mAdapter.updatePosts(posts)
+                }
+                Log.d("posts", posts.size.toString())
+
+
+            })
+
+
+
 
 
             mViewModel.goToCommentsScreen.observe(this, Observer {
