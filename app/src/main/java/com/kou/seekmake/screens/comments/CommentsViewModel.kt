@@ -3,6 +3,7 @@ package com.kou.seekmake.screens.comments
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.tasks.OnFailureListener
+import com.kou.seekmake.common.SingleLiveEvent
 import com.kou.seekmake.data.firebase.FeedPostsRepository
 import com.kou.seekmake.data.firebase.UsersRepository
 import com.kou.seekmake.models.Firebase.Comment
@@ -17,6 +18,8 @@ class CommentsViewModel(private val feedPostsRepo: FeedPostsRepository,
     private lateinit var postId: String
     val user: LiveData<User> = usersRepo.getUser()
     private var otherUser: LiveData<User> = MutableLiveData()
+    private val _cmtCompletedEvent = SingleLiveEvent<Unit>()
+    val cmtCompletedEvent = _cmtCompletedEvent
 
 
     fun init(postId: String) {
@@ -30,7 +33,9 @@ class CommentsViewModel(private val feedPostsRepo: FeedPostsRepository,
                 username = user.username,
                 photo = user.photo,
                 text = text)
-        feedPostsRepo.createComment(postId, comment).addOnFailureListener(onFailureListener)
+        feedPostsRepo.createComment(postId, comment).addOnFailureListener(onFailureListener).addOnSuccessListener {
+            _cmtCompletedEvent.call()
+        }
     }
 
     fun getOther(uid: String): LiveData<User> {

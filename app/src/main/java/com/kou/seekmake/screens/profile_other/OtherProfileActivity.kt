@@ -101,11 +101,13 @@ class OtherProfileActivity : BaseActivity(), ImagesAdapter.Listener {
         }
     }
 
-    override fun managePost() {
-    }
 
     private fun setFollow(uid: String, follow: Boolean, onSuccess: () -> Unit) {
         viewModel.setFollow(mUser.uid, uid, follow)
                 .addOnSuccessListener { onSuccess() }
+    }
+
+    override fun managePost(imageURL: String) {
+        DetailActivity.start(this, imageURL)
     }
 }

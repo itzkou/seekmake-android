@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kou.seekmake.R
+import com.kou.seekmake.screens.common.DetailActivity
 import com.kou.seekmake.screens.common.ImagesAdapter
 import com.kou.seekmake.screens.profile.ProfileViewModel
 
@@ -46,7 +47,8 @@ class Images : Fragment(), ImagesAdapter.Listener {
 
     }
 
-    override fun managePost() {
+    override fun managePost(imageURL: String) {
+        DetailActivity.start(requireActivity(), imageURL)
     }
 
 

@@ -19,6 +19,7 @@ class FriendsAdapter(private val listener: Listener)
     interface Listener {
         fun follow(uid: String)
         fun unfollow(uid: String)
+
     }
 
     private var mUsers = listOf<User>()

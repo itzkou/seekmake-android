@@ -9,7 +9,7 @@ import com.kou.seekmake.R
 
 class ImagesAdapter(private val listener: Listener) : RecyclerView.Adapter<ImagesAdapter.ViewHolder>() {
     interface Listener {
-        fun managePost()
+        fun managePost(imageURL: String)
     }
 
     class ViewHolder(val image: ImageView) : RecyclerView.ViewHolder(image)
@@ -31,7 +31,7 @@ class ImagesAdapter(private val listener: Listener) : RecyclerView.Adapter<Image
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.image.loadImage(images[position])
         holder.image.setOnClickListener {
-            listener.managePost()
+            listener.managePost(images[position])
         }
     }
 

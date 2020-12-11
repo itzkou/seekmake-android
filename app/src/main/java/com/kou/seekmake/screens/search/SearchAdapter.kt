@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.search_item.view.*
 class SearchAdapter(private val listener: Listener) : RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
     interface Listener {
-        fun managePost()
+        fun managePost(imageURL: String)
     }
 
     class ViewHolder(val im: ConstraintLayout) : RecyclerView.ViewHolder(im)
@@ -40,7 +40,7 @@ class SearchAdapter(private val listener: Listener) : RecyclerView.Adapter<Searc
             false
         }
         holder.im.setOnClickListener {
-            listener.managePost()
+            listener.managePost(images[position])
         }
     }
 

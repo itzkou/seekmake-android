@@ -4,7 +4,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.preference.PreferenceManager.getDefaultSharedPreferences
 import com.kou.seekmake.R
@@ -23,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.top_bar.*
 
 
-class ProfileActivity : BaseActivity(), ImagesAdapter.Listener {
+class ProfileActivity : BaseActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -147,9 +146,6 @@ class ProfileActivity : BaseActivity(), ImagesAdapter.Listener {
         startActivity(intent)
     }
 
-    override fun managePost() {
-        Log.d("post", "lol")
-    }
 
 
 }

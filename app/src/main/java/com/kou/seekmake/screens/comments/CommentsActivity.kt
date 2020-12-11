@@ -9,6 +9,7 @@ import com.kou.seekmake.R
 import com.kou.seekmake.models.Firebase.User
 import com.kou.seekmake.screens.common.*
 import kotlinx.android.synthetic.main.activity_comments.*
+import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil.hideKeyboard
 
 class CommentsActivity : BaseActivity() {
     private lateinit var mAdapter: CommentsAdapter
@@ -65,8 +66,12 @@ class CommentsActivity : BaseActivity() {
                 }
 
             }
+            viewModel.cmtCompletedEvent.observe(this, Observer {
+                hideKeyboard(this)
+            })
         }
     }
+
 
     companion object {
         private const val EXTRA_POST_ID = "POST_ID"

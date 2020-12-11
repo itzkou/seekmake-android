@@ -20,6 +20,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".screens.common.DetailActivity"></activity>
         <activity android:name=".screens.profile_other.OtherProfileActivity" />
         <activity android:name=".screens.stories.OpenStoriesActivity" />
         <activity android:name=".screens.stories.StoryActivity" />

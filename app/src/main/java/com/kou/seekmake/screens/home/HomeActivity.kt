@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.kou.seekmake.R
 import com.kou.seekmake.data.firebase.common.FirebaseHelper
@@ -54,7 +53,7 @@ class HomeActivity : BaseActivity(), FeedAdapter.Listener, FollowerAdapter.Liste
             setupBottomNavigation(uid, 1)
             mViewModel = initViewModel()
             mFirebase = FirebaseHelper(this)
-            val scrollListener = object : RecyclerView.OnScrollListener() {
+            /*val scrollListener = object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
                     if (!recyclerView.canScrollVertically(1)) {
@@ -65,7 +64,7 @@ class HomeActivity : BaseActivity(), FeedAdapter.Listener, FollowerAdapter.Liste
                 }
 
             }
-            feed_recycler.addOnScrollListener(scrollListener)
+            feed_recycler.addOnScrollListener(scrollListener)*/
             //todo pagination
             mViewModel.init(uid, false)
             mViewModel.feedPosts.observe(this, Observer { posts ->

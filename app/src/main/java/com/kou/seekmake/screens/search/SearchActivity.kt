@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.kou.seekmake.R
 import com.kou.seekmake.screens.common.BaseActivity
+import com.kou.seekmake.screens.common.DetailActivity
 import com.kou.seekmake.screens.common.setupAuthGuard
 import kotlinx.android.synthetic.main.activity_search.*
 
@@ -61,7 +61,7 @@ class SearchActivity : BaseActivity(), TextWatcher, SearchAdapter.Listener {
         const val TAG = "SearchActivity"
     }
 
-    override fun managePost() {
-        Log.d("post", "lol")
+    override fun managePost(imageURL: String) {
+        DetailActivity.start(this, imageURL)
     }
 }

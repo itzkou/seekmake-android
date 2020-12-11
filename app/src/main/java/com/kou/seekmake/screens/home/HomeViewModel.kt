@@ -35,9 +35,9 @@ class HomeViewModel(onFailureListener: OnFailureListener,
     fun init(uid: String, loadMore: Boolean) {
 
         var curentPage = 1
-        val querySize = 5
+        val querySize = 25
 
-        if (loadMore) {
+        /*if (loadMore) {
 
             ++curentPage
 
@@ -47,7 +47,7 @@ class HomeViewModel(onFailureListener: OnFailureListener,
             Log.d("lool", feedPosts.value.toString())
 
 
-        }
+        }*/
 
         if (!this::uid.isInitialized) {
 

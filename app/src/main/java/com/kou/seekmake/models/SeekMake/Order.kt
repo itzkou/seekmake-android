@@ -15,5 +15,6 @@ data class Order(
         val matiere: String? = "",
         val quantite: Int? = 1,
         val resolution: String? = "",
-        val conception: Boolean
+        val conception: Boolean,
+        val typeLivraison: String
 )
