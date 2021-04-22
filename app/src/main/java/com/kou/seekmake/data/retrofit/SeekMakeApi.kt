@@ -13,7 +13,7 @@ interface SeekMakeApi {
         fun create(): SeekMakeApi {
             val retrofit = Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create())
-                    .baseUrl("https://seekmake.com:3000/api/")//10.0.2.2:8000 emulator //put ipv4 adress//me192.168.1.4//orange 10.54.234.189
+                    .baseUrl("BASE_URL")
                     .client(UnsafeSSL.getUnsafeOkHttpClient().build())
                     .build()
             return retrofit.create(SeekMakeApi::class.java)
